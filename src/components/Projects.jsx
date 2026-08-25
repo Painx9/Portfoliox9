@@ -1,92 +1,8 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 gsap.registerPlugin(ScrollTrigger);
-
-// Project Data updated with both live App links and GitHub Repo links
-const projectsData = [
-  {
-    title: "Python ReAct Automation Agent",
-    category: "Autonomous Agent Architecture",
-    description: "Library-free, zero-dependency implementation of the Reasoning and Acting (ReAct) agent loop pattern to optimize token usage.",
-    tags: ["Python", "Streamlit", "Groq API", "Regex"],
-    match: "99%",
-    episode: "S01 E01",
-    appLink: "https://your-streamlit-app-link.streamlit.app", 
-    repoLink: "https://github.com/YOUR-USERNAME/your-repo-name"
-  },
-  {
-    title: "AI Resume Analyzer Pro",
-    category: "Generative AI & Pydantic",
-    description: "Multi-widget Streamlit dashboard integrating the Google GenAI SDK and Pydantic schemas to parse raw resumes against ATS filters.",
-    tags: ["Python", "Streamlit", "Google GenAI SDK", "Pydantic"],
-    match: "98%",
-    episode: "S01 E02",
-    appLink: "https://your-streamlit-app-link.streamlit.app",
-    repoLink: "https://github.com/YOUR-USERNAME/your-repo-name"
-  },
-  {
-    title: "California House Price Model",
-    category: "Predictive Analytics",
-    description: "XGBoost Regressor model protecting pricing patterns from collinearity across 20,640 instances, achieving an R2 score of 0.943.",
-    tags: ["XGBoost", "Pandas", "Seaborn", "Scikit-Learn"],
-    match: "97%",
-    episode: "S01 E03",
-    appLink: "https://your-streamlit-app-link.streamlit.app",
-    repoLink: "https://github.com/YOUR-USERNAME/your-repo-name"
-  },
-  {
-    title: "AI YouTube Video Analyzer",
-    category: "Multimodal Data Pipelines",
-    description: "Standalone analytics pipeline parsing transcriptions via youtube-transcript-api to generate concise abstracts and action items.",
-    tags: ["Python", "Streamlit", "YouTube Transcript API", "JSON"],
-    match: "99%",
-    episode: "S01 E04",
-    appLink: "https://your-streamlit-app-link.streamlit.app",
-    repoLink: "https://github.com/YOUR-USERNAME/your-repo-name"
-  },
-  {
-    title: "Fake News Text Processing Pipeline",
-    category: "NLP Classification",
-    description: "Cleaned 72,134 news articles using NLTK and TfidfTransformer to build a Logistic Regression classifier achieving 92.7% training accuracy.",
-    tags: ["NLTK", "TfidfTransformer", "Logistic Regression", "Regex"],
-    match: "96%",
-    episode: "S01 E05",
-    appLink: "https://your-streamlit-app-link.streamlit.app",
-    repoLink: "https://github.com/YOUR-USERNAME/your-repo-name"
-  },
-  {
-    title: "Sonar-Array Diagnostics Engine",
-    category: "Classification Engineering",
-    description: "Automated binary geological categorization over 60-feature raw frequency spectrum data using Scikit-Learn and Logistic Regression.",
-    tags: ["Scikit-Learn", "NumPy", "Pandas", "Logistic Regression"],
-    match: "99%",
-    episode: "S01 E06",
-    appLink: "https://your-streamlit-app-link.streamlit.app",
-    repoLink: "https://github.com/YOUR-USERNAME/your-repo-name"
-  },
-  {
-    title: "Automated Loan Status Prediction",
-    category: "Financial Data Processing",
-    description: "Processed loan application datasets by cleaning rows, encoding strings, and deploying a baseline Support Vector Machine classifier.",
-    tags: ["Support Vector Machines", "Pandas", "Data Cleaning"],
-    match: "100%",
-    episode: "S01 E07",
-    appLink: "https://your-streamlit-app-link.streamlit.app",
-    repoLink: "https://github.com/YOUR-USERNAME/your-repo-name"
-  },
-  {
-    title: "PIMA Diabetes Diagnostic Pipeline",
-    category: "Real-Time Healthcare AI",
-    description: "Live Streamlit app utilizing a cached Standard Scaler configuration and linear SVC to evaluate clinical indicator feeds.",
-    tags: ["Streamlit", "Standard Scaler", "SVM", "GitHub CI/CD"],
-    match: "98%",
-    episode: "S01 E08",
-    appLink: "https://your-streamlit-app-link.streamlit.app",
-    repoLink: "https://github.com/YOUR-USERNAME/your-repo-name"
-  }
-];
 
 const Projects = () => {
   const containerRef = useRef(null);
@@ -94,7 +10,42 @@ const Projects = () => {
   const folderFrontRef = useRef(null);
   const cardsRef = useRef([]);
 
+  // State to hold repositories fetched from GitHub API
+  const [repos, setRepos] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  // Fetch GitHub Repositories on Component Mount
   useEffect(() => {
+    // REPLACE "deep-patel" with your actual GitHub username
+    fetch('https://api.github.com/users/deep-patel/repos?sort=updated&per_page=8')
+      .then((res) => res.json())
+      .then((data) => {
+        if (Array.isArray(data)) {
+          // Format data to match portfolio card structure
+          const formattedRepos = data.map((repo, idx) => ({
+            title: repo.name.replace(/-/g, ' ').toUpperCase(),
+            category: repo.language ? `${repo.language} Development` : 'Software Engineering',
+            description: repo.description || 'No description provided for this repository.',
+            tags: [repo.language, repo.topics?.[0], 'GitHub API'].filter(Boolean),
+            match: `${95 + (idx % 5)}%`,
+            episode: `S01 E0${idx + 1}`,
+            appLink: repo.homepage || repo.html_url, // Uses live deployment URL if set, otherwise repo URL
+            repoLink: repo.html_url
+          }));
+          setRepos(formattedRepos);
+        }
+        setLoading(false);
+      })
+      .catch((err) => {
+        console.error('Error fetching GitHub repos:', err);
+        setLoading(false);
+      });
+  }, []);
+
+  // GSAP Folder Animation Trigger
+  useEffect(() => {
+    if (loading || repos.length === 0) return;
+
     let ctx = gsap.context(() => {
       gsap.set([folderBackRef.current, folderFrontRef.current], { 
         xPercent: -50, 
@@ -112,6 +63,7 @@ const Projects = () => {
       };
 
       cardsRef.current.forEach((card) => {
+        if (!card) return;
         gsap.set(card, {
           xPercent: -50,
           yPercent: -50,
@@ -190,7 +142,7 @@ const Projects = () => {
     }, containerRef);
 
     return () => ctx.revert();
-  }, []);
+  }, [loading, repos]);
 
   return (
     <section id="projects" ref={containerRef} className="bg-[#0b0b0b] min-h-[100svh] md:min-h-[170vh] relative font-sans overflow-x-clip text-white w-full flex items-center justify-center py-24 md:py-40 select-none">
@@ -213,11 +165,11 @@ const Projects = () => {
           >
             <div className="absolute -top-6 left-6 w-32 h-8 bg-[#1f1f1f] rounded-t-xl border-t border-red-600/30" />
             <div className="relative z-10 text-red-600 font-mono font-black text-2xl tracking-widest uppercase opacity-60">
-              PROJECT_ARCHIVE
+              {loading ? "FETCHING GITHUB..." : "LIVE_GITHUB_REPOS"}
             </div>
           </div>
 
-          {projectsData.map((project, i) => (
+          {!loading && repos.map((project, i) => (
             <div 
               key={i}
               ref={el => cardsRef.current[i] = el}
@@ -226,24 +178,20 @@ const Projects = () => {
             >
               <div className="w-full h-full rounded-[24px] overflow-hidden border border-white/15 bg-[#141414]/95 backdrop-blur-2xl shadow-[0_25px_50px_rgba(0,0,0,0.9)] transition-all duration-500 group hover:border-red-600 hover:shadow-[0_35px_80px_rgba(229,9,20,0.35)] relative z-10 p-6 flex flex-col justify-between">
                 
-                {/* Top Card Header with Both Action Buttons */}
                 <div className="flex items-center justify-between">
                   <span className="text-[10px] font-mono font-bold tracking-widest uppercase text-red-500 bg-red-600/10 px-2.5 py-1 rounded border border-red-600/20">
                     {project.episode}
                   </span>
                   <div className="flex items-center gap-2">
-                    {/* GitHub Code Repository Button */}
                     <a 
                       href={project.repoLink} 
                       target="_blank" 
                       rel="noopener noreferrer"
                       className="px-2.5 py-1 bg-white/10 hover:bg-white/20 text-white font-mono text-[10px] font-bold uppercase rounded flex items-center gap-1 transition-all border border-white/15"
-                      title="View Source Code"
+                      title="View Codebase"
                     >
                       Code
                     </a>
-
-                    {/* Launch Streamlit App Button */}
                     <a 
                       href={project.appLink} 
                       target="_blank" 
@@ -255,12 +203,11 @@ const Projects = () => {
                   </div>
                 </div>
 
-                {/* Middle Title & Description */}
                 <div className="space-y-1.5 my-auto">
                   <div className="text-[10px] font-mono uppercase tracking-widest text-white/40">
                     {project.category}
                   </div>
-                  <h3 className="text-xl font-black text-white tracking-tight group-hover:text-red-500 transition-colors duration-300">
+                  <h3 className="text-xl font-black text-white tracking-tight group-hover:text-red-500 transition-colors duration-300 truncate">
                     {project.title}
                   </h3>
                   <p className="text-xs text-white/70 font-light leading-relaxed line-clamp-2">
@@ -268,7 +215,6 @@ const Projects = () => {
                   </p>
                 </div>
 
-                {/* Bottom Tech Tags */}
                 <div className="flex flex-wrap gap-1.5 pt-2 border-t border-white/10">
                   {project.tags.map((tag, tIdx) => (
                     <span key={tIdx} className="text-[9px] font-mono text-white/70 bg-white/5 px-2 py-0.5 rounded group-hover:border-red-600/30 transition-colors">
