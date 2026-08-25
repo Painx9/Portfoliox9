@@ -100,10 +100,10 @@ const About = () => {
             <div className="space-y-5 relative z-10">
               <h3 className="text-xs font-mono uppercase tracking-widest text-red-500 font-bold">Cast & Background</h3>
               <p className="text-lg md:text-xl font-medium text-white/90 leading-relaxed">
-                I am <span className="text-white font-bold drop-shadow">Deep Patel</span>, a Computer Science & Engineering graduate pursuing an M.Sc. in Artificial Intelligence at Brandenburg University of Technology (BTU) Cottbus[cite: 23].
+                I am <span className="text-white font-bold drop-shadow">Deep Patel</span>, a Computer Science & Engineering graduate pursuing an M.Sc. in Artificial Intelligence at Brandenburg University of Technology (BTU) Cottbus.
               </p>
               <p className="text-sm md:text-base text-white/60 font-light leading-relaxed">
-                My hands-on work focuses on autonomous agent architectures, text-to-code execution loops, and multimodal data applications using the Google GenAI SDK, Groq API, and Streamlit[cite: 23].
+                My hands-on work focuses on autonomous agent architectures, text-to-code execution loops, and multimodal data applications using the Google GenAI SDK, Groq API, and Streamlit.
               </p>
             </div>
             
@@ -134,15 +134,15 @@ const About = () => {
               <ul className="space-y-3.5 text-sm text-white/80 font-light">
                 <li className="flex items-start gap-2.5">
                   <span className="text-red-500 font-bold">&#8250;</span>
-                  <span>Automated code verification & multi-agent loops[cite: 23].</span>
+                  <span>Automated code verification & multi-agent loops.</span>
                 </li>
                 <li className="flex items-start gap-2.5">
                   <span className="text-red-500 font-bold">&#8250;</span>
-                  <span>Reasoning-and-Acting (ReAct) frameworks and neural network design[cite: 23].</span>
+                  <span>Reasoning-and-Acting (ReAct) frameworks and neural network design.</span>
                 </li>
                 <li className="flex items-start gap-2.5">
                   <span className="text-red-500 font-bold">&#8250;</span>
-                  <span>Seeking student placement, internship, or 6-month Master's thesis partnerships[cite: 23].</span>
+                  <span>Seeking student placement, internship, or 6-month Master's thesis partnerships.</span>
                 </li>
               </ul>
             </div>
