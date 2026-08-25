@@ -1,195 +1,32 @@
 import { useEffect, useRef, useState } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { repositoryGroups } from '../data/projectsData';
 
 gsap.registerPlugin(ScrollTrigger);
-
-/**
- * =====================================================================
- * REPOSITORY & NESTED FOLDERS DETAILED CONFIGURATION:
- * =====================================================================
- * - Each repo folder contains its own general description, overall tech stack, and link.
- * - Each sub-project folder contains detailed mission statements, tech strings, and app/code links.
- * =====================================================================
- */
-const repositoryGroups = [
-  {
-    repoName: "Models",
-    category: "Supervised & Unsupervised Machine Learning",
-    description: "Contains core predictive models, price regression pipelines, ReAct agents, and healthcare diagnostic algorithms.",
-    episode: "S01 REPO",
-    repoLink: "https://github.com/Painx9/Models",
-    overallTech: ["Python", "Scikit-Learn", "XGBoost", "Streamlit", "SVM"],
-    subProjects: [
-      {
-        title: "House Price Prediction",
-        mission: "Solves the challenge of estimating California housing market prices by leveraging machine learning to predict median district values based on geographic and demographic features.",
-        description: "An end-to-end data science project utilizing the California Housing dataset to train an XGBoost regression model, deployed via an interactive Streamlit web dashboard for real-time predictions.",
-        tags: ["Python", "XGBoost", "Scikit-Learn", "Pandas"],
-        appLink: "https://house-price-prediction09.streamlit.app",
-        repoLink: "https://github.com/Painx9/Models/tree/main/House-price-prediction"
-      },
-      {
-        title: "ReAct AI Agent",
-        mission: "This project solves the problem of heavy framework dependency by building a lightweight, zero-dependency ReAct (Reasoning + Acting) AI agent.",
-        description: "Implements an active Think --> Act --> Observe loop that matches LLM outputs to native Python tools.",
-        tags: ["Python 3", "Groq API", "Streamlit", "Regex"],
-        appLink: "https://react-ai-agent09.streamlit.app",
-        repoLink: "https://github.com/Painx9/Models/tree/main/ReAct-AI-Agent"
-      },
-      {
-        title: "Diabetes Prediction ML",
-        mission: "Early detection of diabetes is critical to preventing severe, long-term health complications by instantly evaluating patient metabolic metrics.",
-        description: "Standardizes 8 core patient physiological metrics to train a linear Support Vector Classifier deployed via Streamlit.",
-        tags: ["Python", "StandardScaler", "SVM", "Streamlit"],
-        appLink: "https://diabetes-prediction09.streamlit.app",
-        repoLink: "https://github.com/Painx9/Models/tree/main/diabetes-prediction-ml"
-      },
-      {
-        title: "Fake News Prediction",
-        mission: "Automates the detection of online misinformation by automatically classifying news articles as Real or Fake.",
-        description: "Cleaned raw news text using stemming and TF-IDF vectorization to train a classifier with over 90% accuracy.",
-        tags: ["Python", "PorterStemmer", "Scikit-Learn", "SVM"],
-        appLink: "https://fake-news-prediction09.streamlit.app",
-        repoLink: "https://github.com/Painx9/Models/tree/main/fake-news-prediction"
-      },
-      {
-        title: "Sonar vs Rock",
-        mission: "Solves the challenge of identifying underwater objects by automatically classifying sonar return signals to distinguish dangerous mines from rocks.",
-        description: "Interactive machine learning dashboard powered by a Logistic Regression model classifying sonar return signals.",
-        tags: ["Python", "NumPy", "Scikit-Learn", "Streamlit"],
-        appLink: "https://sonar-vs-rock09.streamlit.app",
-        repoLink: "https://github.com/Painx9/Models/tree/main/sonar-vs-rock"
-      }
-    ]
-  },
-  {
-    repoName: "Gen_AI",
-    category: "Generative AI & Chat Architectures",
-    description: "Repository focused on conversational AI interfaces, multimodal responses, and secure API configuration handling.",
-    episode: "S02 REPO",
-    repoLink: "https://github.com/Painx9/Gen_AI",
-    overallTech: ["Python", "Google GenAI SDK", "Streamlit", "JSON"],
-    subProjects: [
-      {
-        title: "Gemini 3.5 Chat Bot",
-        mission: "Solves the problem of building a responsive, context-aware conversational AI interface allowing users to chat with Google's Gemini model.",
-        description: "An interactive chatbot application maintaining multi-turn session history with secure configuration handling.",
-        tags: ["Python", "Streamlit", "Google GenAI SDK"],
-        appLink: "https://chat-bot09.streamlit.app",
-        repoLink: "https://github.com/Painx9/Gen_AI/tree/main/Gemini-3.5_Chat_Bot"
-      }
-    ]
-  },
-  {
-    repoName: "LLM_Applications",
-    category: "LLM Workflows & Multimodal Pipelines",
-    description: "Production-ready language model utilities including video transcription analysis, resume optimization, and weather forecasting.",
-    episode: "S03 REPO",
-    repoLink: "https://github.com/Painx9/LLM_Applications",
-    overallTech: ["Streamlit", "Google GenAI SDK", "Pydantic", "OpenWeatherMap API"],
-    subProjects: [
-      {
-        title: "AI Video Analyzer",
-        mission: "To eliminate the tedious chore of watching hours of video content by instantly transforming any YouTube URL into an interactive, structured, and searchable knowledge asset.",
-        description: "Streamlit dashboard that leverages advanced flash models to automatically summarize and analyze YouTube videos.",
-        tags: ["Streamlit", "Google GenAI SDK", "Gemini 3.1 Flash Lite", "Python"],
-        appLink: "https://ai-youtube-video-analyzer09.streamlit.app",
-        repoLink: "https://github.com/Painx9/LLM_Applications/tree/main/ai-video-analyzer"
-      },
-      {
-        title: "Resume Analyzer",
-        mission: "Job seekers often struggle to optimize their resumes for rigid Applicant Tracking Systems (ATS), leading to immediate automated rejections. This application solves that.",
-        description: "Production-ready AI application that extracts raw text from PDF resumes and processes it through a strict schema-enforced LLM pipeline.",
-        tags: ["Python", "Streamlit", "Pydantic", "PyPDF2"],
-        appLink: "https://resume-analyzer09.streamlit.app",
-        repoLink: "https://github.com/Painx9/LLM_Applications/tree/main/resume-analyzer"
-      },
-      {
-        title: "Weather Forecast",
-        mission: "It eliminates the need for developers to host expensive backend infrastructure by allowing users to securely bring their own OpenWeatherMap API key.",
-        description: "A lightweight, modular dashboard that fetches real-time weather metrics for any city globally.",
-        tags: ["Python", "Streamlit", "OpenWeatherMap API", "Pandas"],
-        appLink: "https://ai-weather-forecast09.streamlit.app",
-        repoLink: "https://github.com/Painx9/LLM_Applications/tree/main/weather-forecast"
-      }
-    ]
-  },
-  {
-    repoName: "Portfoliox9",
-    category: "Frontend Web Development",
-    description: "Source code repository for your active personal developer portfolio web application featuring immersive UI/UX.",
-    episode: "S04 REPO",
-    repoLink: "https://github.com/Painx9/Portfoliox9",
-    overallTech: ["React", "Vite", "Tailwind CSS", "GSAP"],
-    subProjects: [
-      {
-        title: "Netflix Developer Series Portfolio",
-        mission: "Solves the limitation of standard static portfolios by delivering a cinematic, interactive developer experience modeled after enterprise video platforms.",
-        description: "Immersive portfolio featuring GSAP 3D folder animations, custom web cursors, and nested repo architectures.",
-        tags: ["React", "Vite", "Tailwind CSS", "GSAP"],
-        appLink: "https://painx9.github.io/Deep.github.io/",
-        repoLink: "https://github.com/Painx9/Portfoliox9"
-      }
-    ]
-  },
-  {
-    repoName: "Deep.github.io",
-    category: "Static Web Hosting & Deployment",
-    description: "Live production repository hosting your statically built web application via GitHub Pages with automated syncing.",
-    episode: "S05 REPO",
-    repoLink: "https://github.com/Painx9/Deep.github.io",
-    overallTech: ["HTML5", "CSS3", "JavaScript", "GitHub Actions"],
-    subProjects: [
-      {
-        title: "GitHub Pages Production Build",
-        mission: "Ensures reliable, fast, and globally accessible deployment for all experimental web applications.",
-        description: "Live-hosted deployment repository syncing built web assets for public access globally.",
-        tags: ["HTML5", "CSS3", "JavaScript", "GitHub Actions"],
-        appLink: "https://painx9.github.io/Deep.github.io/",
-        repoLink: "https://github.com/Painx9/Deep.github.io"
-      }
-    ]
-  }
-];
 
 const Projects = () => {
   const containerRef = useRef(null);
   
-  // Refs for Main Repositories View Animation
   const folderBackRef = useRef(null);
   const folderFrontRef = useRef(null);
   const folderCardsRef = useRef([]);
 
-  // Refs for Sub-Projects View Animation
   const subFolderBackRef = useRef(null);
   const subFolderFrontRef = useRef(null);
   const subFolderCardsRef = useRef([]);
 
-  // Tracks which repository folder has been clicked/opened
   const [selectedRepo, setSelectedRepo] = useState(null);
 
-  // GSAP 3D Folder Opening and Stacking Animation Setup for both views with random organic scatter
   useEffect(() => {
     let ctx = gsap.context(() => {
       if (!selectedRepo) {
-        // VIEW 1 ANIMATION: Main Repository Folders
-        gsap.set([folderBackRef.current, folderFrontRef.current], { 
-          xPercent: -50, 
-          yPercent: -50 
-        });
+        gsap.set([folderBackRef.current, folderFrontRef.current], { xPercent: -50, yPercent: -50 });
         gsap.set(folderFrontRef.current, { transformOrigin: "bottom center" });
 
         folderCardsRef.current.forEach((card) => {
           if (!card) return;
-          gsap.set(card, {
-            xPercent: -50,
-            yPercent: -50,
-            rotation: gsap.utils.random(-8, 8),
-            scale: 0.85,
-            x: 0,
-            y: 0,
-          });
+          gsap.set(card, { xPercent: -50, yPercent: -50, rotation: gsap.utils.random(-8, 8), scale: 0.85, x: 0, y: 0 });
         });
 
         const tl = gsap.timeline({
@@ -200,73 +37,42 @@ const Projects = () => {
           }
         });
 
-        tl.to(folderFrontRef.current, {
-          rotationX: -130,
-          duration: 1.2,
-          ease: "power3.inOut"
-        })
-        .to(folderCardsRef.current, {
-          y: -140,
-          scale: 0.9,
-          duration: 0.6,
-          stagger: 0.08,
-          ease: "back.out(1.2)"
-        }, "-=0.6")
-        .to(folderCardsRef.current, {
-          x: (i) => (i - 2) * 280 + gsap.utils.random(-35, 35),
-          y: (i) => (i % 2 === 0 ? -25 : 25) + gsap.utils.random(-15, 15),
-          rotation: () => gsap.utils.random(-5, 5),
-          scale: 0.92,
-          duration: 1.2,
-          stagger: 0.1,
-          ease: "expo.out"
-        }, "-=0.2");
+        tl.to(folderFrontRef.current, { rotationX: -130, duration: 1.2, ease: "power3.inOut" })
+          .to(folderCardsRef.current, { y: -140, scale: 0.9, duration: 0.6, stagger: 0.08, ease: "back.out(1.2)" }, "-=0.6")
+          .to(folderCardsRef.current, {
+            x: (i) => (i - 2) * 280 + gsap.utils.random(-35, 35),
+            y: (i) => (i % 2 === 0 ? -25 : 25) + gsap.utils.random(-15, 15),
+            rotation: () => gsap.utils.random(-5, 5),
+            scale: 0.92,
+            duration: 1.2,
+            stagger: 0.1,
+            ease: "expo.out"
+          }, "-=0.2");
       } else {
-        // VIEW 2 ANIMATION: Sub-Projects Nested Folder Stack Opening with Organic Scatter
-        gsap.set([subFolderBackRef.current, subFolderFrontRef.current], { 
-          xPercent: -50, 
-          yPercent: -50 
-        });
+        gsap.set([subFolderBackRef.current, subFolderFrontRef.current], { xPercent: -50, yPercent: -50 });
         gsap.set(subFolderFrontRef.current, { transformOrigin: "bottom center" });
 
         subFolderCardsRef.current.forEach((card) => {
           if (!card) return;
-          gsap.set(card, {
-            xPercent: -50,
-            yPercent: -50,
-            rotation: gsap.utils.random(-8, 8),
-            scale: 0.85,
-            x: 0,
-            y: 0,
-          });
+          gsap.set(card, { xPercent: -50, yPercent: -50, rotation: gsap.utils.random(-8, 8), scale: 0.85, x: 0, y: 0 });
         });
 
         const subTl = gsap.timeline();
 
-        subTl.to(subFolderFrontRef.current, {
-          rotationX: -130,
-          duration: 1.0,
-          ease: "power3.inOut"
-        })
-        .to(subFolderCardsRef.current, {
-          y: -120,
-          scale: 0.9,
-          duration: 0.5,
-          stagger: 0.06,
-          ease: "back.out(1.2)"
-        }, "-=0.5")
-        .to(subFolderCardsRef.current, {
-          x: (i) => {
-            const count = selectedRepo.subProjects.length;
-            return (i - (count - 1) / 2) * 310 + gsap.utils.random(-30, 30);
-          },
-          y: (i) => (i % 2 === 0 ? -20 : 20) + gsap.utils.random(-15, 15),
-          rotation: () => gsap.utils.random(-5, 5),
-          scale: 1,
-          duration: 1.0,
-          stagger: 0.08,
-          ease: "expo.out"
-        }, "-=0.2");
+        subTl.to(subFolderFrontRef.current, { rotationX: -130, duration: 1.0, ease: "power3.inOut" })
+          .to(subFolderCardsRef.current, { y: -120, scale: 0.9, duration: 0.5, stagger: 0.06, ease: "back.out(1.2)" }, "-=0.5")
+          .to(subFolderCardsRef.current, {
+            x: (i) => {
+              const count = selectedRepo.subProjects.length;
+              return (i - (count - 1) / 2) * 310 + gsap.utils.random(-30, 30);
+            },
+            y: (i) => (i % 2 === 0 ? -20 : 20) + gsap.utils.random(-15, 15),
+            rotation: () => gsap.utils.random(-5, 5),
+            scale: 1,
+            duration: 1.0,
+            stagger: 0.08,
+            ease: "expo.out"
+          }, "-=0.2");
       }
     }, containerRef);
 
@@ -276,7 +82,6 @@ const Projects = () => {
   return (
     <section id="projects" ref={containerRef} className="bg-[#0b0b0b] min-h-[100svh] md:min-h-[160vh] relative font-sans overflow-x-clip text-white w-full flex flex-col items-center justify-center py-24 select-none">
       
-      {/* Background Watermark Heading */}
       <div className="absolute top-10 left-0 w-full flex items-start justify-center pointer-events-none z-0">
         <h1 className="text-[14vw] sm:text-[17vw] md:text-[20vw] font-black text-white/[0.03] tracking-tighter leading-none whitespace-nowrap uppercase">
           {selectedRepo ? selectedRepo.repoName : "REPOSITORIES"}
@@ -285,7 +90,6 @@ const Projects = () => {
 
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[55vw] h-[55vw] bg-red-600/15 rounded-full blur-[160px] pointer-events-none z-0" />
 
-      {/* Breadcrumb Header */}
       <div className="relative z-30 w-full max-w-7xl px-6 mb-6 flex flex-col items-center justify-center text-center gap-2">
         {selectedRepo ? (
           <div className="flex flex-col sm:flex-row sm:items-center justify-center gap-3 w-full">
@@ -306,66 +110,30 @@ const Projects = () => {
         )}
       </div>
 
-      {/* VIEW 1: Main Repositories Folders Stack */}
       {!selectedRepo ? (
         <div className="relative w-full max-w-7xl h-[480px] flex items-center justify-center perspective-[2000px] z-10">
           <div className="relative w-0 h-0 transform-style-3d">
-            
-            <div 
-              ref={folderBackRef}
-              className="absolute w-[85vw] md:w-[34vw] max-w-[400px] aspect-[4/3] bg-[#141414] rounded-[24px] border border-red-600/40 shadow-[0_20px_50px_rgba(229,9,20,0.25)] flex items-center justify-center"
-              style={{ zIndex: 5 }}
-            >
+            <div ref={folderBackRef} className="absolute w-[85vw] md:w-[34vw] max-w-[400px] aspect-[4/3] bg-[#141414] rounded-[24px] border border-red-600/40 shadow-[0_20px_50px_rgba(229,9,20,0.25)] flex items-center justify-center" style={{ zIndex: 5 }}>
               <div className="absolute -top-6 left-6 w-32 h-8 bg-[#1f1f1f] rounded-t-xl border-t border-red-600/30" />
-              <div className="relative z-10 text-red-600 font-mono font-black text-xl tracking-widest uppercase opacity-80">
-                GITHUB_REPOSITORIES
-              </div>
+              <div className="relative z-10 text-red-600 font-mono font-black text-xl tracking-widest uppercase opacity-80">GITHUB_REPOSITORIES</div>
             </div>
 
             {repositoryGroups.map((repo, i) => (
-              <div 
-                key={i}
-                ref={el => folderCardsRef.current[i] = el}
-                onClick={() => setSelectedRepo(repo)}
-                // hover:z-50 ensures hovered folder jumps directly above all others
-                className="hidden md:block absolute w-[80vw] md:w-[32vw] max-w-[340px] aspect-[4/4.2] will-change-transform cursor-pointer hover:z-50 group/card"
-                style={{ zIndex: 10 + i }}
-              >
+              <div key={i} ref={el => folderCardsRef.current[i] = el} onClick={() => setSelectedRepo(repo)} className="hidden md:block absolute w-[80vw] md:w-[32vw] max-w-[340px] aspect-[4/4.2] will-change-transform cursor-pointer hover:z-50 group/card" style={{ zIndex: 10 + i }}>
                 <div className="w-full h-full rounded-[24px] overflow-hidden border border-white/15 bg-[#141414]/95 backdrop-blur-2xl shadow-[0_25px_50px_rgba(0,0,0,0.9)] transition-all duration-300 group-hover/card:border-red-600 group-hover/card:shadow-[0_40px_90px_rgba(229,9,20,0.5)] group-hover/card:scale-105 group-hover/card:-translate-y-3 relative z-10 p-6 flex flex-col justify-between">
-                  
                   <div className="flex items-center justify-between">
-                    <span className="text-[10px] font-mono font-bold tracking-widest uppercase text-red-500 bg-red-600/10 px-2.5 py-1 rounded border border-red-600/20">
-                      {repo.episode}
-                    </span>
-                    <a 
-                      href={repo.repoLink} 
-                      target="_blank" 
-                      rel="noopener noreferrer" 
-                      onClick={(e) => e.stopPropagation()}
-                      className="text-xs font-mono text-red-400 font-bold hover:underline"
-                    >
-                      Access Code &rarr;
-                    </a>
+                    <span className="text-[10px] font-mono font-bold uppercase tracking-widest text-red-500 bg-red-600/10 px-2.5 py-1 rounded border border-red-600/20">{repo.episode}</span>
+                    <a href={repo.repoLink} target="_blank" rel="noopener noreferrer" onClick={(e) => e.stopPropagation()} className="text-xs font-mono text-red-400 font-bold hover:underline">Access Code &rarr;</a>
                   </div>
-
                   <div className="space-y-2 my-auto">
-                    <div className="text-[9px] font-mono uppercase tracking-widest text-white/40 truncate">
-                      {repo.category}
-                    </div>
-                    <h3 className="text-xl font-black text-white tracking-tight group-hover/card:text-red-500 transition-colors duration-300 truncate">
-                      {repo.repoName}
-                    </h3>
-                    <p className="text-xs text-white/70 font-light leading-relaxed line-clamp-3">
-                      {repo.description}
-                    </p>
+                    <div className="text-[9px] font-mono uppercase tracking-widest text-white/40 truncate">{repo.category}</div>
+                    <h3 className="text-xl font-black text-white tracking-tight group-hover/card:text-red-500 transition-colors duration-300 truncate">{repo.repoName}</h3>
+                    <p className="text-xs text-white/70 font-light leading-relaxed line-clamp-3">{repo.description}</p>
                   </div>
-
                   <div className="space-y-2.5 pt-3 border-t border-white/10">
                     <div className="flex flex-wrap gap-1">
                       {repo.overallTech.slice(0, 3).map((tech, tIdx) => (
-                        <span key={tIdx} className="text-[9px] font-mono text-white/70 bg-white/5 px-2 py-0.5 rounded">
-                          {tech}
-                        </span>
+                        <span key={tIdx} className="text-[9px] font-mono text-white/70 bg-white/5 px-2 py-0.5 rounded">{tech}</span>
                       ))}
                     </div>
                     <div className="flex items-center justify-between text-[11px] font-mono text-white/50">
@@ -373,109 +141,57 @@ const Projects = () => {
                       <span className="text-red-500 font-bold">[ OPEN FOLDER ]</span>
                     </div>
                   </div>
-
                   <div className="absolute bottom-4 right-4 w-2 h-2 rounded-full bg-red-600 group-hover/card:shadow-[0_0_15px_#E50914] transition-all" />
                 </div>
               </div>
             ))}
 
-            <div 
-              ref={folderFrontRef}
-              className="absolute w-[85vw] md:w-[34vw] max-w-[400px] aspect-[4/3] pointer-events-none will-change-transform"
-              style={{ zIndex: 60 }}
-            >
+            <div ref={folderFrontRef} className="absolute w-[85vw] md:w-[34vw] max-w-[400px] aspect-[4/3] pointer-events-none will-change-transform" style={{ zIndex: 60 }}>
               <div className="absolute bottom-0 w-full h-[85%] bg-[#1c1c1c] rounded-b-[24px] rounded-t-md shadow-[0_-5px_20px_rgba(0,0,0,0.8)] flex flex-col justify-end p-6 border-t border-red-600/40">
                 <div className="w-20 h-1.5 bg-white/20 rounded-full mx-auto mb-2" />
               </div>
             </div>
-
           </div>
         </div>
       ) : (
-        /* VIEW 2: Sub-Projects 3D Folder Stack Animation View with Hover Elevation */
         <div className="relative w-full max-w-7xl h-[480px] flex items-center justify-center perspective-[2000px] z-10">
           <div className="relative w-0 h-0 transform-style-3d">
-            
-            <div 
-              ref={subFolderBackRef}
-              className="absolute w-[85vw] md:w-[34vw] max-w-[400px] aspect-[4/3] bg-[#141414] rounded-[24px] border border-red-600/40 shadow-[0_20px_50px_rgba(229,9,20,0.25)] flex items-center justify-center"
-              style={{ zIndex: 5 }}
-            >
+            <div ref={subFolderBackRef} className="absolute w-[85vw] md:w-[34vw] max-w-[400px] aspect-[4/3] bg-[#141414] rounded-[24px] border border-red-600/40 shadow-[0_20px_50px_rgba(229,9,20,0.25)] flex items-center justify-center" style={{ zIndex: 5 }}>
               <div className="absolute -top-6 left-6 w-32 h-8 bg-[#1f1f1f] rounded-t-xl border-t border-red-600/30" />
-              <div className="relative z-10 text-red-600 font-mono font-black text-xl tracking-widest uppercase opacity-80">
-                {selectedRepo.repoName.toUpperCase()}_MODULES
-              </div>
+              <div className="relative z-10 text-red-600 font-mono font-black text-xl tracking-widest uppercase opacity-80">{selectedRepo.repoName.toUpperCase()}_MODULES</div>
             </div>
 
             {selectedRepo.subProjects.map((project, idx) => (
-              <div 
-                key={idx}
-                ref={el => subFolderCardsRef.current[idx] = el}
-                // hover:z-50 ensures hovered sub-folder jumps above all others
-                className="hidden md:block absolute w-[80vw] md:w-[32vw] max-w-[340px] aspect-[4/4.2] will-change-transform hover:z-50 group/subcard"
-                style={{ zIndex: 10 + idx }}
-              >
+              <div key={idx} ref={el => subFolderCardsRef.current[idx] = el} className="hidden md:block absolute w-[80vw] md:w-[32vw] max-w-[340px] aspect-[4/4.2] will-change-transform hover:z-50 group/subcard" style={{ zIndex: 10 + idx }}>
                 <div className="w-full h-full rounded-[24px] overflow-hidden border border-white/15 bg-[#141414]/95 backdrop-blur-2xl shadow-[0_25px_50px_rgba(0,0,0,0.9)] transition-all duration-300 group-hover/subcard:border-red-600 group-hover/subcard:shadow-[0_40px_90px_rgba(229,9,20,0.5)] group-hover/subcard:scale-105 group-hover/subcard:-translate-y-3 relative z-10 p-6 flex flex-col justify-between">
-                  
                   <div className="flex items-center justify-between">
-                    <span className="text-[10px] font-mono font-bold tracking-widest uppercase text-red-500 bg-red-600/10 px-2.5 py-1 rounded">
-                      MODULE 0{idx + 1}
-                    </span>
+                    <span className="text-[10px] font-mono font-bold uppercase tracking-widest text-red-500 bg-red-600/10 px-2.5 py-1 rounded">MODULE 0{idx + 1}</span>
                   </div>
-
                   <div className="space-y-2 my-auto">
-                    <h3 className="text-lg font-black text-white tracking-tight group-hover/subcard:text-red-500 transition-colors truncate">
-                      {project.title}
-                    </h3>
-                    <p className="text-[11px] text-white/80 font-light leading-relaxed line-clamp-3">
-                      {project.mission}
-                    </p>
+                    <h3 className="text-lg font-black text-white tracking-tight group-hover/subcard:text-red-500 transition-colors truncate">{project.title}</h3>
+                    <p className="text-[11px] text-white/80 font-light leading-relaxed line-clamp-3">{project.mission}</p>
                   </div>
-
                   <div className="space-y-3 pt-3 border-t border-white/10">
                     <div className="flex flex-wrap gap-1">
                       {project.tags.slice(0, 3).map((tag, tIdx) => (
-                        <span key={tIdx} className="text-[9px] font-mono text-white/70 bg-white/5 px-2 py-0.5 rounded">
-                          {tag}
-                        </span>
+                        <span key={tIdx} className="text-[9px] font-mono text-white/70 bg-white/5 px-2 py-0.5 rounded">{tag}</span>
                       ))}
                     </div>
-
                     <div className="flex items-center gap-2">
-                      <a 
-                        href={project.repoLink} 
-                        target="_blank" 
-                        rel="noopener noreferrer"
-                        className="flex-1 py-2 bg-white/10 hover:bg-white/20 text-white font-mono text-[11px] font-bold uppercase rounded text-center transition-all border border-white/15"
-                      >
-                        Access Code
-                      </a>
-                      <a 
-                        href={project.appLink} 
-                        target="_blank" 
-                        rel="noopener noreferrer"
-                        className="flex-1 py-2 bg-red-600 hover:bg-red-700 text-white font-mono text-[11px] font-bold uppercase rounded text-center transition-all shadow-[0_0_15px_rgba(229,9,20,0.5)]"
-                      >
-                        Launch App
-                      </a>
+                      <a href={project.repoLink} target="_blank" rel="noopener noreferrer" className="flex-1 py-2 bg-white/10 hover:bg-white/20 text-white font-mono text-[11px] font-bold uppercase rounded text-center transition-all border border-white/15">Access Code</a>
+                      <a href={project.appLink} target="_blank" rel="noopener noreferrer" className="flex-1 py-2 bg-red-600 hover:bg-red-700 text-white font-mono text-[11px] font-bold uppercase rounded text-center transition-all shadow-[0_0_15px_rgba(229,9,20,0.5)]">Launch App</a>
                     </div>
                   </div>
-
                   <div className="absolute bottom-4 right-4 w-2 h-2 rounded-full bg-red-600 group-hover/subcard:shadow-[0_0_15px_#E50914] transition-all" />
                 </div>
               </div>
             ))}
 
-            <div 
-              ref={subFolderFrontRef}
-              className="absolute w-[85vw] md:w-[34vw] max-w-[400px] aspect-[4/3] pointer-events-none will-change-transform"
-              style={{ zIndex: 60 }}
-            >
+            <div ref={subFolderFrontRef} className="absolute w-[85vw] md:w-[34vw] max-w-[400px] aspect-[4/3] pointer-events-none will-change-transform" style={{ zIndex: 60 }}>
               <div className="absolute bottom-0 w-full h-[85%] bg-[#1c1c1c] rounded-b-[24px] rounded-t-md shadow-[0_-5px_20px_rgba(0,0,0,0.8)] flex flex-col justify-end p-6 border-t border-red-600/40">
                 <div className="w-20 h-1.5 bg-white/20 rounded-full mx-auto mb-2" />
               </div>
             </div>
-
           </div>
         </div>
       )}
