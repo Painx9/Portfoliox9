@@ -14,10 +14,9 @@ const Projects = () => {
   const [repos, setRepos] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  // Fetch GitHub Repositories on Component Mount
+  // Fetch GitHub Repositories for Painx9 on Component Mount
   useEffect(() => {
-    // REPLACE "deep-patel" with your actual GitHub username
-    fetch('https://api.github.com/users/deep-patel/repos?sort=updated&per_page=8')
+    fetch('https://api.github.com/users/Painx9/repos?sort=updated&per_page=8')
       .then((res) => res.json())
       .then((data) => {
         if (Array.isArray(data)) {
@@ -29,7 +28,7 @@ const Projects = () => {
             tags: [repo.language, repo.topics?.[0], 'GitHub API'].filter(Boolean),
             match: `${95 + (idx % 5)}%`,
             episode: `S01 E0${idx + 1}`,
-            appLink: repo.homepage || repo.html_url, // Uses live deployment URL if set, otherwise repo URL
+            appLink: repo.homepage || repo.html_url, // Uses live Streamlit or deployment URL if set, otherwise repo URL
             repoLink: repo.html_url
           }));
           setRepos(formattedRepos);
@@ -165,7 +164,7 @@ const Projects = () => {
           >
             <div className="absolute -top-6 left-6 w-32 h-8 bg-[#1f1f1f] rounded-t-xl border-t border-red-600/30" />
             <div className="relative z-10 text-red-600 font-mono font-black text-2xl tracking-widest uppercase opacity-60">
-              {loading ? "FETCHING GITHUB..." : "LIVE_GITHUB_REPOS"}
+              {loading ? "FETCHING PAINX9..." : "PAINX9_REPOS"}
             </div>
           </div>
 
