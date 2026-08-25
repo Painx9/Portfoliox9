@@ -42,12 +42,12 @@ const MinimalPreloader = ({ onComplete }) => {
         {/* Minimal Red Indicator Dot */}
         <div className="w-2.5 h-2.5 rounded-full bg-red-600 animate-ping"></div>
 
-        {/* Minimal Typography */}
+        {/* Updated Name */}
         <h1 
           className="text-2xl md:text-3xl font-black uppercase tracking-[0.3em] text-white"
           style={{ fontFamily: "'Bebas Neue', 'Impact', sans-serif" }}
         >
-          SUSHMITA
+          DEEP PATEL
         </h1>
       </div>
     </div>
