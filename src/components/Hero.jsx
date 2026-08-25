@@ -271,6 +271,7 @@ const Hero = () => {
         <nav className="hidden md:flex items-center gap-8 text-xs font-mono uppercase tracking-widest text-white/80">
           <a href="#home" className="hover:text-red-500 transition-colors">Home</a>
           <a href="#about" className="hover:text-red-500 transition-colors">About</a>
+          <a href="#education" className="hover:text-red-500 transition-colors">Education</a>
           <a href="#expertise" className="hover:text-red-500 transition-colors">Expertise</a>
           <a href="#skills" className="hover:text-red-500 transition-colors">Skills</a>
           <a href="#projects" className="hover:text-red-500 transition-colors">Projects</a>
