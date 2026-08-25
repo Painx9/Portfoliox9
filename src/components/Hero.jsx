@@ -229,7 +229,7 @@ const Hero = () => {
                 </div>
 
                 <img
-                  src={picture.png}
+                  src={pictureImg}
                   alt="Deep Patel"
                   className="w-full h-[330px] md:h-[390px] object-cover rounded-xl filter contrast-125 brightness-105 group-hover:scale-[1.02] transition-transform duration-500"
                 />
@@ -241,7 +241,7 @@ const Hero = () => {
             <div className="p-5 bg-black/80 backdrop-blur-2xl border border-white/15 rounded-xl shadow-2xl max-w-xs">
               <h3 className="text-xs font-mono uppercase tracking-widest text-red-500 font-bold mb-2">Focus & Location</h3>
               <p className="text-xs text-white/80 leading-relaxed font-light">
-                Based in Hamburg, Germany. Seeking 6-month Master's thesis partnership or engineering internship.
+                Based in Hamburg, Germany[cite: 23]. Seeking 6-month Master's thesis partnership or engineering internship[cite: 23].
               </p>
             </div>
           </div>
