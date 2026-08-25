@@ -6,32 +6,32 @@ gsap.registerPlugin(ScrollTrigger);
 
 /**
  * =====================================================================
- * NESTED REPOSITORY GROUPS & SUB-PROJECTS CONFIGURATION:
+ * REPOSITORY & NESTED FOLDERS DETAILED CONFIGURATION:
  * =====================================================================
- * This structure maps your actual GitHub repositories and their sub-folders:
- * 1. Models (house-price-prediction, react-ai-agent, diabetes-prediction-ml, fake-news-prediction, sonar-vs-rock)
- * 2. Gen_AI (gemini-3.5_chat_bot)
- * 3. LLM_Applications (ai-video-analyzer, resume-analyzer, weather-forecast)
- * 4. Portfoliox9 (React Portfolio Website)
- * 5. Deep.github.io (GitHub API & Deployed Static Web Build)
+ * - Each repo folder contains its own general description, overall tech stack, and link.
+ * - Each sub-project folder contains detailed mission statements, tech strings, and app/code links.
  * =====================================================================
  */
 const repositoryGroups = [
   {
     repoName: "Models",
     category: "Supervised & Unsupervised Machine Learning",
-    description: "Contains core predictive models, price regression pipelines, ReAct agents, and diagnostic algorithms.",
+    description: "Contains core predictive models, price regression pipelines, ReAct agents, and healthcare diagnostic algorithms.",
     episode: "S01 REPO",
+    repoLink: "https://github.com/Painx9/Models",
+    overallTech: ["Python", "Scikit-Learn", "XGBoost", "Streamlit", "SVM"],
     subProjects: [
       {
         title: "House Price Prediction",
-        description: "An end-to-end data science project utilizing the California Housing dataset to train an XGBoost regression model.",
+        mission: "Solves the challenge of estimating California housing market prices by leveraging machine learning to predict median district values based on geographic and demographic features.",
+        description: "An end-to-end data science project utilizing the California Housing dataset to train an XGBoost regression model, deployed via an interactive Streamlit web dashboard for real-time predictions.",
         tags: ["Python", "XGBoost", "Scikit-Learn", "Pandas"],
         appLink: "https://house-price-prediction09.streamlit.app",
         repoLink: "https://github.com/Painx9/Models/tree/main/House-price-prediction"
       },
       {
         title: "ReAct AI Agent",
+        mission: "This project solves the problem of heavy framework dependency by building a lightweight, zero-dependency ReAct (Reasoning + Acting) AI agent.",
         description: "Implements an active Think --> Act --> Observe loop that matches LLM outputs to native Python tools.",
         tags: ["Python 3", "Groq API", "Streamlit", "Regex"],
         appLink: "https://react-ai-agent09.streamlit.app",
@@ -39,13 +39,15 @@ const repositoryGroups = [
       },
       {
         title: "Diabetes Prediction ML",
-        description: "Standardizes 8 core patient physiological metrics to train a linear Support Vector Classifier.",
+        mission: "Early detection of diabetes is critical to preventing severe, long-term health complications by instantly evaluating patient metabolic metrics.",
+        description: "Standardizes 8 core patient physiological metrics to train a linear Support Vector Classifier deployed via Streamlit.",
         tags: ["Python", "StandardScaler", "SVM", "Streamlit"],
         appLink: "https://diabetes-prediction09.streamlit.app",
         repoLink: "https://github.com/Painx9/Models/tree/main/diabetes-prediction-ml"
       },
       {
         title: "Fake News Prediction",
+        mission: "Automates the detection of online misinformation by automatically classifying news articles as Real or Fake.",
         description: "Cleaned raw news text using stemming and TF-IDF vectorization to train a classifier with over 90% accuracy.",
         tags: ["Python", "PorterStemmer", "Scikit-Learn", "SVM"],
         appLink: "https://fake-news-prediction09.streamlit.app",
@@ -53,6 +55,7 @@ const repositoryGroups = [
       },
       {
         title: "Sonar vs Rock",
+        mission: "Solves the challenge of identifying underwater objects by automatically classifying sonar return signals to distinguish dangerous mines from rocks.",
         description: "Interactive machine learning dashboard powered by a Logistic Regression model classifying sonar return signals.",
         tags: ["Python", "NumPy", "Scikit-Learn", "Streamlit"],
         appLink: "https://sonar-vs-rock09.streamlit.app",
@@ -63,11 +66,14 @@ const repositoryGroups = [
   {
     repoName: "Gen_AI",
     category: "Generative AI & Chat Architectures",
-    description: "Repository focused on conversational AI interfaces and core generative frameworks.",
+    description: "Repository focused on conversational AI interfaces, multimodal responses, and secure API configuration handling.",
     episode: "S02 REPO",
+    repoLink: "https://github.com/Painx9/Gen_AI",
+    overallTech: ["Python", "Google GenAI SDK", "Streamlit", "JSON"],
     subProjects: [
       {
         title: "Gemini 3.5 Chat Bot",
+        mission: "Solves the problem of building a responsive, context-aware conversational AI interface allowing users to chat with Google's Gemini model.",
         description: "An interactive chatbot application maintaining multi-turn session history with secure configuration handling.",
         tags: ["Python", "Streamlit", "Google GenAI SDK"],
         appLink: "https://chat-bot09.streamlit.app",
@@ -78,18 +84,22 @@ const repositoryGroups = [
   {
     repoName: "LLM_Applications",
     category: "LLM Workflows & Multimodal Pipelines",
-    description: "Production-ready language model utilities including video transcription analysis and resume optimization.",
+    description: "Production-ready language model utilities including video transcription analysis, resume optimization, and weather forecasting.",
     episode: "S03 REPO",
+    repoLink: "https://github.com/Painx9/LLM_Applications",
+    overallTech: ["Streamlit", "Google GenAI SDK", "Pydantic", "OpenWeatherMap API"],
     subProjects: [
       {
         title: "AI Video Analyzer",
-        description: "Streamlit dashboard that leverages the gemini-3.1-flash-lite model to automatically summarize and analyze YouTube videos.",
+        mission: "To eliminate the tedious chore of watching hours of video content by instantly transforming any YouTube URL into an interactive, structured, and searchable knowledge asset.",
+        description: "Streamlit dashboard that leverages advanced flash models to automatically summarize and analyze YouTube videos.",
         tags: ["Streamlit", "Google GenAI SDK", "Gemini 3.1 Flash Lite", "Python"],
         appLink: "https://ai-youtube-video-analyzer09.streamlit.app",
         repoLink: "https://github.com/Painx9/LLM_Applications/tree/main/ai-video-analyzer"
       },
       {
         title: "Resume Analyzer",
+        mission: "Job seekers often struggle to optimize their resumes for rigid Applicant Tracking Systems (ATS), leading to immediate automated rejections. This application solves that.",
         description: "Production-ready AI application that extracts raw text from PDF resumes and processes it through a strict schema-enforced LLM pipeline.",
         tags: ["Python", "Streamlit", "Pydantic", "PyPDF2"],
         appLink: "https://resume-analyzer09.streamlit.app",
@@ -97,7 +107,8 @@ const repositoryGroups = [
       },
       {
         title: "Weather Forecast",
-        description: "A lightweight, modular dashboard that fetches real-time weather metrics for any city globally via OpenWeatherMap API.",
+        mission: "It eliminates the need for developers to host expensive backend infrastructure by allowing users to securely bring their own OpenWeatherMap API key.",
+        description: "A lightweight, modular dashboard that fetches real-time weather metrics for any city globally.",
         tags: ["Python", "Streamlit", "OpenWeatherMap API", "Pandas"],
         appLink: "https://ai-weather-forecast09.streamlit.app",
         repoLink: "https://github.com/Painx9/LLM_Applications/tree/main/weather-forecast"
@@ -107,12 +118,15 @@ const repositoryGroups = [
   {
     repoName: "Portfoliox9",
     category: "Frontend Web Development",
-    description: "Source code repository for your active personal developer portfolio web application.",
+    description: "Source code repository for your active personal developer portfolio web application featuring immersive UI/UX.",
     episode: "S04 REPO",
+    repoLink: "https://github.com/Painx9/Portfoliox9",
+    overallTech: ["React", "Vite", "Tailwind CSS", "GSAP"],
     subProjects: [
       {
         title: "Netflix Developer Series Portfolio",
-        description: "Immersive cinematic portfolio featuring GSAP 3D animations, custom web cursors, and repository folder nesting.",
+        mission: "Solves the limitation of standard static portfolios by delivering a cinematic, interactive developer experience modeled after enterprise video platforms.",
+        description: "Immersive portfolio featuring GSAP 3D folder animations, custom web cursors, and nested repo architectures.",
         tags: ["React", "Vite", "Tailwind CSS", "GSAP"],
         appLink: "https://painx9.github.io/Deep.github.io/",
         repoLink: "https://github.com/Painx9/Portfoliox9"
@@ -122,11 +136,14 @@ const repositoryGroups = [
   {
     repoName: "Deep.github.io",
     category: "Static Web Hosting & Deployment",
-    description: "Live production repository hosting your statically built web application via GitHub Pages.",
+    description: "Live production repository hosting your statically built web application via GitHub Pages with automated syncing.",
     episode: "S05 REPO",
+    repoLink: "https://github.com/Painx9/Deep.github.io",
+    overallTech: ["HTML5", "CSS3", "JavaScript", "GitHub Actions"],
     subProjects: [
       {
         title: "GitHub Pages Production Build",
+        mission: "Ensures reliable, fast, and globally accessible deployment for all experimental web applications.",
         description: "Live-hosted deployment repository syncing built web assets for public access globally.",
         tags: ["HTML5", "CSS3", "JavaScript", "GitHub Actions"],
         appLink: "https://painx9.github.io/Deep.github.io/",
@@ -268,7 +285,7 @@ const Projects = () => {
 
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[55vw] h-[55vw] bg-red-600/15 rounded-full blur-[160px] pointer-events-none z-0" />
 
-      {/* Structured Top Header & Breadcrumb Container (Optimized for perfect vertical centering) */}
+      {/* Breadcrumb Header */}
       <div className="relative z-30 w-full max-w-7xl px-6 mb-6 flex flex-col items-center justify-center text-center gap-2">
         {selectedRepo ? (
           <div className="flex flex-col sm:flex-row sm:items-center justify-center gap-3 w-full">
@@ -319,9 +336,15 @@ const Projects = () => {
                     <span className="text-[10px] font-mono font-bold tracking-widest uppercase text-red-500 bg-red-600/10 px-2.5 py-1 rounded border border-red-600/20">
                       {repo.episode}
                     </span>
-                    <span className="text-xs font-mono text-red-400 font-bold group-hover:translate-x-1 transition-transform">
-                      Open &rarr;
-                    </span>
+                    <a 
+                      href={repo.repoLink} 
+                      target="_blank" 
+                      rel="noopener noreferrer" 
+                      onClick={(e) => e.stopPropagation()}
+                      className="text-xs font-mono text-red-400 font-bold hover:underline"
+                    >
+                      Access Code &rarr;
+                    </a>
                   </div>
 
                   <div className="space-y-1.5 my-auto">
@@ -336,9 +359,18 @@ const Projects = () => {
                     </p>
                   </div>
 
-                  <div className="flex items-center justify-between pt-2 border-t border-white/10 text-[11px] font-mono text-white/50">
-                    <span>{repo.subProjects.length} Folders Inside</span>
-                    <span className="text-red-500 font-bold">[ VIEW ]</span>
+                  <div className="space-y-2 pt-2 border-t border-white/10">
+                    <div className="flex flex-wrap gap-1">
+                      {repo.overallTech.slice(0, 3).map((tech, tIdx) => (
+                        <span key={tIdx} className="text-[9px] font-mono text-white/70 bg-white/5 px-2 py-0.5 rounded">
+                          {tech}
+                        </span>
+                      ))}
+                    </div>
+                    <div className="flex items-center justify-between text-[11px] font-mono text-white/50">
+                      <span>{repo.subProjects.length} Sub-Modules</span>
+                      <span className="text-red-500 font-bold">[ OPEN FOLDER ]</span>
+                    </div>
                   </div>
 
                   <div className="absolute bottom-4 right-4 w-2 h-2 rounded-full bg-red-600 group-hover:shadow-[0_0_15px_#E50914] transition-all" />
@@ -390,16 +422,16 @@ const Projects = () => {
                   </div>
 
                   <div className="space-y-1.5 my-auto">
-                    <h3 className="text-xl font-black text-white tracking-tight group-hover:text-red-500 transition-colors truncate">
+                    <h3 className="text-lg font-black text-white tracking-tight group-hover:text-red-500 transition-colors truncate">
                       {project.title}
                     </h3>
-                    <p className="text-xs text-white/70 font-light leading-relaxed line-clamp-2">
-                      {project.description}
+                    <p className="text-[11px] text-white/70 font-light leading-relaxed line-clamp-3">
+                      {project.mission}
                     </p>
                   </div>
 
                   <div className="space-y-3 pt-3 border-t border-white/10">
-                    <div className="flex flex-wrap gap-1.5">
+                    <div className="flex flex-wrap gap-1">
                       {project.tags.map((tag, tIdx) => (
                         <span key={tIdx} className="text-[9px] font-mono text-white/70 bg-white/5 px-2 py-0.5 rounded">
                           {tag}
@@ -414,7 +446,7 @@ const Projects = () => {
                         rel="noopener noreferrer"
                         className="flex-1 py-1.5 bg-white/10 hover:bg-white/20 text-white font-mono text-[11px] font-bold uppercase rounded text-center transition-all border border-white/15"
                       >
-                        Code
+                        Access Code
                       </a>
                       <a 
                         href={project.appLink} 
