@@ -11,13 +11,14 @@ const Footer = () => {
               DEEP PATEL<span className="w-1.5 h-1.5 rounded-full bg-white inline-block"></span>
             </div>
             <p className="text-xs font-mono text-white/50 tracking-widest uppercase">
-              // DEEP'S AI & ML ARCHIVE &bull; 2026
+              // AI & MACHINE LEARNING PORTFOLIO &bull; 2026
             </p>
           </div>
 
           <nav className="flex flex-wrap gap-6 md:gap-8 text-xs font-mono uppercase tracking-widest text-white/70">
             <a href="#home" className="hover:text-red-500 transition-colors">Home</a>
             <a href="#about" className="hover:text-red-500 transition-colors">About</a>
+            <a href="#education" className="hover:text-red-500 transition-colors">Education</a>
             <a href="#expertise" className="hover:text-red-500 transition-colors">Expertise</a>
             <a href="#skills" className="hover:text-red-500 transition-colors">Skills</a>
             <a href="#projects" className="hover:text-red-500 transition-colors">Projects</a>
