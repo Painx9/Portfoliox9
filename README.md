@@ -1,4 +1,5 @@
 # PortfolioX9 — Netflix-Inspired AI & ML Portfolio
+Website: https://deepatel.vercel.app/
 
 A cinematic, Netflix-themed developer portfolio website built with React, Vite, Tailwind CSS, and GSAP. Designed and engineered by **Deep Patel**, an AI & Machine Learning Engineer based in Hamburg, Germany, and currently pursuing an M.Sc. in Artificial Intelligence at Brandenburg University of Technology (BTU).
 
@@ -60,3 +61,41 @@ portfoliox9/
 ├── package-lock.json       # Locked dependency versions
 ├── package.json            # Project dependencies and npm scripts
 └── vite.config.js          # Vite build and bundler configuration
+
+```
+Getting Started Locally
+Clone the repository:
+
+```Bash
+git clone [https://github.com/Painx9/portfoliox9.git](https://github.com/Painx9/portfoliox9.git)
+```
+Navigate into the project directory:
+
+```Bash
+cd portfoliox9
+```
+Install dependencies:
+
+```Bash
+npm install
+```
+Run the development server:
+
+```Bash
+npm run dev
+```
+Build for production:
+
+```Bash
+npm run build
+```
+📬 Connect & Collaborate
+Location: Hamburg, Germany / Cottbus, Germany
+
+Email: dp1852001@gmail.com
+
+GitHub: https://github.com/Painx9
+
+LinkedIn: https://www.linkedin.com/in/deepatel009/
+
+© 2026 Deep Patel. All Rights Reserved. Engineered for Generative AI & Machine Learning Excellence.
