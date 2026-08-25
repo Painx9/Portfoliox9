@@ -189,7 +189,7 @@ const Hero = () => {
             </div>
 
             <p className="hero-anim-item text-sm md:text-base text-white/80 font-light leading-relaxed max-w-md drop-shadow">
-              Specializing in autonomous agent architectures, text-to-code pipelines, and multimodal data apps at Brandenburg University of Technology.
+              Specializing in autonomous agent architectures, text-to-code pipelines, and multimodal data apps at BTU-Cottbus.
             </p>
 
             <div className="hero-anim-item flex items-center gap-4 pt-2">
