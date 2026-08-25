@@ -169,7 +169,7 @@ const Projects = () => {
   // Tracks which repository folder has been clicked/opened
   const [selectedRepo, setSelectedRepo] = useState(null);
 
-  // GSAP 3D Folder Opening and Stacking Animation Setup for both views
+  // GSAP 3D Folder Opening and Stacking Animation Setup for both views with random organic scatter
   useEffect(() => {
     let ctx = gsap.context(() => {
       if (!selectedRepo) {
@@ -185,7 +185,7 @@ const Projects = () => {
           gsap.set(card, {
             xPercent: -50,
             yPercent: -50,
-            rotation: gsap.utils.random(-6, 6),
+            rotation: gsap.utils.random(-8, 8),
             scale: 0.85,
             x: 0,
             y: 0,
@@ -206,23 +206,24 @@ const Projects = () => {
           ease: "power3.inOut"
         })
         .to(folderCardsRef.current, {
-          y: -120,
+          y: -140,
           scale: 0.9,
           duration: 0.6,
           stagger: 0.08,
           ease: "back.out(1.2)"
         }, "-=0.6")
         .to(folderCardsRef.current, {
-          x: (i) => (i - 2) * 310,
-          y: 0,
-          rotation: 0,
+          // Organic randomized scattering offsets for scalability
+          x: (i) => (i - 2) * 280 + gsap.utils.random(-35, 35),
+          y: (i) => (i % 2 === 0 ? -25 : 25) + gsap.utils.random(-15, 15),
+          rotation: () => gsap.utils.random(-5, 5),
           scale: 0.92,
           duration: 1.2,
           stagger: 0.1,
           ease: "expo.out"
         }, "-=0.2");
       } else {
-        // VIEW 2 ANIMATION: Sub-Projects Nested Folder Stack Opening
+        // VIEW 2 ANIMATION: Sub-Projects Nested Folder Stack Opening with Organic Scatter
         gsap.set([subFolderBackRef.current, subFolderFrontRef.current], { 
           xPercent: -50, 
           yPercent: -50 
@@ -234,7 +235,7 @@ const Projects = () => {
           gsap.set(card, {
             xPercent: -50,
             yPercent: -50,
-            rotation: gsap.utils.random(-6, 6),
+            rotation: gsap.utils.random(-8, 8),
             scale: 0.85,
             x: 0,
             y: 0,
@@ -249,7 +250,7 @@ const Projects = () => {
           ease: "power3.inOut"
         })
         .to(subFolderCardsRef.current, {
-          y: -100,
+          y: -120,
           scale: 0.9,
           duration: 0.5,
           stagger: 0.06,
@@ -258,10 +259,10 @@ const Projects = () => {
         .to(subFolderCardsRef.current, {
           x: (i) => {
             const count = selectedRepo.subProjects.length;
-            return (i - (count - 1) / 2) * 340;
+            return (i - (count - 1) / 2) * 310 + gsap.utils.random(-30, 30);
           },
-          y: 0,
-          rotation: 0,
+          y: (i) => (i % 2 === 0 ? -20 : 20) + gsap.utils.random(-15, 15),
+          rotation: () => gsap.utils.random(-5, 5),
           scale: 1,
           duration: 1.0,
           stagger: 0.08,
@@ -391,7 +392,7 @@ const Projects = () => {
           </div>
         </div>
       ) : (
-        /* VIEW 2: Sub-Projects 3D Folder Stack Animation View with Uniform Card Dimensions */
+        /* VIEW 2: Sub-Projects 3D Folder Stack Animation View with Organic Scattering */
         <div className="relative w-full max-w-7xl h-[480px] flex items-center justify-center perspective-[2000px] z-10">
           <div className="relative w-0 h-0 transform-style-3d">
             
@@ -416,7 +417,7 @@ const Projects = () => {
                 <div className="w-full h-full rounded-[24px] overflow-hidden border border-white/15 bg-[#141414]/95 backdrop-blur-2xl shadow-[0_25px_50px_rgba(0,0,0,0.9)] transition-all duration-500 group hover:border-red-600 hover:shadow-[0_35px_80px_rgba(229,9,20,0.4)] relative z-10 p-6 flex flex-col justify-between">
                   
                   <div className="flex items-center justify-between">
-                    <span className="text-[10px] font-mono font-bold uppercase tracking-widest text-red-500 bg-red-600/10 px-2.5 py-1 rounded">
+                    <span className="text-[10px] font-mono font-bold tracking-widest uppercase text-red-500 bg-red-600/10 px-2.5 py-1 rounded">
                       MODULE 0{idx + 1}
                     </span>
                   </div>
