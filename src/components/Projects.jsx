@@ -213,7 +213,6 @@ const Projects = () => {
           ease: "back.out(1.2)"
         }, "-=0.6")
         .to(folderCardsRef.current, {
-          // Organic randomized scattering offsets for scalability
           x: (i) => (i - 2) * 280 + gsap.utils.random(-35, 35),
           y: (i) => (i % 2 === 0 ? -25 : 25) + gsap.utils.random(-15, 15),
           rotation: () => gsap.utils.random(-5, 5),
@@ -328,10 +327,11 @@ const Projects = () => {
                 key={i}
                 ref={el => folderCardsRef.current[i] = el}
                 onClick={() => setSelectedRepo(repo)}
-                className="hidden md:block absolute w-[80vw] md:w-[32vw] max-w-[340px] aspect-[4/4.2] will-change-transform cursor-pointer"
+                // hover:z-50 ensures hovered folder jumps directly above all others
+                className="hidden md:block absolute w-[80vw] md:w-[32vw] max-w-[340px] aspect-[4/4.2] will-change-transform cursor-pointer hover:z-50 group/card"
                 style={{ zIndex: 10 + i }}
               >
-                <div className="w-full h-full rounded-[24px] overflow-hidden border border-white/15 bg-[#141414]/95 backdrop-blur-2xl shadow-[0_25px_50px_rgba(0,0,0,0.9)] transition-all duration-500 group hover:border-red-600 hover:shadow-[0_35px_80px_rgba(229,9,20,0.4)] hover:-translate-y-2 relative z-10 p-6 flex flex-col justify-between">
+                <div className="w-full h-full rounded-[24px] overflow-hidden border border-white/15 bg-[#141414]/95 backdrop-blur-2xl shadow-[0_25px_50px_rgba(0,0,0,0.9)] transition-all duration-300 group-hover/card:border-red-600 group-hover/card:shadow-[0_40px_90px_rgba(229,9,20,0.5)] group-hover/card:scale-105 group-hover/card:-translate-y-3 relative z-10 p-6 flex flex-col justify-between">
                   
                   <div className="flex items-center justify-between">
                     <span className="text-[10px] font-mono font-bold tracking-widest uppercase text-red-500 bg-red-600/10 px-2.5 py-1 rounded border border-red-600/20">
@@ -352,7 +352,7 @@ const Projects = () => {
                     <div className="text-[9px] font-mono uppercase tracking-widest text-white/40 truncate">
                       {repo.category}
                     </div>
-                    <h3 className="text-xl font-black text-white tracking-tight group-hover:text-red-500 transition-colors duration-300 truncate">
+                    <h3 className="text-xl font-black text-white tracking-tight group-hover/card:text-red-500 transition-colors duration-300 truncate">
                       {repo.repoName}
                     </h3>
                     <p className="text-xs text-white/70 font-light leading-relaxed line-clamp-3">
@@ -374,7 +374,7 @@ const Projects = () => {
                     </div>
                   </div>
 
-                  <div className="absolute bottom-4 right-4 w-2 h-2 rounded-full bg-red-600 group-hover:shadow-[0_0_15px_#E50914] transition-all" />
+                  <div className="absolute bottom-4 right-4 w-2 h-2 rounded-full bg-red-600 group-hover/card:shadow-[0_0_15px_#E50914] transition-all" />
                 </div>
               </div>
             ))}
@@ -392,7 +392,7 @@ const Projects = () => {
           </div>
         </div>
       ) : (
-        /* VIEW 2: Sub-Projects 3D Folder Stack Animation View with Organic Scattering */
+        /* VIEW 2: Sub-Projects 3D Folder Stack Animation View with Hover Elevation */
         <div className="relative w-full max-w-7xl h-[480px] flex items-center justify-center perspective-[2000px] z-10">
           <div className="relative w-0 h-0 transform-style-3d">
             
@@ -411,10 +411,11 @@ const Projects = () => {
               <div 
                 key={idx}
                 ref={el => subFolderCardsRef.current[idx] = el}
-                className="hidden md:block absolute w-[80vw] md:w-[32vw] max-w-[340px] aspect-[4/4.2] will-change-transform"
+                // hover:z-50 ensures hovered sub-folder jumps above all others
+                className="hidden md:block absolute w-[80vw] md:w-[32vw] max-w-[340px] aspect-[4/4.2] will-change-transform hover:z-50 group/subcard"
                 style={{ zIndex: 10 + idx }}
               >
-                <div className="w-full h-full rounded-[24px] overflow-hidden border border-white/15 bg-[#141414]/95 backdrop-blur-2xl shadow-[0_25px_50px_rgba(0,0,0,0.9)] transition-all duration-500 group hover:border-red-600 hover:shadow-[0_35px_80px_rgba(229,9,20,0.4)] relative z-10 p-6 flex flex-col justify-between">
+                <div className="w-full h-full rounded-[24px] overflow-hidden border border-white/15 bg-[#141414]/95 backdrop-blur-2xl shadow-[0_25px_50px_rgba(0,0,0,0.9)] transition-all duration-300 group-hover/subcard:border-red-600 group-hover/subcard:shadow-[0_40px_90px_rgba(229,9,20,0.5)] group-hover/subcard:scale-105 group-hover/subcard:-translate-y-3 relative z-10 p-6 flex flex-col justify-between">
                   
                   <div className="flex items-center justify-between">
                     <span className="text-[10px] font-mono font-bold tracking-widest uppercase text-red-500 bg-red-600/10 px-2.5 py-1 rounded">
@@ -423,7 +424,7 @@ const Projects = () => {
                   </div>
 
                   <div className="space-y-2 my-auto">
-                    <h3 className="text-lg font-black text-white tracking-tight group-hover:text-red-500 transition-colors truncate">
+                    <h3 className="text-lg font-black text-white tracking-tight group-hover/subcard:text-red-500 transition-colors truncate">
                       {project.title}
                     </h3>
                     <p className="text-[11px] text-white/80 font-light leading-relaxed line-clamp-3">
@@ -460,7 +461,7 @@ const Projects = () => {
                     </div>
                   </div>
 
-                  <div className="absolute bottom-4 right-4 w-2 h-2 rounded-full bg-red-600 group-hover:shadow-[0_0_15px_#E50914] transition-all" />
+                  <div className="absolute bottom-4 right-4 w-2 h-2 rounded-full bg-red-600 group-hover/subcard:shadow-[0_0_15px_#E50914] transition-all" />
                 </div>
               </div>
             ))}
