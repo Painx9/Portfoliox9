@@ -4,18 +4,6 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 gsap.registerPlugin(ScrollTrigger);
 
-/**
- * =====================================================================
- * NESTED REPOSITORY GROUPS & SUB-PROJECTS CONFIGURATION:
- * =====================================================================
- * This structure maps your actual GitHub repositories and their sub-folders:
- * 1. Models (house-price-prediction, react-ai-agent, diabetes-prediction-ml, fake-news-prediction, sonar-vs-rock)
- * 2. Gen_AI (gemini-3.5_chat_bot)
- * 3. LLM_Applications (ai-video-analyzer, resume-analyzer, weather-forecast)
- * 4. Portfoliox9 (React Portfolio Website)
- * 5. Deep.github.io (GitHub API & Deployed Static Web Build)
- * =====================================================================
- */
 const repositoryGroups = [
   {
     repoName: "Models",
@@ -138,17 +126,25 @@ const repositoryGroups = [
 
 const Projects = () => {
   const containerRef = useRef(null);
+  
+  // Refs for Main Repositories View Animation
   const folderBackRef = useRef(null);
   const folderFrontRef = useRef(null);
   const folderCardsRef = useRef([]);
 
+  // Refs for Sub-Projects View Animation
+  const subFolderBackRef = useRef(null);
+  const subFolderFrontRef = useRef(null);
+  const subFolderCardsRef = useRef([]);
+
   // Tracks which repository folder has been clicked/opened
   const [selectedRepo, setSelectedRepo] = useState(null);
 
-  // GSAP 3D Folder Opening and Stacking Animation Setup
+  // GSAP 3D Folder Opening and Stacking Animation Setup for both views
   useEffect(() => {
     let ctx = gsap.context(() => {
       if (!selectedRepo) {
+        // VIEW 1 ANIMATION: Main Repository Folders
         gsap.set([folderBackRef.current, folderFrontRef.current], { 
           xPercent: -50, 
           yPercent: -50 
@@ -188,7 +184,7 @@ const Projects = () => {
           ease: "back.out(1.2)"
         }, "-=0.6")
         .to(folderCardsRef.current, {
-          x: (i) => (i - 2) * 290, // Balanced offset to display all 5 repository folders across the screen
+          x: (i) => (i - 2) * 290,
           y: 0,
           rotation: 0,
           scale: 0.92,
@@ -197,12 +193,51 @@ const Projects = () => {
           ease: "expo.out"
         }, "-=0.2");
       } else {
-        // Entrance animation when a repository folder is opened to view its sub-projects
-        gsap.fromTo(
-          ".sub-project-card",
-          { opacity: 0, y: 50, scale: 0.9 },
-          { opacity: 1, y: 0, scale: 1, duration: 0.6, stagger: 0.1, ease: "power3.out" }
-        );
+        // VIEW 2 ANIMATION: Sub-Projects Nested Folder Stack Opening
+        gsap.set([subFolderBackRef.current, subFolderFrontRef.current], { 
+          xPercent: -50, 
+          yPercent: -50 
+        });
+        gsap.set(subFolderFrontRef.current, { transformOrigin: "bottom center" });
+
+        subFolderCardsRef.current.forEach((card) => {
+          if (!card) return;
+          gsap.set(card, {
+            xPercent: -50,
+            yPercent: -50,
+            rotation: gsap.utils.random(-6, 6),
+            scale: 0.85,
+            x: 0,
+            y: 0,
+          });
+        });
+
+        const subTl = gsap.timeline();
+
+        subTl.to(subFolderFrontRef.current, {
+          rotationX: -130,
+          duration: 1.0,
+          ease: "power3.inOut"
+        })
+        .to(subFolderCardsRef.current, {
+          y: -100,
+          scale: 0.9,
+          duration: 0.5,
+          stagger: 0.06,
+          ease: "back.out(1.2)"
+        }, "-=0.5")
+        .to(subFolderCardsRef.current, {
+          x: (i) => {
+            const count = selectedRepo.subProjects.length;
+            return (i - (count - 1) / 2) * 320;
+          },
+          y: 0,
+          rotation: 0,
+          scale: 1,
+          duration: 1.0,
+          stagger: 0.08,
+          ease: "expo.out"
+        }, "-=0.2");
       }
     }, containerRef);
 
@@ -223,7 +258,7 @@ const Projects = () => {
 
       {/* Breadcrumb back navigation header when viewing a sub-folder */}
       {selectedRepo && (
-        <div className="relative z-30 mb-12 flex items-center gap-4">
+        <div className="relative z-30 mb-8 flex items-center gap-4">
           <button 
             onClick={() => setSelectedRepo(null)}
             className="px-4 py-2 bg-neutral-900 border border-red-600/50 hover:bg-red-600 text-white font-mono text-xs uppercase tracking-widest rounded-lg transition-all flex items-center gap-2 shadow-[0_0_15px_rgba(229,9,20,0.4)] cursor-pointer"
@@ -304,57 +339,90 @@ const Projects = () => {
           </div>
         </div>
       ) : (
-        /* VIEW 2: Sub-Projects Grid inside the selected repository */
-        <div className="relative z-20 max-w-7xl mx-auto px-6 w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {selectedRepo.subProjects.map((project, idx) => (
+        /* VIEW 2: Sub-Projects 3D Folder Stack Animation View */
+        <div className="mt-12 relative w-full max-w-7xl h-full flex items-center justify-center perspective-[2000px] z-10">
+          <div className="relative w-0 h-0 transform-style-3d">
+            
             <div 
-              key={idx}
-              className="sub-project-card bg-[#141414]/95 border border-white/15 rounded-[24px] p-6 flex flex-col justify-between shadow-2xl hover:border-red-600 transition-all duration-300 group"
+              ref={subFolderBackRef}
+              className="absolute w-[85vw] md:w-[32vw] max-w-[380px] aspect-video bg-[#141414] rounded-[24px] border border-red-600/40 shadow-[0_20px_50px_rgba(229,9,20,0.25)] flex items-center justify-center"
+              style={{ zIndex: 5 }}
             >
-              <div className="space-y-4">
-                <div className="flex items-center justify-between">
-                  <span className="text-[10px] font-mono font-bold uppercase tracking-widest text-red-500 bg-red-600/10 px-2.5 py-1 rounded">
-                    MODULE 0{idx + 1}
-                  </span>
-                </div>
-                <h3 className="text-xl font-black text-white tracking-tight group-hover:text-red-500 transition-colors">
-                  {project.title}
-                </h3>
-                <p className="text-xs text-white/70 font-light leading-relaxed">
-                  {project.description}
-                </p>
-              </div>
-
-              <div className="space-y-4 pt-6 mt-6 border-t border-white/10">
-                <div className="flex flex-wrap gap-1.5">
-                  {project.tags.map((tag, tIdx) => (
-                    <span key={tIdx} className="text-[9px] font-mono text-white/70 bg-white/5 px-2 py-0.5 rounded">
-                      {tag}
-                    </span>
-                  ))}
-                </div>
-
-                <div className="flex items-center gap-3">
-                  <a 
-                    href={project.repoLink} 
-                    target="_blank" 
-                    rel="noopener noreferrer"
-                    className="flex-1 py-2 bg-white/10 hover:bg-white/20 text-white font-mono text-xs font-bold uppercase rounded text-center transition-all border border-white/15"
-                  >
-                    Access Code
-                  </a>
-                  <a 
-                    href={project.appLink} 
-                    target="_blank" 
-                    rel="noopener noreferrer"
-                    className="flex-1 py-2 bg-red-600 hover:bg-red-700 text-white font-mono text-xs font-bold uppercase rounded text-center transition-all shadow-[0_0_15px_rgba(229,9,20,0.5)]"
-                  >
-                    Launch App
-                  </a>
-                </div>
+              <div className="absolute -top-6 left-6 w-32 h-8 bg-[#1f1f1f] rounded-t-xl border-t border-red-600/30" />
+              <div className="relative z-10 text-red-600 font-mono font-black text-xl tracking-widest uppercase opacity-80">
+                {selectedRepo.repoName.toUpperCase()}_MODULES
               </div>
             </div>
-          ))}
+
+            {selectedRepo.subProjects.map((project, idx) => (
+              <div 
+                key={idx}
+                ref={el => subFolderCardsRef.current[idx] = el}
+                className="hidden md:block absolute w-[80vw] md:w-[30vw] max-w-[320px] aspect-[16/10] will-change-transform"
+                style={{ zIndex: 10 + idx }}
+              >
+                <div className="w-full h-full rounded-[24px] overflow-hidden border border-white/15 bg-[#141414]/95 backdrop-blur-2xl shadow-[0_25px_50px_rgba(0,0,0,0.9)] transition-all duration-500 group hover:border-red-600 hover:shadow-[0_35px_80px_rgba(229,9,20,0.4)] relative z-10 p-6 flex flex-col justify-between">
+                  
+                  <div className="flex items-center justify-between">
+                    <span className="text-[10px] font-mono font-bold uppercase tracking-widest text-red-500 bg-red-600/10 px-2.5 py-1 rounded">
+                      MODULE 0{idx + 1}
+                    </span>
+                  </div>
+
+                  <div className="space-y-1.5 my-auto">
+                    <h3 className="text-xl font-black text-white tracking-tight group-hover:text-red-500 transition-colors truncate">
+                      {project.title}
+                    </h3>
+                    <p className="text-xs text-white/70 font-light leading-relaxed line-clamp-2">
+                      {project.description}
+                    </p>
+                  </div>
+
+                  <div className="space-y-3 pt-3 border-t border-white/10">
+                    <div className="flex flex-wrap gap-1.5">
+                      {project.tags.map((tag, tIdx) => (
+                        <span key={tIdx} className="text-[9px] font-mono text-white/70 bg-white/5 px-2 py-0.5 rounded">
+                          {tag}
+                        </span>
+                      ))}
+                    </div>
+
+                    <div className="flex items-center gap-2">
+                      <a 
+                        href={project.repoLink} 
+                        target="_blank" 
+                        rel="noopener noreferrer"
+                        className="flex-1 py-1.5 bg-white/10 hover:bg-white/20 text-white font-mono text-[11px] font-bold uppercase rounded text-center transition-all border border-white/15"
+                      >
+                        Code
+                      </a>
+                      <a 
+                        href={project.appLink} 
+                        target="_blank" 
+                        rel="noopener noreferrer"
+                        className="flex-1 py-1.5 bg-red-600 hover:bg-red-700 text-white font-mono text-[11px] font-bold uppercase rounded text-center transition-all shadow-[0_0_15px_rgba(229,9,20,0.5)]"
+                      >
+                        Launch App
+                      </a>
+                    </div>
+                  </div>
+
+                  <div className="absolute bottom-4 right-4 w-2 h-2 rounded-full bg-red-600 group-hover:shadow-[0_0_15px_#E50914] transition-all" />
+                </div>
+              </div>
+            ))}
+
+            <div 
+              ref={subFolderFrontRef}
+              className="absolute w-[85vw] md:w-[32vw] max-w-[380px] aspect-video pointer-events-none will-change-transform"
+              style={{ zIndex: 60 }}
+            >
+              <div className="absolute bottom-0 w-full h-[85%] bg-[#1c1c1c] rounded-b-[24px] rounded-t-md shadow-[0_-5px_20px_rgba(0,0,0,0.8)] flex flex-col justify-end p-6 border-t border-red-600/40">
+                <div className="w-20 h-1.5 bg-white/20 rounded-full mx-auto mb-2" />
+              </div>
+            </div>
+
+          </div>
         </div>
       )}
 
