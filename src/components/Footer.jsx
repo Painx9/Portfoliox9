@@ -11,7 +11,7 @@ const Footer = () => {
               DEEP PATEL<span className="w-1.5 h-1.5 rounded-full bg-white inline-block"></span>
             </div>
             <p className="text-xs font-mono text-white/50 tracking-widest uppercase">
-              // NETFLIX DEVELOPER SERIES &bull; 2026
+              // DEEP'S AI & ML ARCHIVE &bull; 2026
             </p>
           </div>
 
@@ -28,7 +28,7 @@ const Footer = () => {
         <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-6 text-xs font-mono text-white/60">
           <div className="flex items-center gap-6">
             <a 
-              href="https://github.com" 
+              href="https://github.com/Painx9" 
               target="_blank" 
               rel="noopener noreferrer"
               className="hover:text-red-500 transition-colors uppercase tracking-wider"
@@ -44,13 +44,13 @@ const Footer = () => {
           </div>
 
           <div className="text-white/40 tracking-widest uppercase">
-            LOCATION: HAMBURG, GERMANY[cite: 23]
+            LOCATION: HAMBURG, GERMANY
           </div>
         </div>
 
         <div className="flex flex-col md:flex-row justify-between items-center gap-4 pt-6 border-t border-white/5 text-[11px] font-mono text-white/40 uppercase tracking-widest">
           <p>&copy; {new Date().getFullYear()} Deep Patel. All Rights Reserved.</p>
-          <p className="text-red-500/80">BUILT FOR AUTOMATION & AI EXCELLENCE</p>
+          <p className="text-red-500/80">ENGINEERED FOR GENERATIVE AI & MACHINE LEARNING</p>
         </div>
 
       </div>
