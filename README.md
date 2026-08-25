@@ -27,7 +27,6 @@ A cinematic, Netflix-themed developer portfolio website built with React, Vite, 
 
 ## 📂 Repository Structure
 
-Based on your project file tree, the layout is organized as follows:
 
 ```text
 portfoliox9/
