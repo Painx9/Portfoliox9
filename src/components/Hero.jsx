@@ -171,8 +171,8 @@ const Hero = () => {
           
           <div className="lg:col-span-5 flex flex-col items-start space-y-5 text-left">
             <div className="hero-anim-item flex items-center gap-3">
-              <span className="px-2.5 py-0.5 bg-red-600 text-white font-black text-xs rounded tracking-widest shadow-[0_0_20px_rgba(229,9,20,0.8)] animate-pulse">AI ENGINEER</span>
-              <span className="text-white/80 text-xs font-mono tracking-widest uppercase">Autonomous Agents & Pipelines</span>
+              <span className="px-2.5 py-0.5 bg-red-600 text-white font-black text-xs rounded tracking-widest shadow-[0_0_20px_rgba(229,9,20,0.8)] animate-pulse">AI|ML ENGINEER</span>
+              <span className="text-white/80 text-xs font-mono tracking-widest uppercase">Autonomous Agents & Data Analytics</span>
             </div>
 
             <h1 className="hero-anim-item text-5xl md:text-7xl font-black tracking-tighter text-white leading-[0.95] drop-shadow-[0_15px_30px_rgba(0,0,0,0.9)]">
@@ -183,9 +183,9 @@ const Hero = () => {
             </h1>
 
             <div className="hero-anim-item flex items-center gap-3 text-xs font-mono text-red-400 font-bold">
-              <span className="px-2 py-0.5 bg-red-500/10 border border-red-500/30 rounded text-red-500">M.Sc. AI (4th Sem)</span>
+              <span className="px-2 py-0.5 bg-red-500/10 border border-red-500/30 rounded text-red-500">M.Sc. AI</span>
               <span className="text-white/40">•</span>
-              <span>Python • Groq SDK • Streamlit</span>
+              <span>Python • Git • AI|ML</span>
             </div>
 
             <p className="hero-anim-item text-sm md:text-base text-white/80 font-light leading-relaxed max-w-md drop-shadow">
