@@ -4,69 +4,68 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 gsap.registerPlugin(ScrollTrigger);
 
-// Authentic Project Data based on your engineering portfolio
 const projectsData = [
   {
-    title: "Notice Hub",
-    category: "Full-Stack Architecture",
-    description: "Consolidates university announcements and streamlines real-time student communication with high uptime.",
-    tags: ["React", "Node.js", "Express", "MongoDB"],
+    title: "Python ReAct Automation Agent",
+    category: "Autonomous Agent Architecture",
+    description: "Library-free, zero-dependency implementation of the Reasoning and Acting (ReAct) agent loop pattern to optimize token usage.",
+    tags: ["Python", "Streamlit", "Groq API", "Regex"],
     match: "99%",
     episode: "S01 E01"
   },
   {
-    title: "Multi-Tenant SaaS Platform",
-    category: "Cloud & Distributed Systems",
-    description: "Containerized enterprise SaaS featuring strict database isolation and granular role-based access control.",
-    tags: ["Docker", "PostgreSQL", "Node.js", "Express"],
+    title: "AI Resume Analyzer Pro",
+    category: "Generative AI & Pydantic",
+    description: "Multi-widget Streamlit dashboard integrating the Google GenAI SDK and Pydantic schemas to parse raw resumes against ATS filters.",
+    tags: ["Python", "Streamlit", "Google GenAI SDK", "Pydantic"],
     match: "98%",
     episode: "S01 E02"
   },
   {
-    title: "Payment Gateway System",
-    category: "Fintech Architecture",
-    description: "Simulates complex transaction state management, webhook verification, and multi-method processing.",
-    tags: ["JavaScript", "PostgreSQL", "REST APIs", "Docker"],
+    title: "California House Price Model",
+    category: "Predictive Analytics",
+    description: "XGBoost Regressor model protecting pricing patterns from collinearity across 20,640 instances, achieving an R2 score of 0.943.",
+    tags: ["XGBoost", "Pandas", "Seaborn", "Scikit-Learn"],
     match: "97%",
     episode: "S01 E03"
   },
   {
-    title: "Productivity Suite Extension",
-    category: "Client-Side Engineering",
-    description: "Custom Chrome extension built with Chrome APIs and advanced JavaScript for task automation and management.",
-    tags: ["JavaScript", "Chrome APIs", "Tailwind CSS", "HTML5"],
+    title: "AI YouTube Video Analyzer",
+    category: "Multimodal Data Pipelines",
+    description: "Standalone analytics pipeline parsing transcriptions via youtube-transcript-api to generate concise abstracts and action items.",
+    tags: ["Python", "Streamlit", "YouTube Transcript API", "JSON"],
     match: "99%",
     episode: "S01 E04"
   },
   {
-    title: "AI & ML Diagnostic Engine",
-    category: "Artificial Intelligence",
-    description: "Intelligent data processing pipeline leveraging machine learning models and NLP workflows.",
-    tags: ["Python", "Machine Learning", "NLP", "AWS"],
+    title: "Fake News Text Processing Pipeline",
+    category: "NLP Classification",
+    description: "Cleaned 72,134 news articles using NLTK and TfidfTransformer to build a Logistic Regression classifier achieving 92.7% training accuracy.",
+    tags: ["NLTK", "TfidfTransformer", "Logistic Regression", "Regex"],
     match: "96%",
     episode: "S01 E05"
   },
   {
-    title: "Algorithmic Problem Solver",
-    category: "Competitive Programming",
-    description: "Optimized data structure solutions across LeetCode, CodeChef, and GeeksforGeeks platforms.",
-    tags: ["Data Structures", "Algorithms", "C++", "JavaScript"],
+    title: "Sonar-Array Diagnostics Engine",
+    category: "Classification Engineering",
+    description: "Automated binary geological categorization over 60-feature raw frequency spectrum data using Scikit-Learn and Logistic Regression.",
+    tags: ["Scikit-Learn", "NumPy", "Pandas", "Logistic Regression"],
     match: "99%",
     episode: "S01 E06"
   },
   {
-    title: "Portfolio Cinematics v2.6",
-    category: "UI/UX & Animation",
-    description: "Award-winning dark studio interactive portfolio featuring GSAP physics and responsive layouts.",
-    tags: ["React", "GSAP", "Tailwind CSS", "Framer Motion"],
+    title: "Automated Loan Status Prediction",
+    category: "Financial Data Processing",
+    description: "Processed loan application datasets by cleaning rows, encoding strings, and deploying a baseline Support Vector Machine classifier.",
+    tags: ["Support Vector Machines", "Pandas", "Data Cleaning"],
     match: "100%",
     episode: "S01 E07"
   },
   {
-    title: "Cloud CI/CD Pipeline",
-    category: "DevOps & Infrastructure",
-    description: "Automated deployment workflows using GitHub Actions and containerized Docker environments.",
-    tags: ["Docker", "GitHub Actions", "CI/CD", "Render"],
+    title: "PIMA Diabetes Diagnostic Pipeline",
+    category: "Real-Time Healthcare AI",
+    description: "Live Streamlit app utilizing a cached Standard Scaler configuration and linear SVC to evaluate clinical indicator feeds.",
+    tags: ["Streamlit", "Standard Scaler", "SVM", "GitHub CI/CD"],
     match: "98%",
     episode: "S01 E08"
   }
@@ -82,7 +81,6 @@ const Projects = () => {
 
   useEffect(() => {
     let ctx = gsap.context(() => {
-      // Set initial origins (Centered in viewport)
       gsap.set([folderBackRef.current, folderFrontRef.current], { 
         xPercent: -50, 
         yPercent: -50 
@@ -144,14 +142,12 @@ const Projects = () => {
             }
           });
 
-          // 1. Folder opens with smooth rotation
           tl.to(folderFrontRef.current, {
             rotationX: -130,
             duration: 1.2,
             ease: "power3.inOut"
           });
 
-          // 2. Cards rise up collectively
           tl.to(cardsRef.current, {
             y: -140,
             scale: 0.9,
@@ -161,7 +157,6 @@ const Projects = () => {
             ease: "back.out(1.2)"
           }, "-=0.6");
 
-          // 3. Cards magically spread out into an ultra-clean blockbuster grid layout
           tl.to(cardsRef.current, {
             x: (i) => {
               const w = Math.max(...cardsRef.current.map(c => c?.offsetWidth || 0)) || 360;
@@ -179,7 +174,7 @@ const Projects = () => {
             scale: 1,
             duration: 1.4,
             stagger: { amount: 0.4, from: "center" },
-            ease: "expo.out"
+            expo: "expo.out"
           }, "-=0.2");
         }
 
@@ -245,23 +240,17 @@ const Projects = () => {
   return (
     <section id="projects" ref={containerRef} className="bg-[#0b0b0b] min-h-[100svh] md:min-h-[170vh] relative font-sans overflow-x-clip text-white w-full flex items-center justify-center py-24 md:py-40 select-none">
       
-      {/* Background Netflix Cinematic Title Watermark */}
       <div className="absolute top-10 left-0 w-full flex items-start justify-center pointer-events-none z-0">
         <h1 className="text-[14vw] sm:text-[17vw] md:text-[20vw] font-black text-white/[0.03] tracking-tighter leading-none whitespace-nowrap uppercase">
           ORIGINALS
         </h1>
       </div>
 
-      {/* Ambient Crimson Glow behind folder */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[55vw] h-[55vw] bg-red-600/15 rounded-full blur-[160px] pointer-events-none z-0" />
 
-      {/* Main Perspective Container */}
       <div className="mt-12 relative w-full max-w-7xl h-full flex items-center justify-center perspective-[2000px] z-10">
-        
-        {/* Origin Container */}
         <div className="relative w-0 h-0 transform-style-3d">
           
-          {/* Folder Back */}
           <div 
             ref={folderBackRef}
             className="absolute w-[85vw] md:w-[32vw] max-w-[380px] aspect-video bg-[#141414] rounded-[24px] border border-red-600/40 shadow-[0_20px_50px_rgba(229,9,20,0.25)] flex items-center justify-center"
@@ -269,11 +258,10 @@ const Projects = () => {
           >
             <div className="absolute -top-6 left-6 w-32 h-8 bg-[#1f1f1f] rounded-t-xl border-t border-red-600/30" />
             <div className="relative z-10 text-red-600 font-mono font-black text-2xl tracking-widest uppercase opacity-60">
-              ARCHIVE_SLOTS
+              PROJECT_ARCHIVE
             </div>
           </div>
 
-          {/* Desktop Project Cards */}
           {projectsData.map((project, i) => (
             <div 
               key={i}
@@ -283,7 +271,6 @@ const Projects = () => {
             >
               <div className="w-full h-full rounded-[24px] overflow-hidden border border-white/15 bg-[#141414]/95 backdrop-blur-2xl shadow-[0_25px_50px_rgba(0,0,0,0.9)] transition-all duration-500 group hover:scale-[1.04] hover:border-red-600 hover:shadow-[0_35px_80px_rgba(229,9,20,0.35)] hover:-translate-y-2 cursor-pointer relative z-10 p-7 flex flex-col justify-between">
                 
-                {/* Top Card Header */}
                 <div className="flex items-center justify-between">
                   <span className="text-[10px] font-mono font-bold tracking-widest uppercase text-red-500 bg-red-600/10 px-2.5 py-1 rounded border border-red-600/20">
                     {project.episode}
@@ -294,7 +281,6 @@ const Projects = () => {
                   </div>
                 </div>
 
-                {/* Middle Title & Description */}
                 <div className="space-y-2 my-auto">
                   <div className="text-[11px] font-mono uppercase tracking-widest text-white/40">
                     {project.category}
@@ -307,7 +293,6 @@ const Projects = () => {
                   </p>
                 </div>
 
-                {/* Bottom Tech Tags */}
                 <div className="flex flex-wrap gap-1.5 pt-3 border-t border-white/10">
                   {project.tags.map((tag, tIdx) => (
                     <span key={tIdx} className="text-[10px] font-mono text-white/70 bg-white/5 px-2 py-0.5 rounded group-hover:border-red-600/30 transition-colors">
@@ -316,13 +301,11 @@ const Projects = () => {
                   ))}
                 </div>
 
-                {/* Red Glowing Corner Accent */}
                 <div className="absolute bottom-4 right-4 w-2 h-2 rounded-full bg-red-600 group-hover:shadow-[0_0_15px_#E50914] transition-all" />
               </div>
             </div>
           ))}
 
-          {/* Folder Front Flap */}
           <div 
             ref={folderFrontRef}
             className="absolute w-[85vw] md:w-[32vw] max-w-[380px] aspect-video pointer-events-none will-change-transform"
@@ -334,44 +317,6 @@ const Projects = () => {
           </div>
 
         </div>
-      </div>
-
-      {/* Mobile Swipeable Carousel */}
-      <div 
-        ref={mobileCarouselRef}
-        className="md:hidden absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-screen h-auto py-12 flex items-center gap-6 px-[12.5vw] pointer-events-none z-[100] snap-x snap-mandatory overflow-x-hidden hide-scrollbar"
-      >
-        <style>{`
-          .hide-scrollbar::-webkit-scrollbar { display: none; }
-          .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
-        `}</style>
-        {projectsData.map((project, i) => (
-          <div 
-            key={`mob-${i}`}
-            ref={el => mobileCardsRef.current[i] = el}
-            className="shrink-0 w-[78vw] aspect-[16/11] snap-center will-change-transform relative z-10"
-          >
-            <div className="w-full h-full rounded-[24px] overflow-hidden border border-white/15 bg-[#141414] p-6 flex flex-col justify-between shadow-[0_20px_40px_rgba(0,0,0,0.9)]">
-              <div className="flex items-center justify-between">
-                <span className="text-[10px] font-mono font-bold tracking-widest text-red-500 bg-red-600/10 px-2 py-0.5 rounded">
-                  {project.episode}
-                </span>
-                <span className="text-xs font-mono text-red-400 font-bold">{project.match} Match</span>
-              </div>
-              <div className="space-y-2">
-                <h3 className="text-xl font-black text-white">{project.title}</h3>
-                <p className="text-xs text-white/70 font-light line-clamp-2">{project.description}</p>
-              </div>
-              <div className="flex flex-wrap gap-1 pt-2 border-t border-white/10">
-                {project.tags.slice(0, 3).map((tag, tIdx) => (
-                  <span key={tIdx} className="text-[10px] font-mono text-white/60 bg-white/5 px-2 py-0.5 rounded">
-                    {tag}
-                  </span>
-                ))}
-              </div>
-            </div>
-          </div>
-        ))}
       </div>
 
     </section>
