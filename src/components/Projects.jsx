@@ -4,6 +4,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 gsap.registerPlugin(ScrollTrigger);
 
+
 const repositoryGroups = [
   {
     repoName: "Models",
@@ -245,10 +246,10 @@ const Projects = () => {
   }, [selectedRepo]);
 
   return (
-    <section id="projects" ref={containerRef} className="bg-[#0b0b0b] min-h-[100svh] md:min-h-[170vh] relative font-sans overflow-x-clip text-white w-full flex flex-col items-center justify-center py-24 md:py-40 select-none">
+    <section id="projects" ref={containerRef} className="bg-[#0b0b0b] min-h-[100svh] md:min-h-[170vh] relative font-sans overflow-x-clip text-white w-full flex flex-col items-center justify-start pt-28 pb-32 select-none">
       
       {/* Background Watermark Heading */}
-      <div className="absolute top-10 left-0 w-full flex items-start justify-center pointer-events-none z-0">
+      <div className="absolute top-12 left-0 w-full flex items-start justify-center pointer-events-none z-0">
         <h1 className="text-[14vw] sm:text-[17vw] md:text-[20vw] font-black text-white/[0.03] tracking-tighter leading-none whitespace-nowrap uppercase">
           {selectedRepo ? selectedRepo.repoName : "REPOSITORIES"}
         </h1>
@@ -256,22 +257,30 @@ const Projects = () => {
 
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[55vw] h-[55vw] bg-red-600/15 rounded-full blur-[160px] pointer-events-none z-0" />
 
-      {/* Breadcrumb back navigation header when viewing a sub-folder */}
-      {selectedRepo && (
-        <div className="relative z-30 mb-8 flex items-center gap-4">
-          <button 
-            onClick={() => setSelectedRepo(null)}
-            className="px-4 py-2 bg-neutral-900 border border-red-600/50 hover:bg-red-600 text-white font-mono text-xs uppercase tracking-widest rounded-lg transition-all flex items-center gap-2 shadow-[0_0_15px_rgba(229,9,20,0.4)] cursor-pointer"
-          >
-            &larr; Back to Repositories
-          </button>
-          <span className="text-xs font-mono text-white/50 uppercase tracking-widest">// REPOSITORY: {selectedRepo.repoName}</span>
-        </div>
-      )}
+      {/* Structured Top Header & Breadcrumb Container (Prevents overlap with the 3D stack) */}
+      <div className="relative z-30 w-full max-w-7xl px-6 mb-8 flex flex-col items-start gap-3">
+        {selectedRepo ? (
+          <div className="flex flex-col sm:flex-row sm:items-center gap-4 w-full pt-4">
+            <button 
+              onClick={() => setSelectedRepo(null)}
+              className="px-4 py-2 bg-neutral-900 border border-red-600/50 hover:bg-red-600 text-white font-mono text-xs uppercase tracking-widest rounded-lg transition-all flex items-center gap-2 shadow-[0_0_15px_rgba(229,9,20,0.4)] cursor-pointer w-fit"
+            >
+              &larr; Back to Repositories
+            </button>
+            <span className="text-xs font-mono text-white/50 uppercase tracking-widest">// ACTIVE REPOSITORY: {selectedRepo.repoName}</span>
+          </div>
+        ) : (
+          <div className="pt-2">
+            <span className="text-xs font-mono text-red-500 uppercase tracking-widest bg-red-600/10 px-3 py-1 rounded border border-red-600/20">
+              // ARCHIVE DIRECTORY SYSTEM
+            </span>
+          </div>
+        )}
+      </div>
 
       {/* VIEW 1: Main Repositories Folders Stack */}
       {!selectedRepo ? (
-        <div className="mt-12 relative w-full max-w-7xl h-full flex items-center justify-center perspective-[2000px] z-10">
+        <div className="relative w-full max-w-7xl h-[500px] flex items-center justify-center perspective-[2000px] z-10 my-auto">
           <div className="relative w-0 h-0 transform-style-3d">
             
             <div 
@@ -340,7 +349,7 @@ const Projects = () => {
         </div>
       ) : (
         /* VIEW 2: Sub-Projects 3D Folder Stack Animation View */
-        <div className="mt-12 relative w-full max-w-7xl h-full flex items-center justify-center perspective-[2000px] z-10">
+        <div className="relative w-full max-w-7xl h-[500px] flex items-center justify-center perspective-[2000px] z-10 my-auto">
           <div className="relative w-0 h-0 transform-style-3d">
             
             <div 
