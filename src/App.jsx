@@ -1,8 +1,9 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import NetflixPreloader from './components/NetflixPreloader';
 import CustomCursor from './components/CustomCursor';
 import Hero from './components/Hero';
 import About from './components/About';
+import Education from './components/Education';
 import Expertise from './components/Expertise';
 import Skills from './components/Skills';
 import Projects from './components/Projects';
@@ -12,23 +13,37 @@ import Footer from './components/Footer';
 function App() {
   const [loading, setLoading] = useState(true);
 
-  return (
-    <main className="bg-[#050505] min-h-screen text-white relative cursor-none selection:bg-red-600 selection:text-white">
-      {/* Cinematic Preloader */}
-      {loading && <NetflixPreloader onComplete={() => setLoading(false)} />}
+  useEffect(() => {
+    // Timer matching Netflix preloader animation duration
+    const timer = setTimeout(() => {
+      setLoading(false);
+    }, 2500);
 
-      {/* Global Mouse Hover Effects & Spotlight across ALL sections */}
+    return () => clearTimeout(timer);
+  }, []);
+
+  return (
+    <div className="bg-[#0b0b0b] min-h-screen text-white font-sans selection:bg-red-600 selection:text-white relative overflow-x-hidden">
+      {/* Custom Mouse Cursor */}
       <CustomCursor />
 
-      {/* Portfolio Sections */}
-      <Hero />
-      <About />
-      <Expertise />
-      <Skills />
-      <Projects />
-      <Contact />
+      {/* Netflix Preloader Intro */}
+      {loading && <NetflixPreloader />}
+
+      {/* Main Portfolio Sections */}
+      <main className="relative z-10 w-full overflow-hidden">
+        <Hero />
+        <About />
+        <Education />
+        <Expertise />
+        <Skills />
+        <Projects />
+        <Contact />
+      </main>
+
+      {/* Footer */}
       <Footer />
-    </main>
+    </div>
   );
 }
 
