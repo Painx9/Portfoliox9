@@ -8,11 +8,11 @@ gsap.registerPlugin(ScrollTrigger);
  * =====================================================================
  * NESTED REPOSITORY GROUPS & SUB-PROJECTS CONFIGURATION:
  * =====================================================================
- * This structure mirrors your actual GitHub layout shown in your profile:
- * 1. Models (House-price-prediction, Invoice-Intelligence, ReAct-AI-Agent, etc.)
- * 2. Gen_AI (Gemini-3.5_Chat_Bot)
+ * This structure maps your actual GitHub repositories and their sub-folders:
+ * 1. Models (house-price-prediction, react-ai-agent, diabetes-prediction-ml, fake-news-prediction, sonar-vs-rock)
+ * 2. Gen_AI (gemini-3.5_chat_bot)
  * 3. LLM_Applications (ai-video-analyzer, resume-analyzer, weather-forecast)
- * 4. Portfoliox9 (Current React Portfolio Website)
+ * 4. Portfoliox9 (React Portfolio Website)
  * 5. Deep.github.io (GitHub API & Deployed Static Web Build)
  * =====================================================================
  */
@@ -20,49 +20,42 @@ const repositoryGroups = [
   {
     repoName: "Models",
     category: "Supervised & Unsupervised Machine Learning",
-    description: "Contains core predictive models, price regression pipelines, invoice intelligence, and diagnostic algorithms.",
+    description: "Contains core predictive models, price regression pipelines, ReAct agents, and diagnostic algorithms.",
     episode: "S01 REPO",
     subProjects: [
       {
         title: "House Price Prediction",
-        description: "XGBoost Regressor model predicting housing prices across spatial matrix vectors.",
-        tags: ["XGBoost", "Seaborn", "Pandas", "Scikit-Learn"],
-        appLink: "https://your-streamlit-app.streamlit.app",
+        description: "An end-to-end data science project utilizing the California Housing dataset to train an XGBoost regression model.",
+        tags: ["Python", "XGBoost", "Scikit-Learn", "Pandas"],
+        appLink: "https://house-price-prediction09.streamlit.app",
         repoLink: "https://github.com/Painx9/Models/tree/main/House-price-prediction"
       },
       {
-        title: "Invoice Intelligence System",
-        description: "Automated invoice data extraction and document processing system.",
-        tags: ["Python", "OCR", "Pandas", "Streamlit"],
-        appLink: "https://your-streamlit-app.streamlit.app",
-        repoLink: "https://github.com/Painx9/Models/tree/main/Invoice-Intelligence-System"
-      },
-      {
         title: "ReAct AI Agent",
-        description: "Reasoning and Acting agent loop implementation for dynamic tool-based tasks.",
-        tags: ["Python", "Groq API", "Regex", "Streamlit"],
-        appLink: "https://your-streamlit-app.streamlit.app",
+        description: "Implements an active Think --> Act --> Observe loop that matches LLM outputs to native Python tools.",
+        tags: ["Python 3", "Groq API", "Streamlit", "Regex"],
+        appLink: "https://react-ai-agent09.streamlit.app",
         repoLink: "https://github.com/Painx9/Models/tree/main/ReAct-AI-Agent"
       },
       {
         title: "Diabetes Prediction ML",
-        description: "Live medical diagnostic pipeline utilizing standard scaling and classification.",
-        tags: ["Streamlit", "Standard Scaler", "SVM", "Scikit-Learn"],
-        appLink: "https://your-streamlit-app.streamlit.app",
+        description: "Standardizes 8 core patient physiological metrics to train a linear Support Vector Classifier.",
+        tags: ["Python", "StandardScaler", "SVM", "Streamlit"],
+        appLink: "https://diabetes-prediction09.streamlit.app",
         repoLink: "https://github.com/Painx9/Models/tree/main/diabetes-prediction-ml"
       },
       {
         title: "Fake News Prediction",
-        description: "NLP text processing classification pipeline for detecting misinformation articles.",
-        tags: ["NLTK", "TfidfTransformer", "Logistic Regression"],
-        appLink: "https://your-streamlit-app.streamlit.app",
+        description: "Cleaned raw news text using stemming and TF-IDF vectorization to train a classifier with over 90% accuracy.",
+        tags: ["Python", "PorterStemmer", "Scikit-Learn", "SVM"],
+        appLink: "https://fake-news-prediction09.streamlit.app",
         repoLink: "https://github.com/Painx9/Models/tree/main/fake-news-prediction"
       },
       {
-        title: "Sonar vs Rock Prediction",
-        description: "Binary geological classification over dense frequency spectrum matrix variables.",
-        tags: ["Scikit-Learn", "Logistic Regression", "NumPy"],
-        appLink: "https://your-streamlit-app.streamlit.app",
+        title: "Sonar vs Rock",
+        description: "Interactive machine learning dashboard powered by a Logistic Regression model classifying sonar return signals.",
+        tags: ["Python", "NumPy", "Scikit-Learn", "Streamlit"],
+        appLink: "https://sonar-vs-rock09.streamlit.app",
         repoLink: "https://github.com/Painx9/Models/tree/main/sonar-vs-rock"
       }
     ]
@@ -70,14 +63,14 @@ const repositoryGroups = [
   {
     repoName: "Gen_AI",
     category: "Generative AI & Chat Architectures",
-    description: "Repository focused on experimental generative models and conversational chat assistants.",
+    description: "Repository focused on conversational AI interfaces and core generative frameworks.",
     episode: "S02 REPO",
     subProjects: [
       {
         title: "Gemini 3.5 Chat Bot",
-        description: "Interactive conversational assistant powered by Google Gemini APIs with secure key management.",
-        tags: ["Python", "Google GenAI SDK", "Streamlit", "JSON"],
-        appLink: "https://your-streamlit-app.streamlit.app",
+        description: "An interactive chatbot application maintaining multi-turn session history with secure configuration handling.",
+        tags: ["Python", "Streamlit", "Google GenAI SDK"],
+        appLink: "https://chat-bot09.streamlit.app",
         repoLink: "https://github.com/Painx9/Gen_AI/tree/main/Gemini-3.5_Chat_Bot"
       }
     ]
@@ -85,28 +78,28 @@ const repositoryGroups = [
   {
     repoName: "LLM_Applications",
     category: "LLM Workflows & Multimodal Pipelines",
-    description: "Production-ready language model utilities including video transcription analysis and resume evaluation.",
+    description: "Production-ready language model utilities including video transcription analysis and resume optimization.",
     episode: "S03 REPO",
     subProjects: [
       {
         title: "AI Video Analyzer",
-        description: "Standalone analytics pipeline parsing audio text tracks to generate topical summaries.",
-        tags: ["Python", "Streamlit", "YouTube Transcript API"],
-        appLink: "https://your-streamlit-app.streamlit.app",
+        description: "Streamlit dashboard that leverages the gemini-3.1-flash-lite model to automatically summarize and analyze YouTube videos.",
+        tags: ["Streamlit", "Google GenAI SDK", "Gemini 3.1 Flash Lite", "Python"],
+        appLink: "https://ai-youtube-video-analyzer09.streamlit.app",
         repoLink: "https://github.com/Painx9/LLM_Applications/tree/main/ai-video-analyzer"
       },
       {
         title: "Resume Analyzer",
-        description: "Pydantic-enforced structured JSON parser mapping unstructured resumes against ATS parameters.",
-        tags: ["Python", "Streamlit", "Pydantic", "Google GenAI SDK"],
-        appLink: "https://your-streamlit-app.streamlit.app",
+        description: "Production-ready AI application that extracts raw text from PDF resumes and processes it through a strict schema-enforced LLM pipeline.",
+        tags: ["Python", "Streamlit", "Pydantic", "PyPDF2"],
+        appLink: "https://resume-analyzer09.streamlit.app",
         repoLink: "https://github.com/Painx9/LLM_Applications/tree/main/resume-analyzer"
       },
       {
-        title: "Weather Forecast App",
-        description: "Real-time weather data retrieval and forecasting application interface.",
-        tags: ["Python", "Streamlit", "API Integration", "JSON"],
-        appLink: "https://your-streamlit-app.streamlit.app",
+        title: "Weather Forecast",
+        description: "A lightweight, modular dashboard that fetches real-time weather metrics for any city globally via OpenWeatherMap API.",
+        tags: ["Python", "Streamlit", "OpenWeatherMap API", "Pandas"],
+        appLink: "https://ai-weather-forecast09.streamlit.app",
         repoLink: "https://github.com/Painx9/LLM_Applications/tree/main/weather-forecast"
       }
     ]
@@ -119,7 +112,7 @@ const repositoryGroups = [
     subProjects: [
       {
         title: "Netflix Developer Series Portfolio",
-        description: "Immersive cinematic portfolio featuring GSAP 3D animations, custom web cursors, and repo nesting.",
+        description: "Immersive cinematic portfolio featuring GSAP 3D animations, custom web cursors, and repository folder nesting.",
         tags: ["React", "Vite", "Tailwind CSS", "GSAP"],
         appLink: "https://painx9.github.io/Deep.github.io/",
         repoLink: "https://github.com/Painx9/Portfoliox9"
@@ -134,7 +127,7 @@ const repositoryGroups = [
     subProjects: [
       {
         title: "GitHub Pages Production Build",
-        description: "Live-hosted deployment repository syncing built web assets for public access.",
+        description: "Live-hosted deployment repository syncing built web assets for public access globally.",
         tags: ["HTML5", "CSS3", "JavaScript", "GitHub Actions"],
         appLink: "https://painx9.github.io/Deep.github.io/",
         repoLink: "https://github.com/Painx9/Deep.github.io"
