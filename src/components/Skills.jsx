@@ -6,40 +6,40 @@ gsap.registerPlugin(ScrollTrigger);
 
 const skillCategories = [
   { 
-    title: 'Frontend Engineering', 
-    desc: 'Crafting responsive and interactive user interfaces using React, JavaScript, HTML5, CSS3, and Tailwind CSS.', 
-    tag: 'UI / INTERACTION',
-    skills: ['React', 'JavaScript', 'Tailwind CSS', 'HTML5', 'CSS3'] 
+    title: 'AI & LLM Frameworks', 
+    desc: 'Developing intelligent applications using advanced generative AI SDKs, cloud LLM providers, and structured schemas.', 
+    tag: 'GENERATIVE AI',
+    skills: ['Google GenAI SDK', 'Groq API', 'Groq Cloud', 'Pydantic', 'LLMs', 'Prompt Engineering', 'Structured JSON Outputs'] 
   },
   { 
-    title: 'Backend & Databases', 
-    desc: 'Building secure REST APIs, authentication flows, server-side applications, and high-performance database architectures.', 
-    tag: 'ARCHITECTURE',
-    skills: ['Node.js', 'Express', 'PostgreSQL', 'MongoDB', 'DQL'] 
+    title: 'Machine Learning & Analytics', 
+    desc: 'Building robust predictive forecasting matrices, classification algorithms, and feature evaluation models.', 
+    tag: 'PREDICTIVE ML',
+    skills: ['Scikit-Learn', 'XGBoost', 'NumPy', 'Pandas', 'Seaborn', 'Matplotlib', 'Statistical Feature Evaluation', 'Feature Binarization'] 
   },
   { 
-    title: 'AI & Machine Learning', 
-    desc: 'Developing intelligent applications leveraging NLP, generative AI workflows, computer vision, and LLM systems.', 
-    tag: 'INTELLIGENCE',
-    skills: ['NLP', 'Generative AI', 'Computer Vision', 'LLMs', 'AWS AI'] 
+    title: 'Autonomous Agents & NLP', 
+    desc: 'Engineering autonomous agent reasoning-and-acting loops, text processing pipelines, and text-to-code workflows.', 
+    tag: 'AGENTS & NLP',
+    skills: ['ReAct Agent Architecture', 'NLTK', 'TfidfTransformer', 'PorterStemmer', 'Regex Text Parsing', 'Multi-Agent Loops', 'Token Optimization'] 
   },
   { 
-    title: 'Cloud & DevOps', 
-    desc: 'Deploying and scaling production-grade applications using Docker containers, GitHub Actions, and CI/CD pipelines.', 
-    tag: 'INFRASTRUCTURE',
-    skills: ['Docker', 'GitHub', 'CI/CD Pipelines', 'Render', 'Docker Hub'] 
+    title: 'Data & Dashboard Engineering', 
+    desc: 'Structuring multimodal data pipelines, cleaning datasets, and deploying interactive web dashboards.', 
+    tag: 'PIPELINES & UI',
+    skills: ['Streamlit', 'Python', 'SQL', 'ETL Cleaning Loops', 'YouTube Transcript API', 'Power BI', 'Data Modeling', 'Excel'] 
   },
   { 
-    title: 'Algorithmic Problem Solving', 
-    desc: 'Optimizing data structures and solving complex algorithmic challenges across competitive programming platforms.', 
-    tag: 'COMPETITIVE',
-    skills: ['Data Structures', 'Algorithms', 'LeetCode', 'CodeChef', 'GFG'] 
+    title: 'Developer Tools & Deployment', 
+    desc: 'Managing source code versioning, continuous deployment pipelines, and remote server development tools.', 
+    tag: 'DEVOPS & TOOLS',
+    skills: ['Git', 'GitLab', 'GitHub REST API', 'Continuous Git Deployment', 'VS Code', 'Overleaf (LaTeX)', 'JSON'] 
   },
   { 
-    title: 'Tools & Ecosystem', 
-    desc: 'Equipped with industry-grade instruments for version control, productivity extensions, and workflow management.', 
-    tag: 'PRODUCTIVITY',
-    skills: ['Git', 'Chrome APIs', 'Adobe Express', 'Google Cloud', 'VS Code'] 
+    title: 'Core Programming Languages', 
+    desc: 'Writing clean application logic, backend data structures, and script interfaces using core modern languages.', 
+    tag: 'LANGUAGES',
+    skills: ['Python', 'SQL', 'HTML5', 'CSS3', 'JavaScript (ES6+)'] 
   },
 ];
 
@@ -174,7 +174,6 @@ const Skills = () => {
       ref={sectionRef} 
       className="relative w-full h-screen bg-[#0b0b0b] text-white overflow-hidden flex items-center justify-center md:[perspective:1000px] select-none"
     >
-      {/* Dynamic Netflix Dark Background Vignettes */}
       {skillCategories.map((_, i) => (
         <div 
           key={i}
@@ -183,7 +182,6 @@ const Skills = () => {
         />
       ))}
 
-      {/* Massive Background Typography (Netflix Red & White Outline) */}
       <div className="absolute inset-0 flex items-center justify-center z-0 pointer-events-none">
         {skillCategories.map((_, i) => (
           <h1 
@@ -200,7 +198,6 @@ const Skills = () => {
         ))}
       </div>
 
-      {/* Carousel Container */}
       <div 
         className="relative w-full h-full flex md:items-center md:justify-center z-10 md:[transform-style:preserve-3d] overflow-x-auto overflow-y-hidden md:overflow-visible snap-x snap-mandatory scrollbar-hide [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none] items-center px-[10vw] md:px-0 gap-4 md:gap-0 touch-pan-x"
         onScroll={handleScroll}
@@ -211,10 +208,8 @@ const Skills = () => {
             ref={el => cardsRef.current[i] = el}
             className="md:absolute relative shrink-0 snap-center w-[82vw] sm:w-[360px] md:w-[440px] h-[460px] md:h-[540px] rounded-[32px] p-8 md:p-10 bg-[#141414]/95 backdrop-blur-2xl border border-white/15 flex flex-col justify-between overflow-hidden group shadow-[0_30px_60px_rgba(0,0,0,0.9)] hover:border-red-600/80 transition-colors duration-500"
           >
-            {/* Inner Red Glossy Reflection */}
             <div className="absolute inset-0 bg-gradient-to-tr from-red-600/10 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none z-20" />
             
-            {/* Top Card Metadata */}
             <div className="flex items-center justify-between relative z-10">
               <span className="text-[10px] font-mono font-bold tracking-widest uppercase text-red-500 bg-red-600/10 px-3 py-1 rounded border border-red-600/20">
                 {category.tag}
@@ -224,7 +219,6 @@ const Skills = () => {
               </span>
             </div>
 
-            {/* Middle Title & Description */}
             <div className="space-y-4 relative z-10 my-auto">
               <h3 className="text-3xl md:text-4xl font-black text-white tracking-tight group-hover:text-red-500 transition-colors duration-300">
                 {category.title}
@@ -234,7 +228,6 @@ const Skills = () => {
               </p>
             </div>
 
-            {/* Bottom Skill Badges */}
             <div className="flex flex-wrap gap-2 pt-4 border-t border-white/10 relative z-10">
               {category.skills.map((skill, sIdx) => (
                 <span 
@@ -246,7 +239,6 @@ const Skills = () => {
               ))}
             </div>
 
-            {/* Bottom Glow Accent */}
             <div className="absolute bottom-4 right-4 w-2 h-2 rounded-full bg-red-600 group-hover:shadow-[0_0_15px_#E50914] transition-all" />
           </div>
         ))}
