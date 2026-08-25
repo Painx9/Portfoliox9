@@ -213,7 +213,7 @@ const Projects = () => {
           ease: "back.out(1.2)"
         }, "-=0.6")
         .to(folderCardsRef.current, {
-          x: (i) => (i - 2) * 290,
+          x: (i) => (i - 2) * 310,
           y: 0,
           rotation: 0,
           scale: 0.92,
@@ -258,7 +258,7 @@ const Projects = () => {
         .to(subFolderCardsRef.current, {
           x: (i) => {
             const count = selectedRepo.subProjects.length;
-            return (i - (count - 1) / 2) * 320;
+            return (i - (count - 1) / 2) * 340;
           },
           y: 0,
           rotation: 0,
@@ -274,10 +274,10 @@ const Projects = () => {
   }, [selectedRepo]);
 
   return (
-    <section id="projects" ref={containerRef} className="bg-[#0b0b0b] min-h-[100svh] md:min-h-[150vh] relative font-sans overflow-x-clip text-white w-full flex flex-col items-center justify-center py-20 select-none">
+    <section id="projects" ref={containerRef} className="bg-[#0b0b0b] min-h-[100svh] md:min-h-[160vh] relative font-sans overflow-x-clip text-white w-full flex flex-col items-center justify-center py-24 select-none">
       
       {/* Background Watermark Heading */}
-      <div className="absolute top-8 left-0 w-full flex items-start justify-center pointer-events-none z-0">
+      <div className="absolute top-10 left-0 w-full flex items-start justify-center pointer-events-none z-0">
         <h1 className="text-[14vw] sm:text-[17vw] md:text-[20vw] font-black text-white/[0.03] tracking-tighter leading-none whitespace-nowrap uppercase">
           {selectedRepo ? selectedRepo.repoName : "REPOSITORIES"}
         </h1>
@@ -308,12 +308,12 @@ const Projects = () => {
 
       {/* VIEW 1: Main Repositories Folders Stack */}
       {!selectedRepo ? (
-        <div className="relative w-full max-w-7xl h-[420px] flex items-center justify-center perspective-[2000px] z-10">
+        <div className="relative w-full max-w-7xl h-[480px] flex items-center justify-center perspective-[2000px] z-10">
           <div className="relative w-0 h-0 transform-style-3d">
             
             <div 
               ref={folderBackRef}
-              className="absolute w-[85vw] md:w-[32vw] max-w-[380px] aspect-video bg-[#141414] rounded-[24px] border border-red-600/40 shadow-[0_20px_50px_rgba(229,9,20,0.25)] flex items-center justify-center"
+              className="absolute w-[85vw] md:w-[34vw] max-w-[400px] aspect-[4/3] bg-[#141414] rounded-[24px] border border-red-600/40 shadow-[0_20px_50px_rgba(229,9,20,0.25)] flex items-center justify-center"
               style={{ zIndex: 5 }}
             >
               <div className="absolute -top-6 left-6 w-32 h-8 bg-[#1f1f1f] rounded-t-xl border-t border-red-600/30" />
@@ -327,7 +327,7 @@ const Projects = () => {
                 key={i}
                 ref={el => folderCardsRef.current[i] = el}
                 onClick={() => setSelectedRepo(repo)}
-                className="hidden md:block absolute w-[80vw] md:w-[30vw] max-w-[320px] aspect-[16/10] will-change-transform cursor-pointer"
+                className="hidden md:block absolute w-[80vw] md:w-[32vw] max-w-[340px] aspect-[4/4.2] will-change-transform cursor-pointer"
                 style={{ zIndex: 10 + i }}
               >
                 <div className="w-full h-full rounded-[24px] overflow-hidden border border-white/15 bg-[#141414]/95 backdrop-blur-2xl shadow-[0_25px_50px_rgba(0,0,0,0.9)] transition-all duration-500 group hover:border-red-600 hover:shadow-[0_35px_80px_rgba(229,9,20,0.4)] hover:-translate-y-2 relative z-10 p-6 flex flex-col justify-between">
@@ -347,19 +347,19 @@ const Projects = () => {
                     </a>
                   </div>
 
-                  <div className="space-y-1.5 my-auto">
+                  <div className="space-y-2 my-auto">
                     <div className="text-[9px] font-mono uppercase tracking-widest text-white/40 truncate">
                       {repo.category}
                     </div>
                     <h3 className="text-xl font-black text-white tracking-tight group-hover:text-red-500 transition-colors duration-300 truncate">
                       {repo.repoName}
                     </h3>
-                    <p className="text-xs text-white/70 font-light leading-relaxed line-clamp-2">
+                    <p className="text-xs text-white/70 font-light leading-relaxed line-clamp-3">
                       {repo.description}
                     </p>
                   </div>
 
-                  <div className="space-y-2 pt-2 border-t border-white/10">
+                  <div className="space-y-2.5 pt-3 border-t border-white/10">
                     <div className="flex flex-wrap gap-1">
                       {repo.overallTech.slice(0, 3).map((tech, tIdx) => (
                         <span key={tIdx} className="text-[9px] font-mono text-white/70 bg-white/5 px-2 py-0.5 rounded">
@@ -380,7 +380,7 @@ const Projects = () => {
 
             <div 
               ref={folderFrontRef}
-              className="absolute w-[85vw] md:w-[32vw] max-w-[380px] aspect-video pointer-events-none will-change-transform"
+              className="absolute w-[85vw] md:w-[34vw] max-w-[400px] aspect-[4/3] pointer-events-none will-change-transform"
               style={{ zIndex: 60 }}
             >
               <div className="absolute bottom-0 w-full h-[85%] bg-[#1c1c1c] rounded-b-[24px] rounded-t-md shadow-[0_-5px_20px_rgba(0,0,0,0.8)] flex flex-col justify-end p-6 border-t border-red-600/40">
@@ -391,13 +391,13 @@ const Projects = () => {
           </div>
         </div>
       ) : (
-        /* VIEW 2: Sub-Projects 3D Folder Stack Animation View */
-        <div className="relative w-full max-w-7xl h-[420px] flex items-center justify-center perspective-[2000px] z-10">
+        /* VIEW 2: Sub-Projects 3D Folder Stack Animation View with Uniform Card Dimensions */
+        <div className="relative w-full max-w-7xl h-[480px] flex items-center justify-center perspective-[2000px] z-10">
           <div className="relative w-0 h-0 transform-style-3d">
             
             <div 
               ref={subFolderBackRef}
-              className="absolute w-[85vw] md:w-[32vw] max-w-[380px] aspect-video bg-[#141414] rounded-[24px] border border-red-600/40 shadow-[0_20px_50px_rgba(229,9,20,0.25)] flex items-center justify-center"
+              className="absolute w-[85vw] md:w-[34vw] max-w-[400px] aspect-[4/3] bg-[#141414] rounded-[24px] border border-red-600/40 shadow-[0_20px_50px_rgba(229,9,20,0.25)] flex items-center justify-center"
               style={{ zIndex: 5 }}
             >
               <div className="absolute -top-6 left-6 w-32 h-8 bg-[#1f1f1f] rounded-t-xl border-t border-red-600/30" />
@@ -410,7 +410,7 @@ const Projects = () => {
               <div 
                 key={idx}
                 ref={el => subFolderCardsRef.current[idx] = el}
-                className="hidden md:block absolute w-[80vw] md:w-[30vw] max-w-[320px] aspect-[16/10] will-change-transform"
+                className="hidden md:block absolute w-[80vw] md:w-[32vw] max-w-[340px] aspect-[4/4.2] will-change-transform"
                 style={{ zIndex: 10 + idx }}
               >
                 <div className="w-full h-full rounded-[24px] overflow-hidden border border-white/15 bg-[#141414]/95 backdrop-blur-2xl shadow-[0_25px_50px_rgba(0,0,0,0.9)] transition-all duration-500 group hover:border-red-600 hover:shadow-[0_35px_80px_rgba(229,9,20,0.4)] relative z-10 p-6 flex flex-col justify-between">
@@ -421,18 +421,18 @@ const Projects = () => {
                     </span>
                   </div>
 
-                  <div className="space-y-1.5 my-auto">
+                  <div className="space-y-2 my-auto">
                     <h3 className="text-lg font-black text-white tracking-tight group-hover:text-red-500 transition-colors truncate">
                       {project.title}
                     </h3>
-                    <p className="text-[11px] text-white/70 font-light leading-relaxed line-clamp-3">
+                    <p className="text-[11px] text-white/80 font-light leading-relaxed line-clamp-3">
                       {project.mission}
                     </p>
                   </div>
 
                   <div className="space-y-3 pt-3 border-t border-white/10">
                     <div className="flex flex-wrap gap-1">
-                      {project.tags.map((tag, tIdx) => (
+                      {project.tags.slice(0, 3).map((tag, tIdx) => (
                         <span key={tIdx} className="text-[9px] font-mono text-white/70 bg-white/5 px-2 py-0.5 rounded">
                           {tag}
                         </span>
@@ -444,7 +444,7 @@ const Projects = () => {
                         href={project.repoLink} 
                         target="_blank" 
                         rel="noopener noreferrer"
-                        className="flex-1 py-1.5 bg-white/10 hover:bg-white/20 text-white font-mono text-[11px] font-bold uppercase rounded text-center transition-all border border-white/15"
+                        className="flex-1 py-2 bg-white/10 hover:bg-white/20 text-white font-mono text-[11px] font-bold uppercase rounded text-center transition-all border border-white/15"
                       >
                         Access Code
                       </a>
@@ -452,7 +452,7 @@ const Projects = () => {
                         href={project.appLink} 
                         target="_blank" 
                         rel="noopener noreferrer"
-                        className="flex-1 py-1.5 bg-red-600 hover:bg-red-700 text-white font-mono text-[11px] font-bold uppercase rounded text-center transition-all shadow-[0_0_15px_rgba(229,9,20,0.5)]"
+                        className="flex-1 py-2 bg-red-600 hover:bg-red-700 text-white font-mono text-[11px] font-bold uppercase rounded text-center transition-all shadow-[0_0_15px_rgba(229,9,20,0.5)]"
                       >
                         Launch App
                       </a>
@@ -466,7 +466,7 @@ const Projects = () => {
 
             <div 
               ref={subFolderFrontRef}
-              className="absolute w-[85vw] md:w-[32vw] max-w-[380px] aspect-video pointer-events-none will-change-transform"
+              className="absolute w-[85vw] md:w-[34vw] max-w-[400px] aspect-[4/3] pointer-events-none will-change-transform"
               style={{ zIndex: 60 }}
             >
               <div className="absolute bottom-0 w-full h-[85%] bg-[#1c1c1c] rounded-b-[24px] rounded-t-md shadow-[0_-5px_20px_rgba(0,0,0,0.8)] flex flex-col justify-end p-6 border-t border-red-600/40">
