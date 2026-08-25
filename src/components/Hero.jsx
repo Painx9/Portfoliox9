@@ -12,11 +12,11 @@ const Hero = () => {
   const contentRef = useRef(null);
 
   const developerRoles = [
-    'FEATURE FILM // AI & ML ENGINEER',
-    'ORIGINAL SERIES // FULL-STACK ARCHITECT',
-    'BLOCKBUSTER // REQ-ACT AGENT SYSTEMS',
-    'ACCLAIMED // DISTRIBUTED PLATFORMS'
-  ];
+    'FEATURE FILM // AI & MACHINE LEARNING ENGINEER',
+    'ORIGINAL SERIES // AUTONOMOUS AGENT ARCHITECT',
+    'BLOCKBUSTER // LLM & GENERATIVE SYSTEMS',
+    'ACCLAIMED // M.SC. AI STUDENT @ BTU'
+];
 
   useEffect(() => {
     const section = sectionRef.current;
