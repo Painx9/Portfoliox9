@@ -50,7 +50,7 @@ const Education = () => {
             </div>
             <p className="text-sm text-gray-400 font-light leading-relaxed mt-3">
               - Foundations: Data Structures, SQL Databases, Object-Oriented Programming, System Normalization.<br />
-              - Highlights: Member of University Coding Circle, contributed to tech workshops and database integration labs.
+              - Highlights: Contributed to tech workshops and database integration labs.
             </p>
           </div>
 
