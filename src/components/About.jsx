@@ -100,17 +100,17 @@ const About = () => {
             <div className="space-y-5 relative z-10">
               <h3 className="text-xs font-mono uppercase tracking-widest text-red-500 font-bold">Cast & Background</h3>
               <p className="text-lg md:text-xl font-medium text-white/90 leading-relaxed">
-                I am <span className="text-white font-bold drop-shadow">Deep Patel</span>, a Computer Science & Engineering graduate pursuing an M.Sc. in Artificial Intelligence at Brandenburg University of Technology (BTU) Cottbus.
+                I am <span className="text-white font-bold drop-shadow">Deep Patel</span>, an AI & ML Engineer in Germany, currently pursuing my M.Sc. in Artificial Intelligence at Brandenburgische Technische Universität Cottbus-Senftenberg (BTU).
               </p>
               <p className="text-sm md:text-base text-white/60 font-light leading-relaxed">
-                My hands-on work focuses on autonomous agent architectures, text-to-code execution loops, and multimodal data applications using the Google GenAI SDK, Groq API, and Streamlit.
+                A skill-driven fresher with extensive hands-on experience building production-grade projects. Open to flexible opportunities across AI/ML engineering, Python development, and Data Analytics—available for remote work or relocation.
               </p>
             </div>
             
             <div className="pt-8 flex flex-wrap gap-2 relative z-10">
-              <span className="px-3.5 py-1.5 rounded bg-white/5 border border-white/10 text-xs font-mono text-white/80">Artificial Intelligence</span>
+              <span className="px-3.5 py-1.5 rounded bg-white/5 border border-white/10 text-xs font-mono text-white/80">Generative AI</span>
               <span className="px-3.5 py-1.5 rounded bg-white/5 border border-white/10 text-xs font-mono text-white/80">Autonomous Agents</span>
-              <span className="px-3.5 py-1.5 rounded bg-white/5 border border-white/10 text-xs font-mono text-white/80">Data Pipelines</span>
+              <span className="px-3.5 py-1.5 rounded bg-white/5 border border-white/10 text-xs font-mono text-white/80">Predictive ML</span>
             </div>
           </div>
 
@@ -130,19 +130,19 @@ const About = () => {
             </div>
             
             <div className="space-y-5 relative z-10">
-              <h3 className="text-xs font-mono uppercase tracking-widest text-red-500 font-bold">Academic Focus</h3>
+              <h3 className="text-xs font-mono uppercase tracking-widest text-red-500 font-bold">Academic & System Focus</h3>
               <ul className="space-y-3.5 text-sm text-white/80 font-light">
                 <li className="flex items-start gap-2.5">
                   <span className="text-red-500 font-bold">&#8250;</span>
-                  <span>Automated code verification & multi-agent loops.</span>
+                  <span>Autonomous agent reasoning and multi-agent execution loops.</span>
                 </li>
                 <li className="flex items-start gap-2.5">
                   <span className="text-red-500 font-bold">&#8250;</span>
-                  <span>Reasoning-and-Acting (ReAct) frameworks and neural network design.</span>
+                  <span>Production-ready LLM application deployment & structured schemas.</span>
                 </li>
                 <li className="flex items-start gap-2.5">
                   <span className="text-red-500 font-bold">&#8250;</span>
-                  <span>Seeking student placement, internship, or 6-month Master's thesis partnerships.</span>
+                  <span>Open for student placements, working student roles, or 6-month Master's thesis collaborations.</span>
                 </li>
               </ul>
             </div>
@@ -169,7 +169,7 @@ const About = () => {
             </div>
             
             <div className="flex flex-wrap items-center gap-3 relative z-10">
-              {['English (C1/Fluent)', 'German (A2/B1)', 'Hindi (Native)', 'Gujarati (Native)'].map((lang, idx) => (
+              {['English-IELTS Band 7 (C1/Fluent)', 'German (A2/B1)', 'Hindi (Native)', 'Gujarati (Native)'].map((lang, idx) => (
                 <span
                   key={idx}
                   className="px-4 py-2 rounded bg-white/[0.04] border border-white/10 text-xs font-mono uppercase tracking-wider text-white shadow-inner hover:bg-red-600/20 hover:border-red-600/40 hover:scale-105 transition-all"
