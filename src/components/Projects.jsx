@@ -4,7 +4,18 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 gsap.registerPlugin(ScrollTrigger);
 
-
+/**
+ * =====================================================================
+ * NESTED REPOSITORY GROUPS & SUB-PROJECTS CONFIGURATION:
+ * =====================================================================
+ * This structure maps your actual GitHub repositories and their sub-folders:
+ * 1. Models (house-price-prediction, react-ai-agent, diabetes-prediction-ml, fake-news-prediction, sonar-vs-rock)
+ * 2. Gen_AI (gemini-3.5_chat_bot)
+ * 3. LLM_Applications (ai-video-analyzer, resume-analyzer, weather-forecast)
+ * 4. Portfoliox9 (React Portfolio Website)
+ * 5. Deep.github.io (GitHub API & Deployed Static Web Build)
+ * =====================================================================
+ */
 const repositoryGroups = [
   {
     repoName: "Models",
@@ -167,7 +178,7 @@ const Projects = () => {
         const tl = gsap.timeline({
           scrollTrigger: {
             trigger: containerRef.current,
-            start: "top 50%", 
+            start: "top 40%", 
             toggleActions: "play none none none"
           }
         });
@@ -246,10 +257,10 @@ const Projects = () => {
   }, [selectedRepo]);
 
   return (
-    <section id="projects" ref={containerRef} className="bg-[#0b0b0b] min-h-[100svh] md:min-h-[170vh] relative font-sans overflow-x-clip text-white w-full flex flex-col items-center justify-start pt-20 pb-32 select-none">
+    <section id="projects" ref={containerRef} className="bg-[#0b0b0b] min-h-[100svh] md:min-h-[150vh] relative font-sans overflow-x-clip text-white w-full flex flex-col items-center justify-center py-20 select-none">
       
       {/* Background Watermark Heading */}
-      <div className="absolute top-10 left-0 w-full flex items-start justify-center pointer-events-none z-0">
+      <div className="absolute top-8 left-0 w-full flex items-start justify-center pointer-events-none z-0">
         <h1 className="text-[14vw] sm:text-[17vw] md:text-[20vw] font-black text-white/[0.03] tracking-tighter leading-none whitespace-nowrap uppercase">
           {selectedRepo ? selectedRepo.repoName : "REPOSITORIES"}
         </h1>
@@ -257,13 +268,13 @@ const Projects = () => {
 
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[55vw] h-[55vw] bg-red-600/15 rounded-full blur-[160px] pointer-events-none z-0" />
 
-      {/* Structured Top Header & Breadcrumb Container (Placed right above the 3D stack for easy access) */}
-      <div className="relative z-30 w-full max-w-7xl px-6 mb-2 flex flex-col items-start gap-2">
+      {/* Structured Top Header & Breadcrumb Container (Optimized for perfect vertical centering) */}
+      <div className="relative z-30 w-full max-w-7xl px-6 mb-6 flex flex-col items-center justify-center text-center gap-2">
         {selectedRepo ? (
-          <div className="flex flex-col sm:flex-row sm:items-center gap-3 w-full">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-center gap-3 w-full">
             <button 
               onClick={() => setSelectedRepo(null)}
-              className="px-4 py-2 bg-neutral-900 border border-red-600/50 hover:bg-red-600 text-white font-mono text-xs uppercase tracking-widest rounded-lg transition-all flex items-center gap-2 shadow-[0_0_15px_rgba(229,9,20,0.4)] cursor-pointer w-fit"
+              className="px-4 py-2 bg-neutral-900 border border-red-600/50 hover:bg-red-600 text-white font-mono text-xs uppercase tracking-widest rounded-lg transition-all flex items-center gap-2 shadow-[0_0_15px_rgba(229,9,20,0.4)] cursor-pointer"
             >
               &larr; Back to Repositories
             </button>
@@ -271,7 +282,7 @@ const Projects = () => {
           </div>
         ) : (
           <div>
-            <span className="text-xs font-mono text-red-500 uppercase tracking-widest bg-red-600/10 px-3 py-1 rounded border border-red-600/20">
+            <span className="text-xs font-mono text-red-500 uppercase tracking-widest bg-red-600/10 px-3 py-1 rounded border border-red-600/20 shadow-lg">
               // ARCHIVE DIRECTORY SYSTEM
             </span>
           </div>
@@ -280,7 +291,7 @@ const Projects = () => {
 
       {/* VIEW 1: Main Repositories Folders Stack */}
       {!selectedRepo ? (
-        <div className="relative w-full max-w-7xl h-[460px] flex items-center justify-center perspective-[2000px] z-10 mt-6">
+        <div className="relative w-full max-w-7xl h-[420px] flex items-center justify-center perspective-[2000px] z-10">
           <div className="relative w-0 h-0 transform-style-3d">
             
             <div 
@@ -349,7 +360,7 @@ const Projects = () => {
         </div>
       ) : (
         /* VIEW 2: Sub-Projects 3D Folder Stack Animation View */
-        <div className="relative w-full max-w-7xl h-[460px] flex items-center justify-center perspective-[2000px] z-10 mt-6">
+        <div className="relative w-full max-w-7xl h-[420px] flex items-center justify-center perspective-[2000px] z-10">
           <div className="relative w-0 h-0 transform-style-3d">
             
             <div 
