@@ -80,7 +80,7 @@ const Projects = () => {
   }, [selectedRepo]);
 
   return (
-    <section id="projects" ref={containerRef} className="bg-[#0b0b0b] min-h-[100svh] md:min-h-[160vh] relative font-sans overflow-x-clip text-white w-full flex flex-col items-center justify-center py-24 select-none">
+    <section id="projects" ref={containerRef} className="bg-[#0b0b0b] min-h-[100svh] md:min-h-[160vh] relative font-sans overflow-visible text-white w-full flex flex-col items-center justify-center py-24 select-none">
       
       <div className="absolute top-10 left-0 w-full flex items-start justify-center pointer-events-none z-0">
         <h1 className="text-[14vw] sm:text-[17vw] md:text-[20vw] font-black text-white/[0.03] tracking-tighter leading-none whitespace-nowrap uppercase">
@@ -111,18 +111,19 @@ const Projects = () => {
       </div>
 
       {!selectedRepo ? (
-        <div className="relative w-full max-w-7xl h-[480px] flex items-center justify-center perspective-[2000px] z-10">
-          <div className="relative w-0 h-0 transform-style-3d">
+        <div className="relative w-full max-w-7xl h-[480px] flex items-center justify-center perspective-[2000px] z-10 overflow-visible">
+          <div className="relative w-0 h-0 transform-style-3d overflow-visible">
             <div ref={folderBackRef} className="absolute w-[85vw] md:w-[34vw] max-w-[400px] aspect-[4/3] bg-[#141414] rounded-[24px] border border-red-600/40 shadow-[0_20px_50px_rgba(229,9,20,0.25)] flex items-center justify-center" style={{ zIndex: 5 }}>
               <div className="absolute -top-6 left-6 w-32 h-8 bg-[#1f1f1f] rounded-t-xl border-t border-red-600/30" />
               <div className="relative z-10 text-red-600 font-mono font-black text-xl tracking-widest uppercase opacity-80">GITHUB_REPOSITORIES</div>
             </div>
 
             {repositoryGroups.map((repo, i) => (
-              <div key={i} ref={el => folderCardsRef.current[i] = el} onClick={() => setSelectedRepo(repo)} className="hidden md:block absolute w-[80vw] md:w-[32vw] max-w-[340px] aspect-[4/4.2] will-change-transform cursor-pointer hover:z-50 group/card" style={{ zIndex: 10 + i }}>
-                <div className="w-full h-full rounded-[24px] overflow-hidden border border-white/15 bg-[#141414]/95 backdrop-blur-2xl shadow-[0_25px_50px_rgba(0,0,0,0.9)] transition-all duration-300 group-hover/card:border-red-600 group-hover/card:shadow-[0_40px_90px_rgba(229,9,20,0.5)] group-hover/card:scale-105 group-hover/card:-translate-y-3 relative z-10 p-6 flex flex-col justify-between">
+              <div key={i} ref={el => folderCardsRef.current[i] = el} onClick={() => setSelectedRepo(repo)} className="hidden md:block absolute w-[80vw] md:w-[32vw] max-w-[340px] aspect-[4/4.2] will-change-transform cursor-pointer hover:!z-[999] group/card" style={{ zIndex: 10 + i }}>
+                {/* Added hover:-translate-y-6 and hover:scale-105 with high priority z-index to clear neighbors fully */}
+                <div className="w-full h-full rounded-[24px] overflow-hidden border border-white/15 bg-[#141414]/95 backdrop-blur-2xl shadow-[0_25px_50px_rgba(0,0,0,0.9)] transition-all duration-300 group-hover/card:border-red-600 group-hover/card:shadow-[0_50px_100px_rgba(229,9,20,0.6)] group-hover/card:scale-105 group-hover/card:-translate-y-6 relative z-10 p-6 flex flex-col justify-between">
                   <div className="flex items-center justify-between">
-                    <span className="text-[10px] font-mono font-bold uppercase tracking-widest text-red-500 bg-red-600/10 px-2.5 py-1 rounded border border-red-600/20">{repo.episode}</span>
+                    <span className="text-[10px] font-mono font-bold tracking-widest uppercase text-red-500 bg-red-600/10 px-2.5 py-1 rounded border border-red-600/20">{repo.episode}</span>
                     <a href={repo.repoLink} target="_blank" rel="noopener noreferrer" onClick={(e) => e.stopPropagation()} className="text-xs font-mono text-red-400 font-bold hover:underline">Access Code &rarr;</a>
                   </div>
                   <div className="space-y-2 my-auto">
@@ -154,16 +155,17 @@ const Projects = () => {
           </div>
         </div>
       ) : (
-        <div className="relative w-full max-w-7xl h-[480px] flex items-center justify-center perspective-[2000px] z-10">
-          <div className="relative w-0 h-0 transform-style-3d">
+        <div className="relative w-full max-w-7xl h-[480px] flex items-center justify-center perspective-[2000px] z-10 overflow-visible">
+          <div className="relative w-0 h-0 transform-style-3d overflow-visible">
             <div ref={subFolderBackRef} className="absolute w-[85vw] md:w-[34vw] max-w-[400px] aspect-[4/3] bg-[#141414] rounded-[24px] border border-red-600/40 shadow-[0_20px_50px_rgba(229,9,20,0.25)] flex items-center justify-center" style={{ zIndex: 5 }}>
               <div className="absolute -top-6 left-6 w-32 h-8 bg-[#1f1f1f] rounded-t-xl border-t border-red-600/30" />
               <div className="relative z-10 text-red-600 font-mono font-black text-xl tracking-widest uppercase opacity-80">{selectedRepo.repoName.toUpperCase()}_MODULES</div>
             </div>
 
             {selectedRepo.subProjects.map((project, idx) => (
-              <div key={idx} ref={el => subFolderCardsRef.current[idx] = el} className="hidden md:block absolute w-[80vw] md:w-[32vw] max-w-[340px] aspect-[4/4.2] will-change-transform hover:z-50 group/subcard" style={{ zIndex: 10 + idx }}>
-                <div className="w-full h-full rounded-[24px] overflow-hidden border border-white/15 bg-[#141414]/95 backdrop-blur-2xl shadow-[0_25px_50px_rgba(0,0,0,0.9)] transition-all duration-300 group-hover/subcard:border-red-600 group-hover/subcard:shadow-[0_40px_90px_rgba(229,9,20,0.5)] group-hover/subcard:scale-105 group-hover/subcard:-translate-y-3 relative z-10 p-6 flex flex-col justify-between">
+              <div key={idx} ref={el => subFolderCardsRef.current[idx] = el} className="hidden md:block absolute w-[80vw] md:w-[32vw] max-w-[340px] aspect-[4/4.2] will-change-transform hover:!z-[999] group/subcard" style={{ zIndex: 10 + idx }}>
+                {/* Added hover:-translate-y-6 and hover:scale-105 with high priority z-index to clear neighbors fully */}
+                <div className="w-full h-full rounded-[24px] overflow-hidden border border-white/15 bg-[#141414]/95 backdrop-blur-2xl shadow-[0_25px_50px_rgba(0,0,0,0.9)] transition-all duration-300 group-hover/subcard:border-red-600 group-hover/subcard:shadow-[0_50px_100px_rgba(229,9,20,0.6)] group-hover/subcard:scale-105 group-hover/subcard:-translate-y-6 relative z-10 p-6 flex flex-col justify-between">
                   <div className="flex items-center justify-between">
                     <span className="text-[10px] font-mono font-bold uppercase tracking-widest text-red-500 bg-red-600/10 px-2.5 py-1 rounded">MODULE 0{idx + 1}</span>
                   </div>
