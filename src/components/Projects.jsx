@@ -4,6 +4,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 gsap.registerPlugin(ScrollTrigger);
 
+// Project Data updated with both live App links and GitHub Repo links
 const projectsData = [
   {
     title: "Python ReAct Automation Agent",
@@ -11,7 +12,9 @@ const projectsData = [
     description: "Library-free, zero-dependency implementation of the Reasoning and Acting (ReAct) agent loop pattern to optimize token usage.",
     tags: ["Python", "Streamlit", "Groq API", "Regex"],
     match: "99%",
-    episode: "S01 E01"
+    episode: "S01 E01",
+    appLink: "https://your-streamlit-app-link.streamlit.app", 
+    repoLink: "https://github.com/YOUR-USERNAME/your-repo-name"
   },
   {
     title: "AI Resume Analyzer Pro",
@@ -19,7 +22,9 @@ const projectsData = [
     description: "Multi-widget Streamlit dashboard integrating the Google GenAI SDK and Pydantic schemas to parse raw resumes against ATS filters.",
     tags: ["Python", "Streamlit", "Google GenAI SDK", "Pydantic"],
     match: "98%",
-    episode: "S01 E02"
+    episode: "S01 E02",
+    appLink: "https://your-streamlit-app-link.streamlit.app",
+    repoLink: "https://github.com/YOUR-USERNAME/your-repo-name"
   },
   {
     title: "California House Price Model",
@@ -27,7 +32,9 @@ const projectsData = [
     description: "XGBoost Regressor model protecting pricing patterns from collinearity across 20,640 instances, achieving an R2 score of 0.943.",
     tags: ["XGBoost", "Pandas", "Seaborn", "Scikit-Learn"],
     match: "97%",
-    episode: "S01 E03"
+    episode: "S01 E03",
+    appLink: "https://your-streamlit-app-link.streamlit.app",
+    repoLink: "https://github.com/YOUR-USERNAME/your-repo-name"
   },
   {
     title: "AI YouTube Video Analyzer",
@@ -35,7 +42,9 @@ const projectsData = [
     description: "Standalone analytics pipeline parsing transcriptions via youtube-transcript-api to generate concise abstracts and action items.",
     tags: ["Python", "Streamlit", "YouTube Transcript API", "JSON"],
     match: "99%",
-    episode: "S01 E04"
+    episode: "S01 E04",
+    appLink: "https://your-streamlit-app-link.streamlit.app",
+    repoLink: "https://github.com/YOUR-USERNAME/your-repo-name"
   },
   {
     title: "Fake News Text Processing Pipeline",
@@ -43,7 +52,9 @@ const projectsData = [
     description: "Cleaned 72,134 news articles using NLTK and TfidfTransformer to build a Logistic Regression classifier achieving 92.7% training accuracy.",
     tags: ["NLTK", "TfidfTransformer", "Logistic Regression", "Regex"],
     match: "96%",
-    episode: "S01 E05"
+    episode: "S01 E05",
+    appLink: "https://your-streamlit-app-link.streamlit.app",
+    repoLink: "https://github.com/YOUR-USERNAME/your-repo-name"
   },
   {
     title: "Sonar-Array Diagnostics Engine",
@@ -51,7 +62,9 @@ const projectsData = [
     description: "Automated binary geological categorization over 60-feature raw frequency spectrum data using Scikit-Learn and Logistic Regression.",
     tags: ["Scikit-Learn", "NumPy", "Pandas", "Logistic Regression"],
     match: "99%",
-    episode: "S01 E06"
+    episode: "S01 E06",
+    appLink: "https://your-streamlit-app-link.streamlit.app",
+    repoLink: "https://github.com/YOUR-USERNAME/your-repo-name"
   },
   {
     title: "Automated Loan Status Prediction",
@@ -59,7 +72,9 @@ const projectsData = [
     description: "Processed loan application datasets by cleaning rows, encoding strings, and deploying a baseline Support Vector Machine classifier.",
     tags: ["Support Vector Machines", "Pandas", "Data Cleaning"],
     match: "100%",
-    episode: "S01 E07"
+    episode: "S01 E07",
+    appLink: "https://your-streamlit-app-link.streamlit.app",
+    repoLink: "https://github.com/YOUR-USERNAME/your-repo-name"
   },
   {
     title: "PIMA Diabetes Diagnostic Pipeline",
@@ -67,7 +82,9 @@ const projectsData = [
     description: "Live Streamlit app utilizing a cached Standard Scaler configuration and linear SVC to evaluate clinical indicator feeds.",
     tags: ["Streamlit", "Standard Scaler", "SVM", "GitHub CI/CD"],
     match: "98%",
-    episode: "S01 E08"
+    episode: "S01 E08",
+    appLink: "https://your-streamlit-app-link.streamlit.app",
+    repoLink: "https://github.com/YOUR-USERNAME/your-repo-name"
   }
 ];
 
@@ -76,8 +93,6 @@ const Projects = () => {
   const folderBackRef = useRef(null);
   const folderFrontRef = useRef(null);
   const cardsRef = useRef([]);
-  const mobileCardsRef = useRef([]);
-  const mobileCarouselRef = useRef(null);
 
   useEffect(() => {
     let ctx = gsap.context(() => {
@@ -109,129 +124,69 @@ const Projects = () => {
 
       let mm = gsap.matchMedia();
 
-      mm.add({
-        isDesktop: "(min-width: 768px)",
-        isMobile: "(max-width: 767px)"
-      }, (context) => {
-        let { isDesktop, isMobile } = context.conditions;
+      mm.add("(min-width: 768px)", () => {
+        let floatTween;
 
-        if (isDesktop) {
-          let floatTween;
-
-          const tl = gsap.timeline({
-            scrollTrigger: {
-              trigger: containerRef.current,
-              start: "top 50%", 
-              end: "bottom 50%",
-              toggleActions: "play reverse play reverse",
-              onEnter: () => { if (floatTween) floatTween.kill(); },
-              onEnterBack: () => { if (floatTween) floatTween.kill(); },
-              onLeave: () => { if (floatTween) floatTween.kill(); },
-              onLeaveBack: () => { if (floatTween) floatTween.kill(); }
-            },
-            onComplete: () => {
-              floatTween = gsap.to(cardsRef.current, {
-                y: "+=12",
-                rotation: "+=1",
-                duration: 3.5,
-                yoyo: true,
-                repeat: -1,
-                ease: "sine.inOut",
-                stagger: { amount: 1.5, from: "random" }
-              });
-            }
-          });
-
-          tl.to(folderFrontRef.current, {
-            rotationX: -130,
-            duration: 1.2,
-            ease: "power3.inOut"
-          });
-
-          tl.to(cardsRef.current, {
-            y: -140,
-            scale: 0.9,
-            zIndex: 70,
-            duration: 0.6,
-            stagger: 0.04,
-            ease: "back.out(1.2)"
-          }, "-=0.6");
-
-          tl.to(cardsRef.current, {
-            x: (i) => {
-              const w = Math.max(...cardsRef.current.map(c => c?.offsetWidth || 0)) || 360;
-              const gap = 40;
-              const { col } = getGridPos(i);
-              return (col - 1) * (w + gap);
-            },
-            y: (i) => {
-              const h = Math.max(...cardsRef.current.map(c => c?.offsetHeight || 0)) || 240;
-              const gap = 40;
-              const { row } = getGridPos(i);
-              return (row - 1) * (h + gap);
-            },
-            rotation: () => gsap.utils.random(-3, 3),
-            scale: 1,
-            duration: 1.4,
-            stagger: { amount: 0.4, from: "center" },
-            expo: "expo.out"
-          }, "-=0.2");
-        }
-
-        if (isMobile) {
-          const cardW = window.innerWidth * 0.8;
-          const gap = 20;
-          
-          mobileCardsRef.current.forEach((card, i) => {
-            gsap.set(card, {
-              x: -(i * (cardW + gap)), 
-              y: 0,
-              scale: 0.4,
-              opacity: 0,
-              rotation: gsap.utils.random(-15, 15)
+        const tl = gsap.timeline({
+          scrollTrigger: {
+            trigger: containerRef.current,
+            start: "top 50%", 
+            end: "bottom 50%",
+            toggleActions: "play reverse play reverse",
+            onEnter: () => { if (floatTween) floatTween.kill(); },
+            onEnterBack: () => { if (floatTween) floatTween.kill(); },
+            onLeave: () => { if (floatTween) floatTween.kill(); },
+            onLeaveBack: () => { if (floatTween) floatTween.kill(); }
+          },
+          onComplete: () => {
+            floatTween = gsap.to(cardsRef.current, {
+              y: "+=12",
+              rotation: "+=1",
+              duration: 3.5,
+              yoyo: true,
+              repeat: -1,
+              ease: "sine.inOut",
+              stagger: { amount: 1.5, from: "random" }
             });
-          });
+          }
+        });
 
-          const tl = gsap.timeline({
-            scrollTrigger: {
-              trigger: containerRef.current,
-              start: "top 60%",
-            }
-          });
+        tl.to(folderFrontRef.current, {
+          rotationX: -130,
+          duration: 1.2,
+          ease: "power3.inOut"
+        });
 
-          tl.to(folderFrontRef.current, {
-            rotationX: -130,
-            duration: 0.8,
-            ease: "power3.inOut"
-          });
+        tl.to(cardsRef.current, {
+          y: -140,
+          scale: 0.9,
+          zIndex: 70,
+          duration: 0.6,
+          stagger: 0.04,
+          ease: "back.out(1.2)"
+        }, "-=0.6");
 
-          tl.to(mobileCardsRef.current, {
-            y: -100,
-            opacity: 1,
-            scale: 0.85,
-            duration: 0.6,
-            stagger: 0.05,
-            ease: "back.out(1.2)"
-          }, "-=0.4");
-
-          tl.to(mobileCardsRef.current, {
-            x: 0,
-            y: 0,
-            rotation: 0,
-            scale: (i) => i === 0 ? 1 : 0.92,
-            opacity: (i) => i === 0 ? 1 : 0.5,
-            duration: 0.8,
-            stagger: 0.08,
-            ease: "expo.out",
-            onComplete: () => {
-              if (mobileCarouselRef.current) {
-                mobileCarouselRef.current.style.overflowX = 'auto';
-                mobileCarouselRef.current.style.pointerEvents = 'auto';
-              }
-            }
-          }, "-=0.2");
-        }
+        tl.to(cardsRef.current, {
+          x: (i) => {
+            const w = Math.max(...cardsRef.current.map(c => c?.offsetWidth || 0)) || 360;
+            const gap = 40;
+            const { col } = getGridPos(i);
+            return (col - 1) * (w + gap);
+          },
+          y: (i) => {
+            const h = Math.max(...cardsRef.current.map(c => c?.offsetHeight || 0)) || 240;
+            const gap = 40;
+            const { row } = getGridPos(i);
+            return (row - 1) * (h + gap);
+          },
+          rotation: () => gsap.utils.random(-3, 3),
+          scale: 1,
+          duration: 1.4,
+          stagger: { amount: 0.4, from: "center" },
+          ease: "expo.out"
+        }, "-=0.2");
       });
+
     }, containerRef);
 
     return () => ctx.revert();
@@ -269,23 +224,43 @@ const Projects = () => {
               className="hidden md:block absolute w-[80vw] md:w-[33vw] max-w-[380px] aspect-[16/10] will-change-transform"
               style={{ zIndex: 10 + i }}
             >
-              <div className="w-full h-full rounded-[24px] overflow-hidden border border-white/15 bg-[#141414]/95 backdrop-blur-2xl shadow-[0_25px_50px_rgba(0,0,0,0.9)] transition-all duration-500 group hover:scale-[1.04] hover:border-red-600 hover:shadow-[0_35px_80px_rgba(229,9,20,0.35)] hover:-translate-y-2 cursor-pointer relative z-10 p-7 flex flex-col justify-between">
+              <div className="w-full h-full rounded-[24px] overflow-hidden border border-white/15 bg-[#141414]/95 backdrop-blur-2xl shadow-[0_25px_50px_rgba(0,0,0,0.9)] transition-all duration-500 group hover:border-red-600 hover:shadow-[0_35px_80px_rgba(229,9,20,0.35)] relative z-10 p-6 flex flex-col justify-between">
                 
+                {/* Top Card Header with Both Action Buttons */}
                 <div className="flex items-center justify-between">
                   <span className="text-[10px] font-mono font-bold tracking-widest uppercase text-red-500 bg-red-600/10 px-2.5 py-1 rounded border border-red-600/20">
                     {project.episode}
                   </span>
                   <div className="flex items-center gap-2">
-                    <span className="text-xs font-mono text-red-400 font-bold">{project.match} Match</span>
-                    <span className="text-[10px] font-mono border border-white/30 px-1 text-white/70">HD</span>
+                    {/* GitHub Code Repository Button */}
+                    <a 
+                      href={project.repoLink} 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      className="px-2.5 py-1 bg-white/10 hover:bg-white/20 text-white font-mono text-[10px] font-bold uppercase rounded flex items-center gap-1 transition-all border border-white/15"
+                      title="View Source Code"
+                    >
+                      Code
+                    </a>
+
+                    {/* Launch Streamlit App Button */}
+                    <a 
+                      href={project.appLink} 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      className="px-2.5 py-1 bg-red-600 hover:bg-red-700 text-white font-mono text-[10px] font-bold uppercase rounded flex items-center gap-1 transition-all shadow-[0_0_12px_rgba(229,9,20,0.5)]"
+                    >
+                      Launch App
+                    </a>
                   </div>
                 </div>
 
-                <div className="space-y-2 my-auto">
-                  <div className="text-[11px] font-mono uppercase tracking-widest text-white/40">
+                {/* Middle Title & Description */}
+                <div className="space-y-1.5 my-auto">
+                  <div className="text-[10px] font-mono uppercase tracking-widest text-white/40">
                     {project.category}
                   </div>
-                  <h3 className="text-2xl font-black text-white tracking-tight group-hover:text-red-500 transition-colors duration-300">
+                  <h3 className="text-xl font-black text-white tracking-tight group-hover:text-red-500 transition-colors duration-300">
                     {project.title}
                   </h3>
                   <p className="text-xs text-white/70 font-light leading-relaxed line-clamp-2">
@@ -293,9 +268,10 @@ const Projects = () => {
                   </p>
                 </div>
 
-                <div className="flex flex-wrap gap-1.5 pt-3 border-t border-white/10">
+                {/* Bottom Tech Tags */}
+                <div className="flex flex-wrap gap-1.5 pt-2 border-t border-white/10">
                   {project.tags.map((tag, tIdx) => (
-                    <span key={tIdx} className="text-[10px] font-mono text-white/70 bg-white/5 px-2 py-0.5 rounded group-hover:border-red-600/30 transition-colors">
+                    <span key={tIdx} className="text-[9px] font-mono text-white/70 bg-white/5 px-2 py-0.5 rounded group-hover:border-red-600/30 transition-colors">
                       {tag}
                     </span>
                   ))}
