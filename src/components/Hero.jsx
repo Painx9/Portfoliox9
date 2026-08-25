@@ -157,7 +157,7 @@ const Hero = () => {
         <div className="hero-anim-item flex items-center justify-between w-full">
           <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded bg-black/80 backdrop-blur-2xl border border-red-600/40 text-xs font-mono uppercase tracking-widest text-white shadow-2xl">
             <span className="w-2 h-2 rounded-full bg-red-600 animate-ping"></span>
-            <span className="text-red-500 font-bold tracking-wider">NETFLIX DEVELOPER SERIES</span>
+            <span className="text-red-500 font-bold tracking-wider">DEEP'S AI & ML ARCHIVE</span>
             <span className="text-white/40">|</span>
             <span className="text-white/80">BTU COTTBUS M.SC. AI</span>
           </div>
@@ -241,7 +241,7 @@ const Hero = () => {
             <div className="p-5 bg-black/80 backdrop-blur-2xl border border-white/15 rounded-xl shadow-2xl max-w-xs">
               <h3 className="text-xs font-mono uppercase tracking-widest text-red-500 font-bold mb-2">Focus & Location</h3>
               <p className="text-xs text-white/80 leading-relaxed font-light">
-                Based in Hamburg, Germany[cite: 23]. Seeking 6-month Master's thesis partnership or engineering internship[cite: 23].
+                Flexible Working Model: Ready for Remote Collaboration or Relocation. Seeking 6-month Master's thesis partnership or engineering internship.
               </p>
             </div>
           </div>
