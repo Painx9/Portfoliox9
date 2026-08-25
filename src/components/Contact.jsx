@@ -1,188 +1,234 @@
-import React, { useRef, useState } from 'react';
-import { motion, useScroll, useTransform } from 'framer-motion';
+import { useEffect, useRef, useState } from 'react';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+gsap.registerPlugin(ScrollTrigger);
 
 const Contact = () => {
-  const ref = useRef(null);
-  
-  // React Form State tracking
-  const [formData, setFormData] = useState({
-    firstName: '',
-    lastName: '',
-    email: '',
-    message: '',
-    permission: false
-  });
+  const sectionRef = useRef(null);
+  const formRef = useRef(null);
 
-  const { scrollYProgress } = useScroll({
-    target: ref,
-    offset: ["start end", "end start"]
-  });
-  
-  // Parallax translation for the big background text
-  const y = useTransform(scrollYProgress, [0, 1], ["-10%", "20%"]);
+  // Form submission state management
+  const [formData, setFormData] = useState({ name: '', email: '', message: '' });
+  const [status, setStatus] = useState('');
+  const [submitting, setSubmitting] = useState(false);
 
-  // Handle input changes dynamically
+  useEffect(() => {
+    const section = sectionRef.current;
+    if (!section) return;
+
+    gsap.fromTo(
+      section.querySelector('.contact-content'),
+      { y: 60, opacity: 0 },
+      {
+        y: 0,
+        opacity: 1,
+        duration: 1,
+        ease: "power4.out",
+        scrollTrigger: {
+          trigger: section,
+          start: "top 75%",
+          toggleActions: "play none none reverse"
+        }
+      }
+    );
+  }, []);
+
   const handleChange = (e) => {
-    const { id, value, type, checked } = e.target;
-    setFormData((prev) => ({
-      ...prev,
-      [id]: type === 'checkbox' ? checked : value
-    }));
+    setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  // Handle form submission logic
-  const handleSubmit = (e) => {
+  // Handle form submission via Web3Forms (Sends message directly to your email)
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    setSubmitting(true);
+    setStatus('');
 
-    if (!formData.permission) {
-      alert("Please accept the contact permission checkbox.");
-      return;
+    try {
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Accept": "application/json"
+        },
+        body: JSON.stringify({
+          access_key: "75488f35-2c45-4409-b1aa-1030d307decc", 
+          name: formData.name,
+          email: formData.email,
+          message: formData.message,
+          subject: `New Portfolio Message from ${formData.name}`
+        })
+      });
+
+      const result = await response.json();
+      if (result.success) {
+        setStatus("SUCCESS");
+        setFormData({ name: '', email: '', message: '' });
+      } else {
+        setStatus("ERROR");
+      }
+    } catch (error) {
+      console.error(error);
+      setStatus("ERROR");
+    } finally {
+      setSubmitting(false);
     }
-
-    console.log("Form Data Submitted Successfully:", formData);
-    alert(`Thanks ${formData.firstName}! Message captured successfully.`);
-    
-    setFormData({ firstName: '', lastName: '', email: '', message: '', permission: false });
   };
 
   return (
-    <section ref={ref} id="contact" className="bg-[#0b0b0b] w-full min-h-screen relative overflow-hidden flex items-end pt-32 pb-0 border-t border-white/10 select-none">
-      
-      {/* Background Cinematic Red Ambient Glow */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-red-600/15 rounded-full blur-[160px] pointer-events-none z-0"></div>
+    <section
+      id="contact"
+      ref={sectionRef}
+      className="relative w-full min-h-screen bg-[#050505] text-white py-32 px-6 md:px-12 flex flex-col justify-center select-none overflow-hidden"
+    >
+      <div className="absolute top-1/2 right-10 w-[500px] h-[500px] bg-red-600/10 rounded-full blur-[180px] pointer-events-none"></div>
 
-      {/* Huge Background Parallax Netflix Watermark Text */}
-      <motion.div 
-        style={{ y }}
-        className="absolute top-0 left-0 w-full h-full flex flex-col justify-start items-center overflow-hidden pointer-events-none z-0 pt-16 md:pt-12 opacity-10"
-      >
-        <h1 
-          className="text-[25vw] leading-[0.75] font-black text-red-600 uppercase tracking-tighter select-none scale-y-[1.6] origin-top"
-          style={{ fontFamily: "'Bebas Neue', 'Impact', sans-serif" }}
-        >
-          CONTACT
-        </h1>
-      </motion.div>
-
-      {/* Form Card Overlay */}
-      <div className="relative z-10 w-full flex justify-end items-end">
-        <motion.div 
-          initial={{ opacity: 0, y: 50 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.8, ease: "easeOut" }}
-          className="bg-[#141414]/95 backdrop-blur-2xl border-t border-l border-white/15 w-full md:w-[90%] lg:w-[82%] p-8 md:p-16 text-white flex flex-col justify-between rounded-tl-[3rem] shadow-[0_-25px_60px_rgba(0,0,0,0.9)] relative overflow-hidden"
-        >
-          {/* Subtle internal top crimson highlight glow */}
-          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-48 h-1 bg-gradient-to-r from-transparent via-red-600 to-transparent opacity-90"></div>
-
-          <div className="flex items-center justify-between mb-12 md:mb-16">
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded bg-red-600/10 border border-red-600/30 text-xs font-mono uppercase tracking-widest text-red-500">
-              <span className="w-1.5 h-1.5 rounded-full bg-red-600 animate-ping"></span>
-              <span>EPISODE 04 // GET IN TOUCH</span>
-            </div>
-            <span className="text-xs font-mono text-white/40 tracking-wider hidden md:block">
-              // LET'S BUILD SOMETHING CINEMATIC
+      <div className="contact-content relative z-10 max-w-7xl mx-auto w-full space-y-16">
+        
+        <div className="flex flex-col items-start space-y-4">
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded bg-black/85 backdrop-blur-2xl border border-red-600/40 text-xs font-mono uppercase tracking-widest text-white shadow-2xl">
+            <span className="w-2 h-2 rounded-full bg-red-600 animate-ping"></span>
+            <span className="text-red-500 font-bold">EPISODE FINALE</span>
+            <span className="text-white/40">|</span>
+            <span>GET IN TOUCH</span>
+          </div>
+          <h2 className="text-4xl md:text-6xl font-black tracking-tighter text-white">
+            READY FOR PRODUCTION? <br />
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-500 via-rose-600 to-red-700 drop-shadow-[0_0_30px_rgba(229,9,20,0.4)]">
+              INITIATE TRANSMISSION.
             </span>
+          </h2>
+        </div>
+
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
+          
+          {/* Left Side: Contact Info, Socials, Phone, & Email */}
+          <div className="lg:col-span-5 p-8 md:p-10 bg-[#141414]/90 backdrop-blur-2xl border border-white/10 rounded-[2.5rem] shadow-2xl space-y-8">
+            <div className="space-y-3">
+              <h3 className="text-xs font-mono uppercase tracking-widest text-red-500 font-bold">Transmission Channels</h3>
+              <p className="text-sm text-white/70 font-light leading-relaxed">
+                Open for student-level engineering placements, internships, or 6-month Master's thesis partnerships in AI and data automation.
+              </p>
+            </div>
+
+            <div className="space-y-4 font-mono text-xs">
+              <a 
+                href="mailto:dp1852001@gmail.com" 
+                className="flex items-center gap-3 p-3.5 rounded-xl bg-white/[0.03] border border-white/10 hover:border-red-600/50 hover:bg-red-600/10 transition-all group"
+              >
+                <span className="text-red-500 font-bold">// EMAIL:</span>
+                <span className="text-white/90 group-hover:text-white">dp1852001@gmail.com</span>
+              </a>
+
+              <a 
+                href="tel:+4915560275161" 
+                className="flex items-center gap-3 p-3.5 rounded-xl bg-white/[0.03] border border-white/10 hover:border-red-600/50 hover:bg-red-600/10 transition-all group"
+              >
+                <span className="text-red-500 font-bold">// PHONE:</span>
+                <span className="text-white/90 group-hover:text-white">+49 155 6027 5161</span>
+              </a>
+            </div>
+
+            <div className="space-y-3 pt-4 border-t border-white/10">
+              <h4 className="text-[11px] font-mono uppercase tracking-widest text-white/40">Professional Networks</h4>
+              <div className="grid grid-cols-2 gap-3">
+                <a 
+                  href="https://github.com/Painx9" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="px-4 py-2.5 rounded-xl bg-white/5 border border-white/10 text-xs font-mono text-white/80 hover:bg-red-600 hover:text-white transition-all text-center"
+                >
+                  GitHub
+                </a>
+                <a 
+                  href="https://www.linkedin.com/in/deepatel009/" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="px-4 py-2.5 rounded-xl bg-white/5 border border-white/10 text-xs font-mono text-white/80 hover:bg-red-600 hover:text-white transition-all text-center"
+                >
+                  LinkedIn
+                </a>
+                <a 
+                  href="https://discordapp.com/users/akaxpain" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="px-4 py-2.5 rounded-xl bg-white/5 border border-white/10 text-xs font-mono text-white/80 hover:bg-red-600 hover:text-white transition-all text-center"
+                >
+                  Discord
+                </a>
+                <a 
+                  href="https://www.instagram.com/deepatel.de?igsh=NHA3dXRydXRmMDM2&utm_source=qr" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="px-4 py-2.5 rounded-xl bg-white/5 border border-white/10 text-xs font-mono text-white/80 hover:bg-red-600 hover:text-white transition-all text-center"
+                >
+                  Instagram
+                </a>
+              </div>
+            </div>
           </div>
 
-          <form onSubmit={handleSubmit} className="flex flex-col gap-12 md:gap-16 w-full">
-            <div className="flex flex-col md:flex-row gap-12 md:gap-20 w-full">
-              
-              {/* Left Column */}
-              <div className="flex-1 flex flex-col gap-10">
-                <div className="relative">
-                  <input 
-                    type="text" 
-                    id="firstName" 
-                    value={formData.firstName}
-                    onChange={handleChange}
-                    placeholder="First Name" 
-                    required
-                    className="w-full bg-transparent border-b border-white/20 pb-3 text-lg focus:outline-none focus:border-red-600 transition-colors placeholder-white/40 font-medium rounded-none text-white"
-                  />
-                </div>
-                <div className="relative">
-                  <input 
-                    type="text" 
-                    id="lastName" 
-                    value={formData.lastName}
-                    onChange={handleChange}
-                    placeholder="Last Name" 
-                    required
-                    className="w-full bg-transparent border-b border-white/20 pb-3 text-lg focus:outline-none focus:border-red-600 transition-colors placeholder-white/40 font-medium rounded-none text-white"
-                  />
-                </div>
-                <div className="relative">
-                  <input 
-                    type="email" 
-                    id="email" 
-                    value={formData.email}
-                    onChange={handleChange}
-                    placeholder="Email Address" 
-                    required
-                    className="w-full bg-transparent border-b border-white/20 pb-3 text-lg focus:outline-none focus:border-red-600 transition-colors placeholder-white/40 font-medium rounded-none text-white"
-                  />
-                </div>
-              </div>
-
-              {/* Right Column */}
-              <div className="flex-1 flex flex-col">
-                <div className="relative h-full flex flex-col">
-                  <textarea 
-                    id="message" 
-                    value={formData.message}
-                    onChange={handleChange}
-                    placeholder="Type your message here..." 
-                    required
-                    className="w-full h-full min-h-[140px] bg-transparent border-b border-white/20 pb-3 text-lg focus:outline-none focus:border-red-600 transition-colors placeholder-white/40 font-medium resize-none rounded-none text-white"
-                  ></textarea>
-                </div>
-              </div>
-            </div>
-
-            {/* Bottom Section */}
-            <div className="flex flex-col md:flex-row gap-12 mt-4 pt-6 border-t border-white/10">
-              {/* Left text */}
-              <div className="flex-1 flex items-start gap-4 text-sm font-light text-white/70">
+          {/* Right Side: Fully Functional Contact Form */}
+          <div className="lg:col-span-7 p-8 md:p-12 bg-[#141414]/90 backdrop-blur-2xl border border-white/10 rounded-[2.5rem] shadow-2xl">
+            <form ref={formRef} onSubmit={handleSubmit} className="space-y-6">
+              <div className="space-y-2">
+                <label className="text-xs font-mono uppercase tracking-widest text-white/70">Your Name</label>
                 <input 
-                  type="checkbox" 
-                  id="permission" 
-                  checked={formData.permission}
+                  type="text" 
+                  name="name" 
+                  required 
+                  value={formData.name}
                   onChange={handleChange}
-                  className="mt-1 w-4 h-4 rounded-sm border-white/30 bg-transparent text-red-600 focus:ring-0 focus:ring-offset-0 cursor-pointer" 
-                  style={{ accentColor: "#E50914" }}
+                  placeholder="John Doe" 
+                  className="w-full px-4 py-3.5 bg-black/50 border border-white/15 rounded-xl text-white text-sm focus:outline-none focus:border-red-600 transition-colors"
                 />
-                <label htmlFor="permission" className="cursor-pointer max-w-[280px] leading-snug">
-                  I give permission to contact me at this email address.
-                </label>
               </div>
 
-              {/* Right text & button */}
-              <div className="flex-1 flex flex-col gap-8 text-xs text-white/50 font-light">
-                <p className="leading-relaxed max-w-[400px]">
-                  This site is protected by security protocols and industry-standard privacy guidelines.
-                </p>
-                <div className="flex flex-col sm:flex-row sm:justify-between sm:items-end gap-6">
-                  <p className="max-w-[250px] leading-relaxed">
-                    Ready to start a project or collaboration? Send a direct signal.
-                  </p>
-                  
-                  <button 
-                    type="submit" 
-                    className="px-8 py-3.5 rounded bg-red-600 text-white font-bold uppercase tracking-widest text-xs flex items-center justify-center gap-3 hover:bg-red-700 transition-all duration-300 group whitespace-nowrap shadow-[0_0_20px_rgba(229,9,20,0.6)] hover:scale-105"
-                  >
-                    Send Message
-                    <svg className="w-4 h-4 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
-                    </svg>
-                  </button>
-                </div>
+              <div className="space-y-2">
+                <label className="text-xs font-mono uppercase tracking-widest text-white/70">Your Email</label>
+                <input 
+                  type="email" 
+                  name="email" 
+                  required 
+                  value={formData.email}
+                  onChange={handleChange}
+                  placeholder="john@example.com" 
+                  className="w-full px-4 py-3.5 bg-black/50 border border-white/15 rounded-xl text-white text-sm focus:outline-none focus:border-red-600 transition-colors"
+                />
               </div>
-            </div>
-          </form>
 
-        </motion.div>
+              <div className="space-y-2">
+                <label className="text-xs font-mono uppercase tracking-widest text-white/70">Message</label>
+                <textarea 
+                  name="message" 
+                  rows="4" 
+                  required 
+                  value={formData.message}
+                  onChange={handleChange}
+                  placeholder="Discussing an AI engineering internship, thesis partnership, or project..." 
+                  className="w-full px-4 py-3.5 bg-black/50 border border-white/15 rounded-xl text-white text-sm focus:outline-none focus:border-red-600 transition-colors resize-none"
+                ></textarea>
+              </div>
+
+              <button 
+                type="submit" 
+                disabled={submitting}
+                className="w-full py-4 bg-red-600 hover:bg-red-700 text-white font-bold text-xs uppercase tracking-widest rounded-xl transition-all duration-300 shadow-[0_0_25px_rgba(229,9,20,0.6)] hover:scale-[1.01] active:scale-[0.99] cursor-pointer disabled:opacity-50"
+              >
+                {submitting ? "Transmitting..." : "Send Message"}
+              </button>
+
+              {status === "SUCCESS" && (
+                <p className="text-xs font-mono text-green-500 text-center">Message transmitted successfully! I will get back to you soon.</p>
+              )}
+              {status === "ERROR" && (
+                <p className="text-xs font-mono text-red-500 text-center">Transmission failed. Please email me directly at dp1852001@gmail.com.</p>
+              )}
+            </form>
+          </div>
+
+        </div>
+
       </div>
     </section>
   );
