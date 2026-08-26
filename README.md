@@ -52,6 +52,8 @@ portfoliox9/
 │   ├── App.jsx             # Main component orchestration and routing sequence
 │   ├── index.css           # Tailwind CSS configuration imports
 │   └── main.jsx            # React root entry point
+├── .env                    # Local environment variables (hidden from git)
+├── .gitignore              # Files and folders ignored by git
 ├── .gitattributes          # Git source control attributes
 ├── LICENSE                 # Open-source license agreement
 ├── README.md               # Project documentation
