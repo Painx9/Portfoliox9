@@ -138,5 +138,63 @@ export const repositoryGroups = [
         repoLink: "https://github.com/Painx9/Deep.github.io"
       }
     ]
+  },
+  {
+    repoName: "OIBSIP",
+    category: "Data Analytics & Exploratory Data Science",
+    description: "Internship repository for Oasis Infobyte (OIBSIP) Data Analytics track, featuring end-to-end EDA pipelines, customer segmentation, data cleaning audits, NLP sentiment analysis, and predictive models.",
+    episode: "S06 REPO",
+    repoLink: "https://github.com/Painx9/OIBSIP",
+    overallTech: ["Python", "Pandas", "Scikit-Learn", "Matplotlib", "Seaborn"],
+    subProjects: [
+      {
+        title: "Retail Sales EDA & Insights",
+        mission: "Uncovering purchasing trends, quarterly sales cycles, and customer demographic drivers from retail transaction records.",
+        description: "Exploratory data analysis utilizing Pandas, Matplotlib, and Seaborn to compute category revenues, correlation heatmaps, and actionable business KPIs.",
+        tags: ["Python", "Pandas", "Seaborn", "EDA"],
+        appLink: "https://github.com/Painx9/OIBSIP",
+        repoLink: "https://github.com/Painx9/OIBSIP"
+      },
+      {
+        title: "Customer Segmentation (K-Means)",
+        mission: "Segmenting an e-commerce customer base using RFM behavioral analytics to empower targeted marketing campaigns.",
+        description: "Applied StandardScaler normalization, calculated optimal clusters with the Elbow Method, and created customer profile clusters.",
+        tags: ["Scikit-Learn", "K-Means", "RFM Analysis", "Pandas"],
+        appLink: "https://github.com/Painx9/OIBSIP",
+        repoLink: "https://github.com/Painx9/OIBSIP"
+      },
+      {
+        title: "Data Cleaning & Quality Audit",
+        mission: "Systematically transforming deliberately messy raw datasets into production-grade, analysis-ready structured data.",
+        description: "Produced data quality reports, handled median/mode missing value imputations, removed duplicates, and corrected numeric outliers via IQR bounds.",
+        tags: ["Python", "Pandas", "Data Cleaning", "NumPy"],
+        appLink: "https://github.com/Painx9/OIBSIP",
+        repoLink: "https://github.com/Painx9/OIBSIP"
+      },
+      {
+        title: "Customer Sentiment Analysis",
+        mission: "Classifying unstructured consumer reviews into positive, negative, and neutral sentiments to gauge customer satisfaction.",
+        description: "Constructed NLP pipelines using NLTK tokenization, stopword filtering, and TF-IDF vectorization to train Naive Bayes and SVM sentiment classifiers.",
+        tags: ["NLP", "TF-IDF", "Scikit-Learn", "NLTK"],
+        appLink: "https://github.com/Painx9/OIBSIP",
+        repoLink: "https://github.com/Painx9/OIBSIP"
+      },
+      {
+        title: "Financial Fraud Detection",
+        mission: "Detecting fraudulent transactions from heavily imbalanced financial data using specialized sampling and evaluation metrics.",
+        description: "Resolved class imbalance using SMOTE oversampling and stratified splits, evaluating models through Precision, Recall, and AUC-ROC curves.",
+        tags: ["SMOTE", "Scikit-Learn", "Logistic Regression", "AUC-ROC"],
+        appLink: "https://github.com/Painx9/OIBSIP",
+        repoLink: "https://github.com/Painx9/OIBSIP"
+      },
+      {
+        title: "Google Play Store Ecosystem Analysis",
+        mission: "Extracting market intelligence across app categories, pricing models, install volumes, and user review sentiment.",
+        description: "Cleaned real-world app store data, evaluated rating distributions, and applied VADER/TextBlob sentiment scoring across market categories.",
+        tags: ["Python", "EDA", "VADER", "Seaborn"],
+        appLink: "https://github.com/Painx9/OIBSIP",
+        repoLink: "https://github.com/Painx9/OIBSIP"
+      }
+    ]
   }
 ];

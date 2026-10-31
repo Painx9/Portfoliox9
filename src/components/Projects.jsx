@@ -42,7 +42,10 @@ const Projects = () => {
           tl.to(folderFrontRef.current, { rotationX: -130, duration: 1.2, ease: "power3.inOut" })
             .to(folderCardsRef.current, { y: -120, scale: 0.9, duration: 0.6, stagger: 0.08, ease: "back.out(1.2)" }, "-=0.6")
             .to(folderCardsRef.current, {
-              x: (i) => (i - 2) * 270 + gsap.utils.random(-20, 20),
+              x: (i) => {
+                const count = repositoryGroups.length;
+                return (i - (count - 1) / 2) * 240 + gsap.utils.random(-15, 15);
+              },
               y: (i) => (i % 2 === 0 ? -20 : 20) + gsap.utils.random(-10, 10),
               rotation: () => gsap.utils.random(-4, 4),
               scale: 0.92,
@@ -66,7 +69,8 @@ const Projects = () => {
             .to(subFolderCardsRef.current, {
               x: (i) => {
                 const count = selectedRepo.subProjects.length;
-                return (i - (count - 1) / 2) * 300 + gsap.utils.random(-20, 20);
+                const spacing = count > 5 ? 240 : 280;
+                return (i - (count - 1) / 2) * spacing + gsap.utils.random(-15, 15);
               },
               y: (i) => (i % 2 === 0 ? -15 : 15) + gsap.utils.random(-10, 10),
               rotation: () => gsap.utils.random(-4, 4),
