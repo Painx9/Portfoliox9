@@ -1,45 +1,120 @@
-import { useLayoutEffect, useRef } from 'react';
-import { gsap } from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { useLayoutEffect, useRef } from "react";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 gsap.registerPlugin(ScrollTrigger);
 
 const skillCategories = [
-  { 
-    title: 'AI & LLM Frameworks', 
-    desc: 'Developing intelligent applications using advanced generative AI SDKs, cloud LLM providers, and structured schemas.', 
-    tag: 'GENERATIVE AI',
-    skills: ['Google GenAI SDK', 'Groq API', 'Groq Cloud', 'Pydantic', 'LLMs', 'Prompt Engineering', 'Structured JSON Outputs'] 
+  {
+    title: "AI & LLM Frameworks",
+    desc: "Developing intelligent applications using advanced generative AI SDKs, cloud LLM providers, and structured schemas.",
+    tag: "GENERATIVE AI",
+    skills: [
+      "Google GenAI SDK",
+      "Groq API",
+      "LangChain",
+      "LangGraph",
+      "Pydantic",
+      "HuggingFace",
+      "Prompt Engineering",
+      "Structured JSON Outputs",
+    ],
   },
-  { 
-    title: 'Machine Learning & Analytics', 
-    desc: 'Building robust predictive forecasting matrices, classification algorithms, and feature evaluation models.', 
-    tag: 'PREDICTIVE ML',
-    skills: ['Scikit-Learn', 'XGBoost', 'NumPy', 'Pandas', 'Seaborn', 'Matplotlib', 'Statistical Feature Evaluation', 'Feature Binarization'] 
+  {
+    title: "Machine Learning & Deep Learning",
+    desc: "Building robust predictive forecasting matrices, classification algorithms, and feature evaluation models.",
+    tag: "PREDICTIVE ML",
+    skills: [
+      "Scikit-Learn",
+      "PyTorch",
+      "XGBoost",
+      "SVM",
+      "Logistic Regression",
+      "NumPy",
+      "Pandas",
+      "Matplotlib",
+      "Seaborn",
+    ],
   },
-  { 
-    title: 'Autonomous Agents & NLP', 
-    desc: 'Engineering autonomous agent reasoning-and-acting loops, text processing pipelines, and text-to-code workflows.', 
-    tag: 'AGENTS & NLP',
-    skills: ['ReAct Agent Architecture', 'NLTK', 'TfidfTransformer', 'PorterStemmer', 'Regex Text Parsing', 'Multi-Agent Loops', 'Token Optimization'] 
+  {
+    title: "Autonomous Agents & NLP",
+    desc: "Engineering autonomous agent reasoning-and-acting loops, text processing pipelines, and text-to-code workflows.",
+    tag: "AGENTS & NLP",
+    skills: [
+      "ReAct Agent Architecture",
+      "Auto-GPT Patterns",
+      "Multi-Agent Loops",
+      "NLTK",
+      "TF-IDF Vectorization",
+      "PorterStemmer",
+      "Regex Text Parsing",
+      "Token Optimization",
+    ],
   },
-  { 
-    title: 'Data & Dashboard Engineering', 
-    desc: 'Structuring multimodal data pipelines, cleaning datasets, and deploying interactive web dashboards.', 
-    tag: 'PIPELINES & UI',
-    skills: ['Streamlit', 'Python', 'SQL', 'ETL Cleaning Loops', 'YouTube Transcript API', 'Power BI', 'Data Modeling', 'Excel'] 
+  {
+    title: "Frontend & Interactive UI",
+    desc: "Architecting responsive, high-performance web applications and interactive dashboards with fluid animations.",
+    tag: "FRONTEND & UI",
+    skills: [
+      "React",
+      "Tailwind CSS",
+      "GSAP Animations",
+      "Vite",
+      "JavaScript (ES6+)",
+      "HTML5",
+      "CSS3",
+      "Responsive Design",
+    ],
   },
-  { 
-    title: 'Developer Tools & Deployment', 
-    desc: 'Managing source code versioning, continuous deployment pipelines, and remote server development tools.', 
-    tag: 'DEVOPS & TOOLS',
-    skills: ['Git', 'GitLab', 'GitHub REST API', 'Continuous Git Deployment', 'VS Code', 'Overleaf (LaTeX)', 'JSON'] 
+  {
+    title: "Data & Pipeline Engineering",
+    desc: "Structuring multimodal data pipelines, cleaning datasets, and deploying interactive web dashboards.",
+    tag: "PIPELINES & ANALYTICS",
+    skills: [
+      "Streamlit",
+      "Python",
+      "SQL",
+      "ETL Pipelines",
+      "YouTube Transcript API",
+      "Data Scraping",
+      "Power BI",
+      "Data Modeling",
+    ],
   },
-  { 
-    title: 'Core Programming Languages', 
-    desc: 'Writing clean application logic, backend data structures, and script interfaces using core modern languages.', 
-    tag: 'LANGUAGES',
-    skills: ['Python', 'SQL', 'HTML5', 'CSS3', 'JavaScript (ES6+)'] 
+  {
+    title: "Cloud, MLOps & Infrastructure",
+    desc: "Managing CI/CD pipelines, containerized deployments, cloud services, and version control workflows.",
+    tag: "CLOUD & DEVOPS",
+    skills: [
+      "AWS",
+      "GCP",
+      "MLOps",
+      "GitHub Actions",
+      "Git",
+      "GitLab",
+      "Continuous Deployment",
+      "REST APIs",
+    ],
+  },
+  {
+    title: "Developer Tools & Environment",
+    desc: "Utilizing professional developer toolchains, API architectures, and document compilation workflows.",
+    tag: "DEV ENVIRONMENT",
+    skills: [
+      "VS Code",
+      "GitHub REST API",
+      "Postman",
+      "Overleaf (LaTeX)",
+      "JSON / YAML",
+      "Virtual Environments",
+      "Linux / Bash",
+    ],
+  },
+  {
+    title: "Core Programming Languages",
+    desc: "Writing clean application logic, backend data structures, and script interfaces using core modern languages.",
+    tag: "LANGUAGES",
+    skills: ["Python", "SQL", "JavaScript (ES6+)", "C / C++", "HTML5 / CSS3"],
   },
 ];
 
@@ -53,10 +128,10 @@ const Skills = () => {
     if (window.innerWidth >= 769) return;
     const container = e.target;
     const center = container.scrollLeft + container.offsetWidth / 2;
-    
+
     let activeIdx = 0;
     let minDiff = Infinity;
-    
+
     cardsRef.current.forEach((card, i) => {
       if (!card) return;
       const cardCenter = card.offsetLeft + card.offsetWidth / 2;
@@ -69,16 +144,31 @@ const Skills = () => {
 
     cardsRef.current.forEach((card, i) => {
       if (card) {
-        gsap.to(card, { scale: i === activeIdx ? 1 : 0.9, duration: 0.4, ease: "power2.out", overwrite: "auto" });
+        gsap.to(card, {
+          scale: i === activeIdx ? 1 : 0.9,
+          duration: 0.4,
+          ease: "power2.out",
+          overwrite: "auto",
+        });
       }
     });
 
     bgRefs.current.forEach((bg, i) => {
-      if (bg) gsap.to(bg, { opacity: i === activeIdx ? 1 : 0, duration: 0.4, overwrite: "auto" });
+      if (bg)
+        gsap.to(bg, {
+          opacity: i === activeIdx ? 1 : 0,
+          duration: 0.4,
+          overwrite: "auto",
+        });
     });
-    
+
     textRefs.current.forEach((txt, i) => {
-      if (txt) gsap.to(txt, { opacity: i === activeIdx ? 1 : 0, duration: 0.4, overwrite: "auto" });
+      if (txt)
+        gsap.to(txt, {
+          opacity: i === activeIdx ? 1 : 0,
+          duration: 0.4,
+          overwrite: "auto",
+        });
     });
   };
 
@@ -91,20 +181,20 @@ const Skills = () => {
           cardsRef.current.forEach((card, i) => {
             if (!card) return;
             const offset = i - p;
-            
-            const radius = 1800; 
-            const angleSpread = 18; 
-            
+
+            const radius = 1800;
+            const angleSpread = 18;
+
             const angle = offset * angleSpread;
-            const rad = angle * Math.PI / 180;
-            
+            const rad = (angle * Math.PI) / 180;
+
             const x = Math.sin(rad) * radius;
-            const y = radius - (Math.cos(rad) * radius); 
-            const z = -Math.abs(offset) * 50; 
-            
+            const y = radius - Math.cos(rad) * radius;
+            const z = -Math.abs(offset) * 50;
+
             const scale = Math.max(0.4, 1 - Math.abs(offset) * 0.15);
-            const rotateZ = angle; 
-            
+            const rotateZ = angle;
+
             const opacity = Math.max(0.1, 1 - Math.abs(offset) * 0.3);
             const zIndex = Math.round(100 - Math.abs(offset) * 10);
 
@@ -114,20 +204,20 @@ const Skills = () => {
               z: z,
               scale: scale,
               rotationZ: rotateZ,
-              rotationY: 0, 
+              rotationY: 0,
               opacity: opacity,
               zIndex: zIndex,
             });
           });
 
           bgRefs.current.forEach((bg, i) => {
-              if (!bg) return;
-              const itemOpacity = Math.max(0, 1 - Math.abs(i - p));
-              gsap.set(bg, { opacity: itemOpacity });
-              
-              if (textRefs.current[i]) {
-                  gsap.set(textRefs.current[i], { opacity: itemOpacity });
-              }
+            if (!bg) return;
+            const itemOpacity = Math.max(0, 1 - Math.abs(i - p));
+            gsap.set(bg, { opacity: itemOpacity });
+
+            if (textRefs.current[i]) {
+              gsap.set(textRefs.current[i], { opacity: itemOpacity });
+            }
           });
         };
 
@@ -136,61 +226,63 @@ const Skills = () => {
         ScrollTrigger.create({
           trigger: sectionRef.current,
           start: "top top",
-          end: "+=500%", 
+          end: `+=${Math.max(500, (skillCategories.length - 1) * 85)}%`,
           pin: true,
           scrub: 1,
           onUpdate: (self) => {
             const p = self.progress * (skillCategories.length - 1);
             updateCards(p);
-          }
+          },
         });
       });
 
       mm.add("(max-width: 768px)", () => {
         cardsRef.current.forEach((card, i) => {
-           if (card) {
-             gsap.set(card, { clearProps: "x,y,z,rotation,scale,opacity,position" });
-             gsap.set(card, { scale: i === 0 ? 1 : 0.9 });
-           }
+          if (card) {
+            gsap.set(card, {
+              clearProps: "x,y,z,rotation,scale,opacity,position",
+            });
+            gsap.set(card, { scale: i === 0 ? 1 : 0.9 });
+          }
         });
-        
+
         bgRefs.current.forEach((bg, i) => {
-           if (bg) gsap.set(bg, { clearProps: "all", opacity: i === 0 ? 1 : 0 });
+          if (bg) gsap.set(bg, { clearProps: "all", opacity: i === 0 ? 1 : 0 });
         });
-        
+
         textRefs.current.forEach((txt, i) => {
-           if (txt) gsap.set(txt, { clearProps: "all", opacity: i === 0 ? 1 : 0 });
+          if (txt)
+            gsap.set(txt, { clearProps: "all", opacity: i === 0 ? 1 : 0 });
         });
       });
-
     }, sectionRef);
 
     return () => ctx.revert();
   }, []);
 
   return (
-    <section 
+    <section
       id="skills"
-      ref={sectionRef} 
+      ref={sectionRef}
       className="relative w-full h-screen bg-[#0b0b0b] text-white overflow-hidden flex items-center justify-center md:[perspective:1000px] select-none"
     >
       {skillCategories.map((_, i) => (
-        <div 
+        <div
           key={i}
-          ref={el => bgRefs.current[i] = el}
+          ref={(el) => (bgRefs.current[i] = el)}
           className="absolute inset-0 z-0 pointer-events-none opacity-0 bg-gradient-to-tr from-black via-[#140203] to-black"
         />
       ))}
 
       <div className="absolute inset-0 flex items-center justify-center z-0 pointer-events-none">
         {skillCategories.map((_, i) => (
-          <h1 
+          <h1
             key={`text-${i}`}
-            ref={el => textRefs.current[i] = el}
+            ref={(el) => (textRefs.current[i] = el)}
             className="absolute text-[22vw] md:text-[18vw] font-black uppercase text-transparent leading-none tracking-tighter mix-blend-overlay"
-            style={{ 
-               WebkitTextStroke: `2px ${i % 2 === 0 ? 'rgba(229,9,20,0.3)' : 'rgba(255,255,255,0.15)'}`,
-               opacity: 0 
+            style={{
+              WebkitTextStroke: `2px ${i % 2 === 0 ? "rgba(229,9,20,0.3)" : "rgba(255,255,255,0.15)"}`,
+              opacity: 0,
             }}
           >
             SKILLS
@@ -199,24 +291,25 @@ const Skills = () => {
       </div>
 
       {/* Changed touch-pan-x to touch-pan-y / auto-scrolling friendliness */}
-      <div 
+      <div
         className="relative w-full h-full flex md:items-center md:justify-center z-10 md:[transform-style:preserve-3d] overflow-x-auto overflow-y-hidden md:overflow-visible snap-x snap-mandatory scrollbar-hide [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none] items-center px-[10vw] md:px-0 gap-4 md:gap-0"
         onScroll={handleScroll}
       >
         {skillCategories.map((category, i) => (
-          <div 
+          <div
             key={i}
-            ref={el => cardsRef.current[i] = el}
+            ref={(el) => (cardsRef.current[i] = el)}
             className="md:absolute relative shrink-0 snap-center w-[82vw] sm:w-[360px] md:w-[440px] h-[460px] md:h-[540px] rounded-[32px] p-8 md:p-10 bg-[#141414]/95 backdrop-blur-2xl border border-white/15 flex flex-col justify-between overflow-hidden group shadow-[0_30px_60px_rgba(0,0,0,0.9)] hover:border-red-600/85 transition-colors duration-500"
           >
             <div className="absolute inset-0 bg-gradient-to-tr from-red-600/10 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none z-20" />
-            
+
             <div className="flex items-center justify-between relative z-10">
               <span className="text-[10px] font-mono font-bold tracking-widest uppercase text-red-500 bg-red-600/10 px-3 py-1 rounded border border-red-600/20">
                 {category.tag}
               </span>
               <span className="text-xs font-mono text-white/40">
-                [ 0{i + 1} / 06 ]
+                [ {String(i + 1).padStart(2, "0")} /{" "}
+                {String(skillCategories.length).padStart(2, "0")} ]
               </span>
             </div>
 
@@ -231,7 +324,7 @@ const Skills = () => {
 
             <div className="flex flex-wrap gap-2 pt-4 border-t border-white/10 relative z-10">
               {category.skills.map((skill, sIdx) => (
-                <span 
+                <span
                   key={sIdx}
                   className="text-xs font-mono text-white/80 bg-white/5 border border-white/10 px-3 py-1 rounded group-hover:border-red-600/30 transition-colors"
                 >
@@ -244,7 +337,6 @@ const Skills = () => {
           </div>
         ))}
       </div>
-
     </section>
   );
 };
