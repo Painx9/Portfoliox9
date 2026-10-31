@@ -164,7 +164,9 @@ const Projects = () => {
               </div>
               <div className="flex items-center gap-2 pt-2 border-t border-white/10">
                 <a href={project.repoLink} target="_blank" rel="noopener noreferrer" className="flex-1 py-2 bg-white/10 text-white font-mono text-[10px] font-bold uppercase rounded text-center border border-white/15">Code</a>
-                <a href={project.appLink} target="_blank" rel="noopener noreferrer" className="flex-1 py-2 bg-red-600 text-white font-mono text-[10px] font-bold uppercase rounded text-center shadow-[0_0_10px_rgba(229,9,20,0.5)]">Launch</a>
+                {project.appLink && (
+                  <a href={project.appLink} target="_blank" rel="noopener noreferrer" className="flex-1 py-2 bg-red-600 text-white font-mono text-[10px] font-bold uppercase rounded text-center shadow-[0_0_10px_rgba(229,9,20,0.5)]">Launch</a>
+                )}
               </div>
             </div>
           ))
@@ -238,12 +240,14 @@ const Projects = () => {
                     <div className="space-y-3 pt-3 border-t border-white/10">
                       <div className="flex flex-wrap gap-1">
                         {project.tags.slice(0, 3).map((tag, tIdx) => (
-                          <span key={tIdx} className="text-[9px] font-mono text-white/70 bg-white/5 px-2 py-0.5 rounded">{tag}</span>
+                          <span key={tag} className="text-[9px] font-mono text-white/70 bg-white/5 px-2 py-0.5 rounded">{tag}</span>
                         ))}
                       </div>
                       <div className="flex items-center gap-2">
                         <a href={project.repoLink} target="_blank" rel="noopener noreferrer" className="flex-1 py-2 bg-white/10 hover:bg-white/20 text-white font-mono text-[11px] font-bold uppercase rounded text-center transition-all border border-white/15">Access Code</a>
-                        <a href={project.appLink} target="_blank" rel="noopener noreferrer" className="flex-1 py-2 bg-red-600 hover:bg-red-700 text-white font-mono text-[11px] font-bold uppercase rounded text-center transition-all shadow-[0_0_15px_rgba(229,9,20,0.5)]">Launch App</a>
+                        {project.appLink && (
+                          <a href={project.appLink} target="_blank" rel="noopener noreferrer" className="flex-1 py-2 bg-red-600 hover:bg-red-700 text-white font-mono text-[11px] font-bold uppercase rounded text-center transition-all shadow-[0_0_15px_rgba(229,9,20,0.5)]">Launch App</a>
+                        )}
                       </div>
                     </div>
                     <div className="absolute bottom-4 right-4 w-2 h-2 rounded-full bg-red-600 group-hover/subcard:shadow-[0_0_15px_#E50914] transition-all" />
