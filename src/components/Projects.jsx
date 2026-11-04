@@ -44,7 +44,8 @@ const Projects = () => {
             .to(folderCardsRef.current, {
               x: (i) => {
                 const count = repositoryGroups.length;
-                return (i - (count - 1) / 2) * 240 + gsap.utils.random(-15, 15);
+                const spacing = count > 7 ? 180 : (count > 5 ? 210 : 240);
+                return (i - (count - 1) / 2) * spacing + gsap.utils.random(-15, 15);
               },
               y: (i) => (i % 2 === 0 ? -20 : 20) + gsap.utils.random(-10, 10),
               rotation: () => gsap.utils.random(-4, 4),
@@ -92,7 +93,7 @@ const Projects = () => {
       {/* Background Watermark Heading */}
       <div className="absolute top-10 left-0 w-full flex items-start justify-center pointer-events-none z-0">
         <h1 className="text-[12vw] sm:text-[16vw] font-black text-white/[0.03] tracking-tighter leading-none whitespace-nowrap uppercase">
-          {selectedRepo ? selectedRepo.repoName : "REPOSITORIES"}
+          PROJECTS
         </h1>
       </div>
 

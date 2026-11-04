@@ -255,4 +255,114 @@ export const repositoryGroups = [
       },
     ],
   },
+  {
+    repoName: "codsoft_tasks",
+    category: "Artificial Intelligence Internship",
+    description:
+      "Core AI projects engineered for the CodSoft Artificial Intelligence virtual internship, featuring rule-based conversational agents, game theory Minimax search algorithms, and content-based recommendation engines.",
+    episode: "S07 REPO",
+    repoLink: "https://github.com/Painx9/codsoft_tasks",
+    overallTech: ["Python", "Scikit-Learn", "Minimax", "Regex", "Pandas"],
+    subProjects: [
+      {
+        title: "Rule-Based Conversational Chatbot",
+        mission:
+          "Developing an intelligent conversational agent that parses user input intent and generates responsive dialogue flows using regex pattern matching.",
+        description:
+          "Engineered a lightweight text chatbot executing rule-based regex intent recognition, structured response dictionaries, and fallback dialogue loops.",
+        tags: ["Python", "Regex", "NLP", "Pattern Matching"],
+        appLink: null,
+        repoLink:
+          "https://github.com/Painx9/codsoft_tasks/tree/main/Task_1_Chatbot",
+      },
+      {
+        title: "Unbeatable Minimax Tic-Tac-Toe AI",
+        mission:
+          "Implementing game theory and recursive adversarial decision trees to ensure the computer agent plays an optimal, mathematically unbeatable game.",
+        description:
+          "Built a game-tree search agent utilizing the Minimax recursive algorithm with depth-weighted scoring to evaluate optimal moves and counter human strategies.",
+        tags: ["Python", "Minimax Algorithm", "Game Theory", "Adversarial Search"],
+        appLink: null,
+        repoLink:
+          "https://github.com/Painx9/codsoft_tasks/tree/main/Task_2_TicTacToe",
+      },
+      {
+        title: "Content-Based Movie Recommendation Engine",
+        mission:
+          "Overcoming content discovery challenges by calculating cosine similarity over tokenized genre metadata to recommend relevant films to users.",
+        description:
+          "Constructed a content-based recommendation model transforming multi-label genre strings into count vectors and computing pairwise cosine similarities.",
+        tags: ["Python", "Pandas", "Scikit-Learn", "Cosine Similarity"],
+        appLink: null,
+        repoLink:
+          "https://github.com/Painx9/codsoft_tasks/tree/main/Task_4_Recommender",
+      },
+    ],
+  },
+  {
+    repoName: "CODSOFT_TASKNO",
+    category: "Machine Learning Internship Suite",
+    description:
+      "Machine learning models developed during the CodSoft ML internship, covering movie genre classification, credit card fraud detection, customer churn forecasting, SMS spam filtering, and deep learning RNN handwriting generation.",
+    episode: "S08 REPO",
+    repoLink: "https://github.com/Painx9/CODSOFT_TASKNO",
+    overallTech: ["Python", "Scikit-Learn", "TensorFlow", "Keras", "NLP"],
+    subProjects: [
+      {
+        title: "Movie Genre Classification",
+        mission:
+          "Predicting film genres directly from plot summaries and unstructured synopses using natural language processing.",
+        description:
+          "Vectorized unstructured plot synopses using TF-IDF text representation and trained multi-class classifiers to accurately predict movie genres.",
+        tags: ["NLP", "TF-IDF", "Scikit-Learn", "Python"],
+        appLink: null,
+        repoLink:
+          "https://github.com/Painx9/CODSOFT_TASKNO/tree/main/CODSOFT_TASK1",
+      },
+      {
+        title: "Credit Card Fraud Detection",
+        mission:
+          "Identifying fraudulent financial transactions amidst severe class imbalances to minimize false-negative fraud occurrences.",
+        description:
+          "Engineered feature preprocessing pipelines and evaluated classification algorithms (Logistic Regression, Decision Trees, Random Forests) on skewed transaction data.",
+        tags: ["Scikit-Learn", "Random Forest", "Fraud Detection", "Imbalanced Data"],
+        appLink: null,
+        repoLink:
+          "https://github.com/Painx9/CODSOFT_TASKNO/tree/main/CODSOFT_TASK2",
+      },
+      {
+        title: "Customer Churn Prediction",
+        mission:
+          "Forecasting subscriber attrition for subscription-based business models using historical customer usage behaviors.",
+        description:
+          "Trained machine learning classification models on customer tenure, usage metrics, and service attributes to identify key churn indicators.",
+        tags: ["Machine Learning", "Customer Churn", "Pandas", "Scikit-Learn"],
+        appLink: null,
+        repoLink:
+          "https://github.com/Painx9/CODSOFT_TASKNO/tree/main/CODSOFT_TASK3",
+      },
+      {
+        title: "Spam SMS Detection",
+        mission:
+          "Classifying incoming text messages as legitimate (ham) or malicious spam to prevent mobile messaging fraud.",
+        description:
+          "Processed SMS text data, extracted frequency matrices via TF-IDF vectorization, and trained high-precision classification models to filter out spam.",
+        tags: ["NLP", "TF-IDF", "Naive Bayes", "Text Classification"],
+        appLink: null,
+        repoLink:
+          "https://github.com/Painx9/CODSOFT_TASKNO/tree/main/CODSOFT_TASK4",
+      },
+      {
+        title: "Handwritten Text Generation (RNN)",
+        mission:
+          "Generating continuous, authentic handwritten-style text sequences using deep learning sequence-to-sequence modeling.",
+        description:
+          "Implemented a character-level Recurrent Neural Network (RNN) in TensorFlow/Keras to model temporal character dependencies and generate realistic text.",
+        tags: ["Deep Learning", "RNN", "TensorFlow", "Keras"],
+        appLink: null,
+        repoLink:
+          "https://github.com/Painx9/CODSOFT_TASKNO/tree/main/CODSOFT_TASK5",
+      },
+    ],
+  },
 ];
