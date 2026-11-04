@@ -100,17 +100,19 @@ const About = () => {
             <div className="space-y-5 relative z-10">
               <h3 className="text-xs font-mono uppercase tracking-widest text-red-500 font-bold">Cast & Background</h3>
               <p className="text-lg md:text-xl font-medium text-white/90 leading-relaxed">
-                I am <span className="text-white font-bold drop-shadow">Deep Patel</span>, an AI & ML Engineer in Germany, currently pursuing my M.Sc. in Artificial Intelligence at Brandenburgische Technische Universität Cottbus-Senftenberg (BTU).
+                I am <span className="text-white font-bold drop-shadow">Deep Patel</span>, an AI & Machine Learning Engineer based in Germany, currently pursuing my M.Sc. in Artificial Intelligence at Brandenburg University of Technology (BTU Cottbus-Senftenberg).
               </p>
-              <p className="text-sm md:text-base text-white/60 font-light leading-relaxed">
-                A skill-driven fresher with extensive hands-on experience building production-grade projects. Open to flexible opportunities across AI/ML engineering, Python development, and Data Analytics—available for remote work or relocation.
+              <p className="text-sm md:text-base text-white/70 font-light leading-relaxed">
+                With a strong computer science foundation and extensive hands-on experience spanning production and internship repositories, I specialize in designing end-to-end intelligent systems: from zero-dependency ReAct agents and schema-enforced LLM pipelines to deep learning sequence models (RNNs), RFM customer segmentation, and financial fraud anomaly detection.
               </p>
             </div>
             
             <div className="pt-8 flex flex-wrap gap-2 relative z-10">
-              <span className="px-3.5 py-1.5 rounded bg-white/5 border border-white/10 text-xs font-mono text-white/80">Generative AI</span>
+              <span className="px-3.5 py-1.5 rounded bg-white/5 border border-white/10 text-xs font-mono text-white/80">Generative AI & LLMs</span>
               <span className="px-3.5 py-1.5 rounded bg-white/5 border border-white/10 text-xs font-mono text-white/80">Autonomous Agents</span>
-              <span className="px-3.5 py-1.5 rounded bg-white/5 border border-white/10 text-xs font-mono text-white/80">Predictive ML</span>
+              <span className="px-3.5 py-1.5 rounded bg-white/5 border border-white/10 text-xs font-mono text-white/80">Deep Learning & ML</span>
+              <span className="px-3.5 py-1.5 rounded bg-white/5 border border-white/10 text-xs font-mono text-white/80">Data Analytics & EDA</span>
+              <span className="px-3.5 py-1.5 rounded bg-white/5 border border-white/10 text-xs font-mono text-white/80">NLP Pipelines</span>
             </div>
           </div>
 
@@ -134,21 +136,25 @@ const About = () => {
               <ul className="space-y-3.5 text-sm text-white/80 font-light">
                 <li className="flex items-start gap-2.5">
                   <span className="text-red-500 font-bold">&#8250;</span>
-                  <span>Autonomous agent reasoning and multi-agent execution loops.</span>
+                  <span>Autonomous agent reasoning (ReAct patterns, multi-agent loops, Minimax game trees).</span>
                 </li>
                 <li className="flex items-start gap-2.5">
                   <span className="text-red-500 font-bold">&#8250;</span>
-                  <span>Production-ready LLM application deployment & structured schemas.</span>
+                  <span>Production LLM workflows, schema enforcement (Pydantic), and multimodal video/document extraction.</span>
                 </li>
                 <li className="flex items-start gap-2.5">
                   <span className="text-red-500 font-bold">&#8250;</span>
-                  <span>Open for student placements, working student roles, or 6-month Master's thesis collaborations.</span>
+                  <span>Predictive modeling, class-imbalance remediation (SMOTE), and full exploratory data analysis (EDA).</span>
+                </li>
+                <li className="flex items-start gap-2.5">
+                  <span className="text-red-500 font-bold">&#8250;</span>
+                  <span>Open for working student positions, full-time AI/ML roles, or 6-month Master's thesis partnerships (Remote/Relocation).</span>
                 </li>
               </ul>
             </div>
             
             <div className="pt-6 font-mono text-xs text-white/40 relative z-10">
-              // SEASON_2026 FOCUS
+              // SEASON_2026 FOCUS &bull; ACTIVE REPOSITORIES
             </div>
           </div>
 
